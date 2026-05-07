@@ -1,246 +1,684 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <img src="logo.png" alt="Quick Revision Logo" width="180">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quick Revision - Maths Practice</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0;font-family:Arial, sans-serif}
-    body{background:#f4f7fb;color:#111}
-    header{background:linear-gradient(135deg,#111827,#2563eb);color:white;padding:22px;text-align:center}
-    header h1{font-size:30px;margin-bottom:6px}
-    header p{font-size:15px;opacity:.9}
-    .container{max-width:950px;margin:22px auto;padding:14px}
-    .card{background:white;border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 8px 22px rgba(0,0,0,.08)}
-    .chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
-    .chapter{border:2px solid #e5e7eb;border-radius:16px;padding:18px;cursor:pointer;text-align:center;font-weight:bold;background:#fff}
-    .chapter:hover{border-color:#2563eb;background:#eff6ff}
-    button{border:0;border-radius:12px;padding:12px 18px;font-weight:bold;cursor:pointer;background:#2563eb;color:white}
-    button:hover{background:#1d4ed8}
-    .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-    .timer{background:#fee2e2;color:#991b1b;padding:10px 14px;border-radius:12px;font-weight:bold}
-    .question{font-size:20px;font-weight:bold;margin:18px 0}
-    .option{display:block;width:100%;text-align:left;background:#f9fafb;color:#111;border:2px solid #e5e7eb;margin:10px 0;padding:13px;border-radius:12px}
-    .option.selected{border-color:#2563eb;background:#dbeafe}
-    .option.correct{border-color:#16a34a;background:#dcfce7}
-    .option.wrong{border-color:#dc2626;background:#fee2e2}
-    .actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}
-    .hidden{display:none}
-    .score{font-size:28px;font-weight:bold;color:#2563eb;text-align:center}
-    .review-item{border-left:5px solid #2563eb;padding:14px;margin:14px 0;background:#f8fafc;border-radius:10px}
-    .small{font-size:14px;color:#555;margin-top:8px;line-height:1.5}
-    footer{text-align:center;padding:18px;color:#555}
-    @media(max-width:600px){header h1{font-size:24px}.question{font-size:18px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Quick Revision - Maths Practice</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f7fb;
+color:#111;
+}
+
+/* Splash Screen */
+
+#splash{
+height:100vh;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:white;
+}
+
+#splash img{
+width:90%;
+max-width:420px;
+}
+
+.hidden{
+display:none;
+}
+
+/* Header */
+
+header{
+background:linear-gradient(135deg,#111827,#2563eb);
+color:white;
+padding:22px;
+text-align:center;
+}
+
+header h1{
+font-size:42px;
+margin-bottom:8px;
+}
+
+header p{
+font-size:18px;
+opacity:.9;
+}
+
+/* Container */
+
+.container{
+max-width:950px;
+margin:22px auto;
+padding:14px;
+}
+
+/* Cards */
+
+.card{
+background:white;
+border-radius:18px;
+padding:20px;
+margin-bottom:18px;
+box-shadow:0 8px 22px rgba(0,0,0,.08);
+}
+
+/* Chapters */
+
+.chapters{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:14px;
+margin-top:18px;
+}
+
+.chapter{
+border:2px solid #e5e7eb;
+border-radius:16px;
+padding:18px;
+cursor:pointer;
+text-align:center;
+font-weight:bold;
+background:white;
+transition:.3s;
+}
+
+.chapter:hover{
+border-color:#2563eb;
+background:#eff6ff;
+}
+
+/* Buttons */
+
+button{
+border:0;
+border-radius:12px;
+padding:12px 18px;
+font-weight:bold;
+cursor:pointer;
+background:#2563eb;
+color:white;
+margin-top:10px;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+/* Quiz */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.timer{
+background:#fee2e2;
+color:#991b1b;
+padding:10px 14px;
+border-radius:12px;
+font-weight:bold;
+}
+
+.question{
+font-size:22px;
+font-weight:bold;
+margin:18px 0;
+}
+
+.option{
+display:block;
+width:100%;
+text-align:left;
+background:#f9fafb;
+color:#111;
+border:2px solid #e5e7eb;
+margin:10px 0;
+padding:14px;
+border-radius:12px;
+cursor:pointer;
+}
+
+.option.selected{
+border-color:#2563eb;
+background:#dbeafe;
+}
+
+.option.correct{
+border-color:#16a34a;
+background:#dcfce7;
+}
+
+.option.wrong{
+border-color:#dc2626;
+background:#fee2e2;
+}
+
+.actions{
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-top:18px;
+}
+
+/* Result */
+
+.score{
+font-size:28px;
+font-weight:bold;
+color:#2563eb;
+text-align:center;
+}
+
+.review-item{
+border-left:5px solid #2563eb;
+padding:14px;
+margin:14px 0;
+background:#f8fafc;
+border-radius:10px;
+}
+
+.small{
+font-size:14px;
+color:#555;
+margin-top:8px;
+line-height:1.5;
+}
+
+footer{
+text-align:center;
+padding:18px;
+color:#555;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+header h1{
+font-size:30px;
+}
+
+.question{
+font-size:18px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
-  <header>
-    <h1>Quick Revision</h1>
-    <p>Maths Practice Set for Competitive Exams</p>
-  </header>
 
-  <div class="container">
+<!-- Splash Screen -->
 
-    <section id="home" class="card">
-      <h2>Chapter Select करें</h2>
-      <p class="small">किसी भी chapter पर click करके practice start करें।</p>
-      <div class="chapters" style="margin-top:16px">
-        <div class="chapter" onclick="startQuiz('percentage')">Percentage</div>
-        <div class="chapter" onclick="startQuiz('profit')">Profit & Loss</div>
-        <div class="chapter" onclick="startQuiz('ratio')">Ratio</div>
-        <div class="chapter" onclick="startQuiz('simple')">Simple Interest</div>
-      </div>
-    </section>
+<div id="splash">
+<img src="logo.png" alt="Quick Revision Logo">
+</div>
 
-    <section id="quiz" class="card hidden">
-      <div class="topbar">
-        <h2 id="chapterTitle">Practice Set</h2>
-        <div class="timer">Time: <span id="time">10:00</span></div>
-      </div>
+<!-- Main Site -->
 
-      <div class="small">Question <span id="qNo">1</span> / <span id="totalQ">0</span></div>
-      <div id="question" class="question"></div>
-      <div id="options"></div>
+<div id="mainSite" class="hidden">
 
-      <div class="actions">
-        <button onclick="prevQuestion()">Previous</button>
-        <button onclick="nextQuestion()">Next</button>
-        <button onclick="submitQuiz()">Submit</button>
-      </div>
-    </section>
+<header>
+<h1>Quick Revision</h1>
+<p>Maths Practice Set for Competitive Exams</p>
+</header>
 
-    <section id="result" class="card hidden">
-      <h2 style="text-align:center">Result</h2>
-      <p class="score" id="scoreText"></p>
-      <p id="resultMsg" style="text-align:center;margin:10px 0"></p>
-      <div class="actions" style="justify-content:center">
-        <button onclick="goHome()">Home</button>
-        <button onclick="showReview()">Answer Review</button>
-      </div>
-    </section>
+<div class="container">
 
-    <section id="review" class="card hidden">
-      <h2>Answer Review</h2>
-      <div id="reviewBox"></div>
-      <button onclick="goHome()">Back to Home</button>
-    </section>
+<!-- Home -->
 
-  </div>
+<section id="home" class="card">
 
-  <footer>© Quick Revision | Maths Practice Site</footer>
+<h2>Chapter Select करें</h2>
 
-  <script>
-    const quizData = {
-      percentage: {
-        title: "Percentage Practice Set",
-        questions: [
-          {q:"40 का 25% कितना होगा?", o:["5","10","15","20"], a:1, s:"40 × 25/100 = 10"},
-          {q:"किसी संख्या का 20% = 60 है, संख्या क्या है?", o:["200","250","300","350"], a:2, s:"संख्या = 60 × 100/20 = 300"},
-          {q:"80 में 25% वृद्धि करने पर संख्या होगी?", o:["90","95","100","110"], a:2, s:"80 का 25% = 20, नई संख्या = 100"},
-          {q:"500 का 12% कितना है?", o:["50","55","60","65"], a:2, s:"500 × 12/100 = 60"},
-          {q:"एक वस्तु 800 से 1000 हो गई। प्रतिशत वृद्धि?", o:["20%","25%","30%","40%"], a:1, s:"वृद्धि = 200, प्रतिशत = 200/800 × 100 = 25%"}
-        ]
-      },
-      profit: {
-        title: "Profit & Loss Practice Set",
-        questions: [
-          {q:"CP ₹500 और SP ₹600 है। लाभ प्रतिशत?", o:["10%","15%","20%","25%"], a:2, s:"लाभ = 100, लाभ% = 100/500 × 100 = 20%"},
-          {q:"CP ₹800 और loss 10% है। SP कितना?", o:["₹700","₹720","₹760","₹780"], a:1, s:"SP = 800 का 90% = ₹720"},
-          {q:"SP ₹1200 और profit 20% है। CP कितना?", o:["₹900","₹1000","₹1100","₹1150"], a:1, s:"CP = 1200 × 100/120 = ₹1000"},
-          {q:"किसी वस्तु को ₹450 में बेचने पर ₹50 का loss हुआ। CP?", o:["₹400","₹450","₹500","₹550"], a:2, s:"CP = SP + Loss = 450 + 50 = ₹500"},
-          {q:"CP ₹1000, SP ₹1250. Profit?", o:["₹150","₹200","₹250","₹300"], a:2, s:"Profit = 1250 - 1000 = ₹250"}
-        ]
-      },
-      ratio: {
-        title: "Ratio Practice Set",
-        questions: [
-          {q:"12:18 का सरल रूप क्या है?", o:["2:3","3:2","4:5","5:6"], a:0, s:"12 और 18 को 6 से भाग दें = 2:3"},
-          {q:"A:B = 3:5 और कुल 80 है। A कितना?", o:["20","30","35","50"], a:1, s:"कुल ratio = 8, A = 3/8 × 80 = 30"},
-          {q:"₹600 को 2:3 में बाँटें। बड़ा भाग?", o:["₹200","₹240","₹300","₹360"], a:3, s:"बड़ा भाग = 3/5 × 600 = ₹360"},
-          {q:"5:7 में दोनों में 10 जोड़ने पर ratio 3:4 हो जाता है। छोटी संख्या?", o:["40","45","50","55"], a:2, s:"मान लें 5x और 7x; (5x+10)/(7x+10)=3/4, x=10, छोटी=50"},
-          {q:"15:25 का सरल रूप?", o:["2:5","3:5","5:3","4:5"], a:1, s:"15 और 25 को 5 से भाग दें = 3:5"}
-        ]
-      },
-      simple: {
-        title: "Simple Interest Practice Set",
-        questions: [
-          {q:"₹1000 पर 10% वार्षिक दर से 2 वर्ष का SI?", o:["₹100","₹150","₹200","₹250"], a:2, s:"SI = PRT/100 = 1000×10×2/100 = ₹200"},
-          {q:"SI ₹300, P ₹1000, T 3 साल। Rate?", o:["5%","8%","10%","12%"], a:2, s:"R = SI×100/PT = 300×100/(1000×3)=10%"},
-          {q:"₹5000 पर 5% दर से 4 साल का SI?", o:["₹800","₹900","₹1000","₹1200"], a:2, s:"SI = 5000×5×4/100 = ₹1000"},
-          {q:"P ₹2000, SI ₹400, R 10%. Time?", o:["1 साल","2 साल","3 साल","4 साल"], a:1, s:"T = SI×100/PR = 400×100/(2000×10)=2 साल"},
-          {q:"Amount ₹1200, SI ₹200. Principal?", o:["₹800","₹900","₹1000","₹1100"], a:2, s:"Principal = Amount - SI = 1200 - 200 = ₹1000"}
-        ]
-      }
-    };
+<p class="small">
+किसी भी chapter पर click करके practice start करें।
+</p>
 
-    let currentSet = [];
-    let currentIndex = 0;
-    let answers = [];
-    let timer;
-    let seconds = 600;
+<div class="chapters">
 
-    function startQuiz(chapter){
-      currentSet = quizData[chapter].questions;
-      currentIndex = 0;
-      answers = Array(currentSet.length).fill(null);
-      seconds = 600;
-      document.getElementById("chapterTitle").innerText = quizData[chapter].title;
-      document.getElementById("totalQ").innerText = currentSet.length;
-      document.getElementById("home").classList.add("hidden");
-      document.getElementById("result").classList.add("hidden");
-      document.getElementById("review").classList.add("hidden");
-      document.getElementById("quiz").classList.remove("hidden");
-      loadQuestion();
-      clearInterval(timer);
-      timer = setInterval(updateTimer,1000);
-    }
+<div class="chapter" onclick="startQuiz('percentage')">
+Percentage
+</div>
 
-    function updateTimer(){
-      seconds--;
-      let m = Math.floor(seconds/60);
-      let s = seconds%60;
-      document.getElementById("time").innerText = `${m}:${s<10?'0':''}${s}`;
-      if(seconds <= 0){
-        clearInterval(timer);
-        submitQuiz();
-      }
-    }
+<div class="chapter" onclick="startQuiz('profit')">
+Profit & Loss
+</div>
 
-    function loadQuestion(){
-      const item = currentSet[currentIndex];
-      document.getElementById("qNo").innerText = currentIndex + 1;
-      document.getElementById("question").innerText = item.q;
-      const box = document.getElementById("options");
-      box.innerHTML = "";
-      item.o.forEach((opt,i)=>{
-        const btn = document.createElement("button");
-        btn.className = "option";
-        if(answers[currentIndex] === i) btn.classList.add("selected");
-        btn.innerText = opt;
-        btn.onclick = () => {
-          answers[currentIndex] = i;
-          loadQuestion();
-        };
-        box.appendChild(btn);
-      });
-    }
+<div class="chapter" onclick="startQuiz('ratio')">
+Ratio
+</div>
 
-    function nextQuestion(){
-      if(currentIndex < currentSet.length - 1){
-        currentIndex++;
-        loadQuestion();
-      }
-    }
+<div class="chapter" onclick="startQuiz('simple')">
+Simple Interest
+</div>
 
-    function prevQuestion(){
-      if(currentIndex > 0){
-        currentIndex--;
-        loadQuestion();
-      }
-    }
+</div>
+</section>
 
-    function submitQuiz(){
-      clearInterval(timer);
-      let score = 0;
-      currentSet.forEach((q,i)=>{
-        if(answers[i] === q.a) score++;
-      });
-      document.getElementById("quiz").classList.add("hidden");
-      document.getElementById("result").classList.remove("hidden");
-      document.getElementById("scoreText").innerText = `${score} / ${currentSet.length}`;
-      document.getElementById("resultMsg").innerText =
-        score >= 4 ? "बहुत अच्छा! आपकी तैयारी मजबूत है।" :
-        score >= 2 ? "अच्छा प्रयास! थोड़ा और revision करें।" :
-        "Practice जारी रखें, improvement जरूर होगा।";
-    }
+<!-- Quiz -->
 
-    function showReview(){
-      document.getElementById("result").classList.add("hidden");
-      document.getElementById("review").classList.remove("hidden");
-      const box = document.getElementById("reviewBox");
-      box.innerHTML = "";
-      currentSet.forEach((q,i)=>{
-        const div = document.createElement("div");
-        div.className = "review-item";
-        const userAns = answers[i] === null ? "Not Attempted" : q.o[answers[i]];
-        div.innerHTML = `
-          <b>Q${i+1}. ${q.q}</b><br>
-          आपका जवाब: ${userAns}<br>
-          सही जवाब: <b>${q.o[q.a]}</b>
-          <p class="small">Solution: ${q.s}</p>
-        `;
-        box.appendChild(div);
-      });
-    }
+<section id="quiz" class="card hidden">
 
-    function goHome(){
-      clearInterval(timer);
-      document.getElementById("home").classList.remove("hidden");
-      document.getElementById("quiz").classList.add("hidden");
-      document.getElementById("result").classList.add("hidden");
-      document.getElementById("review").classList.add("hidden");
-    }
-  </script>
+<div class="topbar">
+
+<h2 id="chapterTitle">Practice Set</h2>
+
+<div class="timer">
+Time:
+<span id="time">10:00</span>
+</div>
+
+</div>
+
+<div class="small">
+Question
+<span id="qNo">1</span>
+/
+<span id="totalQ">0</span>
+</div>
+
+<div id="question" class="question"></div>
+
+<div id="options"></div>
+
+<div class="actions">
+
+<div style="display:flex;justify-content:space-between;width:100%;gap:10px;">
+
+<button onclick="prevQuestion()">
+Previous
+</button>
+
+<button onclick="nextQuestion()">
+Next
+</button>
+
+</div>
+
+<div style="width:100%;text-align:center;">
+
+<button onclick="submitQuiz()">
+Submit
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Result -->
+
+<section id="result" class="card hidden">
+
+<h2 style="text-align:center;">Result</h2>
+
+<p class="score" id="scoreText"></p>
+
+<p id="resultMsg"
+style="text-align:center;margin:10px 0;">
+</p>
+
+<div class="actions"
+style="justify-content:center;">
+
+<button onclick="goHome()">Home</button>
+
+<button onclick="showReview()">
+Answer Review
+</button>
+
+</div>
+
+</section>
+
+<!-- Review -->
+
+<section id="review" class="card hidden">
+
+<h2>Answer Review</h2>
+
+<div id="reviewBox"></div>
+
+<div style="text-align:center;">
+<button onclick="goHome()">Back Home</button>
+</div>
+
+</section>
+
+</div>
+
+<footer>
+© Quick Revision | Maths Practice Site
+</footer>
+
+</div>
+
+<script>
+
+/* Splash */
+
+setTimeout(function(){
+
+document.getElementById("splash").style.display="none";
+
+document.getElementById("mainSite").classList.remove("hidden");
+
+},2500);
+
+/* Questions */
+
+const questionSet={
+
+percentage:[
+
+{
+q:"50 का 20% कितना होगा?",
+a:["5","10","15","20"],
+c:1
+},
+
+{
+q:"200 का 25% कितना होगा?",
+a:["25","50","75","100"],
+c:1
+}
+
+],
+
+profit:[
+
+{
+q:"100 रुपये की वस्तु 120 में बेची गई, लाभ कितना?",
+a:["10","15","20","25"],
+c:2
+},
+
+{
+q:"500 की वस्तु 450 में बेची गई, हानि कितनी?",
+a:["10%","20%","5%","15%"],
+c:0
+}
+
+],
+
+ratio:[
+
+{
+q:"2:4 का सरल रूप क्या है?",
+a:["1:2","2:3","4:8","3:4"],
+c:0
+},
+
+{
+q:"5:10 = ?",
+a:["2:5","1:2","3:4","5:6"],
+c:1
+}
+
+],
+
+simple:[
+
+{
+q:"1000 पर 10% वार्षिक दर से 1 वर्ष का साधारण ब्याज?",
+a:["50","100","150","200"],
+c:1
+},
+
+{
+q:"2000 पर 5% दर से 2 वर्ष का ब्याज?",
+a:["100","150","200","250"],
+c:2
+}
+
+]
+
+};
+
+let currentSet=[];
+let currentIndex=0;
+let answers=[];
+let timer;
+let timeLeft=600;
+
+/* Start Quiz */
+
+function startQuiz(chapter){
+
+currentSet=questionSet[chapter];
+
+currentIndex=0;
+
+answers=new Array(currentSet.length).fill(null);
+
+document.getElementById("home").classList.add("hidden");
+
+document.getElementById("quiz").classList.remove("hidden");
+
+document.getElementById("chapterTitle").innerText=chapter.toUpperCase();
+
+document.getElementById("totalQ").innerText=currentSet.length;
+
+timeLeft=600;
+
+startTimer();
+
+loadQuestion();
+
+}
+
+/* Load Question */
+
+function loadQuestion(){
+
+const item=currentSet[currentIndex];
+
+document.getElementById("qNo").innerText=currentIndex+1;
+
+document.getElementById("question").innerText=item.q;
+
+const box=document.getElementById("options");
+
+box.innerHTML="";
+
+item.a.forEach((opt,i)=>{
+
+const btn=document.createElement("button");
+
+btn.className="option";
+
+btn.innerText=opt;
+
+if(answers[currentIndex]===i){
+
+btn.classList.add("selected");
+
+}
+
+btn.onclick=()=>selectOption(i);
+
+box.appendChild(btn);
+
+});
+
+}
+
+/* Select */
+
+function selectOption(i){
+
+answers[currentIndex]=i;
+
+loadQuestion();
+
+}
+
+/* Next */
+
+function nextQuestion(){
+
+if(currentIndex<currentSet.length-1){
+
+currentIndex++;
+
+loadQuestion();
+
+}
+
+}
+
+/* Previous */
+
+function prevQuestion(){
+
+if(currentIndex>0){
+
+currentIndex--;
+
+loadQuestion();
+
+}
+
+}
+
+/* Timer */
+
+function startTimer(){
+
+clearInterval(timer);
+
+timer=setInterval(()=>{
+
+timeLeft--;
+
+let min=Math.floor(timeLeft/60);
+
+let sec=timeLeft%60;
+
+document.getElementById("time").innerText=
+`${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+
+if(timeLeft<=0){
+
+clearInterval(timer);
+
+submitQuiz();
+
+}
+
+},1000);
+
+}
+
+/* Submit */
+
+function submitQuiz(){
+
+clearInterval(timer);
+
+let score=0;
+
+currentSet.forEach((q,i)=>{
+
+if(answers[i]===q.c){
+
+score++;
+
+}
+
+});
+
+document.getElementById("quiz").classList.add("hidden");
+
+document.getElementById("result").classList.remove("hidden");
+
+document.getElementById("scoreText").innerText=
+`${score} / ${currentSet.length}`;
+
+document.getElementById("resultMsg").innerText=
+score>=currentSet.length/2
+?
+"बहुत अच्छा! आपकी तैयारी मजबूत है।"
+:
+"थोड़ा और revision करें।";
+
+}
+
+/* Review */
+
+function showReview(){
+
+document.getElementById("result").classList.add("hidden");
+
+document.getElementById("review").classList.remove("hidden");
+
+const reviewBox=document.getElementById("reviewBox");
+
+reviewBox.innerHTML="";
+
+currentSet.forEach((q,i)=>{
+
+const div=document.createElement("div");
+
+div.className="review-item";
+
+div.innerHTML=`
+
+<h3>Q${i+1}. ${q.q}</h3>
+
+<p>
+<b>Your Answer:</b>
+${answers[i]!=null ? q.a[answers[i]] : "Not Answered"}
+</p>
+
+<p>
+<b>Correct Answer:</b>
+${q.a[q.c]}
+</p>
+
+`;
+
+reviewBox.appendChild(div);
+
+});
+
+}
+
+/* Home */
+
+function goHome(){
+
+document.getElementById("quiz").classList.add("hidden");
+
+document.getElementById("result").classList.add("hidden");
+
+document.getElementById("review").classList.add("hidden");
+
+document.getElementById("home").classList.remove("hidden");
+
+}
+
+</script>
+
 </body>
 </html>
- 
