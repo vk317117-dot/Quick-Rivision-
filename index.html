@@ -407,7 +407,7 @@ c:1
 ],
 
 profit:[
-
+ú
 {
 q:"100 रुपये की वस्तु 120 में बेची गई, लाभ कितना?",
 a:["10","15","20","25"],
@@ -457,7 +457,7 @@ c:2
 };
 
 let currentSet=[];
-let currentIndex=0;
+jlet currentIndex=0;
 let answers=[];
 let timer;
 let timeLeft=600;
@@ -577,103 +577,7 @@ let min=Math.floor(timeLeft/60);
 let sec=timeLeft%60;
 
 document.getElementById("time").innerText=
-`${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
-
-if(timeLeft<=0){
-
-clearInterval(timer);
-
-submitQuiz();
-
-}
-
-},1000);
-
-}
-
-/* Submit */
-
-function submitQuiz(){
-
-clearInterval(timer);
-
-let score=0;
-
-currentSet.forEach((q,i)=>{
-
-if(answers[i]===q.c){
-
-score++;
-
-}
-
-});
-
-document.getElementById("quiz").classList.add("hidden");
-
-document.getElementById("result").classList.remove("hidden");
-
-document.getElementById("scoreText").innerText=
-`${score} / ${currentSet.length}`;
-
-document.getElementById("resultMsg").innerText=
-score>=currentSet.length/2
-?
-"बहुत अच्छा! आपकी तैयारी मजबूत है।"
-:
-"थोड़ा और revision करें।";
-
-}
-
-/* Review */
-
-function showReview(){
-
-document.getElementById("result").classList.add("hidden");
-
-document.getElementById("review").classList.remove("hidden");
-
-const reviewBox=document.getElementById("reviewBox");
-
-reviewBox.innerHTML="";
-
-currentSet.forEach((q,i)=>{
-
-const div=document.createElement("div");
-
-div.className="review-item";
-
-div.innerHTML=`
-
-<h3>Q${i+1}. ${q.q}</h3>
-
-<p>
-<b>Your Answer:</b>
-${answers[i]!=null ? q.a[answers[i]] : "Not Answered"}
-</p>
-
-<p>
-<b>Correct Answer:</b>
-${q.a[q.c]}
-</p>
-
-`;
-
-reviewBox.appendChild(div);
-
-});
-
-}
-
-/* Home */
-
-function goHome(){
-
-document.getElementById("quiz").classList.add("hidden");
-
-document.getElementById("result").classList.add("hidden");
-
-document.getElementById("review").classList.add("hidden");
+dd("hidden");
 
 document.getElementById("home").classList.remove("hidden");
 
