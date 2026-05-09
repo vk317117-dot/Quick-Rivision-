@@ -10,44 +10,106 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f4f7fb;color:#111;overflow-x:hidden}
 
-header{background:linear-gradient(135deg,#06163d,#0759d8);color:white;padding:25px;text-align:center}
+#splash-screen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+animation:fadeOut 1s ease forwards;
+animation-delay:3s;
+}
+
+#splash-screen img{
+width:90%;
+max-width:420px;
+animation:zoomIn 2s ease;
+}
+
+@keyframes zoomIn{
+0%{transform:scale(.7);opacity:0}
+100%{transform:scale(1);opacity:1}
+}
+
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden}
+}
+
+header{
+background:linear-gradient(135deg,#06163d,#0759d8);
+color:white;
+padding:25px;
+text-align:center;
+}
+
 header h1{font-size:42px}
 header p{font-size:18px;margin-top:6px}
 
 .container{max-width:1100px;margin:22px auto;padding:14px}
 .card{background:white;border-radius:18px;padding:20px;box-shadow:0 8px 22px rgba(0,0,0,.08);margin-bottom:18px}
 
-#splash-screen{
-position:fixed;top:0;left:0;width:100%;height:100vh;background:white;
-display:flex;justify-content:center;align-items:center;z-index:9999;
-animation:fadeOut 1s ease forwards;animation-delay:3s
-}
-#splash-screen img{width:220px;animation:zoomIn 2s ease}
-@keyframes zoomIn{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
-@keyframes fadeOut{to{opacity:0;visibility:hidden}}
-
 .section-title{
-background:linear-gradient(135deg,#0036b8,#0759d8);color:white;padding:18px;
-border-radius:14px 14px 0 0;font-size:26px;font-weight:bold;
-display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-top:20px
+background:linear-gradient(135deg,#0036b8,#0759d8);
+color:white;
+padding:18px;
+border-radius:14px 14px 0 0;
+font-size:26px;
+font-weight:bold;
+display:flex;
+justify-content:space-between;
+align-items:center;
+cursor:pointer;
+margin-top:20px;
 }
 
 .topic-box{
-border:2px solid #0759d8;border-top:0;padding:14px;border-radius:0 0 14px 14px;
-display:grid;grid-template-columns:repeat(2,1fr);gap:12px
+border:2px solid #0759d8;
+border-top:0;
+padding:14px;
+border-radius:0 0 14px 14px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
 }
 
 .topic{
-border:1.5px solid #b7c8ff;border-radius:10px;padding:12px;
-display:flex;align-items:center;justify-content:space-between;gap:8px;
-font-weight:bold;font-size:14px;background:white;cursor:pointer
+border:1.5px solid #b7c8ff;
+border-radius:10px;
+padding:12px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:8px;
+font-weight:bold;
+font-size:14px;
+background:white;
+cursor:pointer;
 }
 
 .topic:hover{background:#eff6ff}
 
 .badges{display:flex;gap:6px;white-space:nowrap}
-.badge-blue{border:1px solid #8aa8ff;color:#0046d8;padding:5px 8px;border-radius:7px;font-size:12px}
-.badge-green{border:1px solid #7ccf8a;color:#087a20;padding:5px 8px;border-radius:7px;font-size:12px}
+
+.badge-blue{
+border:1px solid #8aa8ff;
+color:#0046d8;
+padding:5px 8px;
+border-radius:7px;
+font-size:12px;
+}
+
+.badge-green{
+border:1px solid #7ccf8a;
+color:#087a20;
+padding:5px 8px;
+border-radius:7px;
+font-size:12px;
+}
 
 .hidden{display:none}
 
@@ -56,25 +118,47 @@ font-weight:bold;font-size:14px;background:white;cursor:pointer
 .progress{font-weight:bold;color:#0759d8;margin:12px 0}
 
 .question{font-size:22px;font-weight:bold;margin:18px 0}
+
 .option{
-display:block;width:100%;text-align:left;background:#f9fafb;color:#111;
-border:2px solid #e5e7eb;margin:10px 0;padding:14px;border-radius:12px;cursor:pointer
+display:block;
+width:100%;
+text-align:left;
+background:#f9fafb;
+color:#111;
+border:2px solid #e5e7eb;
+margin:10px 0;
+padding:14px;
+border-radius:12px;
+cursor:pointer;
 }
+
 .option.selected{border-color:#0759d8;background:#dbeafe}
-.option.correct{border-color:#16a34a;background:#dcfce7}
-.option.wrong{border-color:#dc2626;background:#fee2e2}
 
 .actions{display:flex;flex-direction:column;gap:12px;margin-top:18px}
 .nav-buttons{display:flex;justify-content:space-between;width:100%;gap:10px}
+
 button{
-border:0;border-radius:12px;padding:12px 18px;font-weight:bold;cursor:pointer;
-background:#0759d8;color:white
+border:0;
+border-radius:12px;
+padding:12px 18px;
+font-weight:bold;
+cursor:pointer;
+background:#0759d8;
+color:white;
 }
-button:hover{background:#0036b8}
+
 .submit-box{text-align:center}
 .submit-btn{background:#16a34a}
+
 .score{text-align:center;font-size:30px;color:#0759d8;font-weight:bold}
-.review-item{border-left:5px solid #0759d8;padding:14px;margin:14px 0;background:#f8fafc;border-radius:10px}
+
+.review-item{
+border-left:5px solid #0759d8;
+padding:14px;
+margin:14px 0;
+background:#f8fafc;
+border-radius:10px;
+}
 
 footer{text-align:center;padding:18px;color:#555}
 
@@ -245,8 +329,16 @@ item.a.forEach((opt,i)=>{
 const btn=document.createElement("button");
 btn.className="option";
 btn.innerText=opt;
-if(answers[currentIndex]===i){btn.classList.add("selected")}
-btn.onclick=function(){answers[currentIndex]=i;loadQuestion()};
+
+if(answers[currentIndex]===i){
+btn.classList.add("selected");
+}
+
+btn.onclick=function(){
+answers[currentIndex]=i;
+loadQuestion();
+};
+
 box.appendChild(btn);
 });
 }
@@ -269,8 +361,10 @@ function startTimer(){
 clearInterval(timer);
 timer=setInterval(function(){
 timeLeft--;
+
 let min=Math.floor(timeLeft/60);
 let sec=timeLeft%60;
+
 document.getElementById("time").innerText=
 String(min).padStart(2,"0")+":"+String(sec).padStart(2,"0");
 
@@ -284,16 +378,22 @@ submitQuiz();
 function submitQuiz(){
 clearInterval(timer);
 let score=0;
+
 currentSet.forEach((q,i)=>{
-if(answers[i]===q.c){score++}
+if(answers[i]===q.c){
+score++;
+}
 });
 
 document.getElementById("quiz").classList.add("hidden");
 document.getElementById("result").classList.remove("hidden");
 
 document.getElementById("scoreText").innerText=score+" / "+currentSet.length;
+
 document.getElementById("resultMsg").innerText=
-score>=currentSet.length/2 ? "बहुत अच्छा! आपकी तैयारी मजबूत है।" : "थोड़ा और revision करें।";
+score>=currentSet.length/2
+? "बहुत अच्छा! आपकी तैयारी मजबूत है।"
+: "थोड़ा और revision करें।";
 }
 
 function showReview(){
