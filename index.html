@@ -392,5 +392,47 @@ Login
 style="margin-top:10px;font-size:14px;color:#0759d8;"></p>
 
 </div>
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDX45cM3C-iZSIDua_GGqb8nL1pVibzlWE",
+  authDomain: "quick-revision-854ab.firebaseapp.com",
+  projectId: "quick-revision-854ab",
+  storageBucket: "quick-revision-854ab.firebasestorage.app",
+  messagingSenderId: "200424391350",
+  appId: "1:200424391350:web:251d8eb2148f4b8960dc17"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.signup = function(){
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+  .then(() => {
+    document.getElementById("userInfo").innerText = "Signup successful ✅";
+  })
+  .catch((error) => {
+    document.getElementById("userInfo").innerText = error.message;
+  });
+};
+
+window.login = function(){
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  signInWithEmailAndPassword(auth, email, password)
+  .then(() => {
+    document.getElementById("userInfo").innerText = "Login successful ✅";
+  })
+  .catch((error) => {
+    document.getElementById("userInfo").innerText = error.message;
+  });
+};
+</script>
 </body>
 </html>
