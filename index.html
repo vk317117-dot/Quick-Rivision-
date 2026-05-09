@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="google-site-verification" content="M46Z6EK5jIu97Pz4PKcqCxXcKvShrtd-8AOmrpYaS0Y" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="google-site-verification"
+content="M46Z6EK5jIu97Pz4PKcqCxXcKvShrtd-8AOmrpYaS0Y" />
+
 <title>Quick Revision - Maths Practice</title>
 
 <style>
@@ -18,189 +24,150 @@ font-family:Arial,sans-serif;
 body{
 background:#f4f7fb;
 color:#111;
-}
-
-/* Splash Screen */
-
-#splash{
-height:100vh;
-width:100%;
-display:flex;
-align-items:center;
-justify-content:center;
-background:white;
-}
-
-#splash img{
-width:90%;
-max-width:420px;
-}
-
-.hidden{
-display:none;
+overflow-x:hidden;
 }
 
 /* Header */
 
 header{
-background:linear-gradient(135deg,#111827,#2563eb);
+background:linear-gradient(135deg,#06163d,#0759d8);
 color:white;
-padding:22px;
+padding:25px;
 text-align:center;
 }
 
 header h1{
 font-size:42px;
-margin-bottom:8px;
 }
 
 header p{
 font-size:18px;
-opacity:.9;
+margin-top:6px;
 }
 
-/* Container */
+/* Main */
 
 .container{
-max-width:950px;
+max-width:1100px;
 margin:22px auto;
 padding:14px;
 }
-
-/* Cards */
 
 .card{
 background:white;
 border-radius:18px;
 padding:20px;
-margin-bottom:18px;
 box-shadow:0 8px 22px rgba(0,0,0,.08);
 }
 
-/* Chapters */
+/* Section */
 
-.chapters{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:14px;
-margin-top:18px;
-}
-
-.chapter{
-border:2px solid #e5e7eb;
-border-radius:16px;
-padding:18px;
-cursor:pointer;
-text-align:center;
-font-weight:bold;
-background:white;
-transition:.3s;
-}
-
-.chapter:hover{
-border-color:#2563eb;
-background:#eff6ff;
-}
-
-/* Buttons */
-
-button{
-border:0;
-border-radius:12px;
-padding:12px 18px;
-font-weight:bold;
-cursor:pointer;
-background:#2563eb;
+.section-title{
+background:linear-gradient(135deg,#0036b8,#0759d8);
 color:white;
-margin-top:10px;
-}
-
-button:hover{
-background:#1d4ed8;
-}
-
-/* Quiz */
-
-.topbar{
+padding:18px;
+border-radius:14px 14px 0 0;
+font-size:26px;
+font-weight:bold;
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:10px;
-flex-wrap:wrap;
+cursor:pointer;
+margin-top:20px;
 }
 
-.timer{
-background:#fee2e2;
-color:#991b1b;
-padding:10px 14px;
-border-radius:12px;
-font-weight:bold;
-}
+/* Topic Box */
 
-.question{
-font-size:22px;
-font-weight:bold;
-margin:18px 0;
-}
-
-.option{
-display:block;
-width:100%;
-text-align:left;
-background:#f9fafb;
-color:#111;
-border:2px solid #e5e7eb;
-margin:10px 0;
+.topic-box{
+border:2px solid #0759d8;
+border-top:0;
 padding:14px;
-border-radius:12px;
+border-radius:0 0 14px 14px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+/* Topic */
+
+.topic{
+border:1.5px solid #b7c8ff;
+border-radius:10px;
+padding:12px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:8px;
+font-weight:bold;
+font-size:14px;
+background:white;
+}
+
+.left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.check{
+width:20px;
+height:20px;
 cursor:pointer;
 }
 
-.option.selected{
-border-color:#2563eb;
-background:#dbeafe;
-}
+/* Badges */
 
-.option.correct{
-border-color:#16a34a;
-background:#dcfce7;
-}
-
-.option.wrong{
-border-color:#dc2626;
-background:#fee2e2;
-}
-
-.actions{
+.badges{
 display:flex;
-flex-direction:column;
-gap:12px;
+gap:6px;
+white-space:nowrap;
+}
+
+.badge-blue{
+border:1px solid #8aa8ff;
+color:#0046d8;
+padding:5px 8px;
+border-radius:7px;
+font-size:12px;
+}
+
+.badge-green{
+border:1px solid #7ccf8a;
+color:#087a20;
+padding:5px 8px;
+border-radius:7px;
+font-size:12px;
+}
+
+/* Bottom */
+
+.bottom-bar{
 margin-top:18px;
-}
-
-/* Result */
-
-.score{
-font-size:28px;
-font-weight:bold;
-color:#2563eb;
-text-align:center;
-}
-
-.review-item{
-border-left:5px solid #2563eb;
-padding:14px;
-margin:14px 0;
-background:#f8fafc;
+border:1px solid #8aa8ff;
 border-radius:10px;
+display:flex;
+overflow:hidden;
 }
 
-.small{
-font-size:14px;
-color:#555;
-margin-top:8px;
-line-height:1.5;
+.selected-count{
+width:50%;
+text-align:center;
+padding:14px;
+font-weight:bold;
+color:#0046d8;
 }
+
+.start-btn{
+width:50%;
+border:0;
+background:#16a34a;
+color:white;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+}
+
+/* Footer */
 
 footer{
 text-align:center;
@@ -210,381 +177,247 @@ color:#555;
 
 /* Mobile */
 
-@media(max-width:600px){
+@media(max-width:700px){
 
 header h1{
 font-size:30px;
 }
 
-.question{
-font-size:18px;
+.topic-box{
+grid-template-columns:1fr;
+}
+
+.topic{
+font-size:12px;
+}
+
+.badge-blue,
+.badge-green{
+font-size:11px;
+padding:4px 6px;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- Splash Screen -->
-
-<div id="splash">
-
-<!-- Main Site -->
-
-<div id="mainSite">
-
 <header>
+
 <h1>Quick Revision</h1>
+
 <p>Maths Practice Set for Competitive Exams</p>
+
 </header>
 
 <div class="container">
 
-<!-- Home -->
-
-<section id="home" class="card">
+<div class="card">
 
 <h2>Chapter Select करें</h2>
 
-<p class="small">
+<p style="color:#555;margin-top:8px">
 किसी भी chapter पर click करके practice start करें।
 </p>
 
-<div class="chapters">
+<!-- Arithmetic -->
 
-<div class="chapter" onclick="startQuiz('percentage')">
-Percentage
-</div>
+<div class="section-title"
+onclick="toggleBox('arithmeticBox')">
 
-<div class="chapter" onclick="startQuiz('profit')">
-Profit & Loss
-</div>
+<span>▦ ARITHMETICS</span>
 
-<div class="chapter" onclick="startQuiz('ratio')">
-Ratio
-</div>
-
-<div class="chapter" onclick="startQuiz('simple')">
-Simple Interest
-</div>
-
-</div>
-</section>
-
-<!-- Quiz -->
-
-<section id="quiz" class="card hidden">
-
-<div class="topbar">
-
-<h2 id="chapterTitle">Practice Set</h2>
-
-<div class="timer">
-Time:
-<span id="time">10:00</span>
-</div>
+<span>⌄</span>
 
 </div>
 
-<div class="small">
-Question
-<span id="qNo">1</span>
-/
-<span id="totalQ">0</span>
-</div>
+<div id="arithmeticBox"
+class="topic-box"></div>
 
-<div id="question" class="question"></div>
+<!-- Advance -->
 
-<div id="options"></div>
+<div class="section-title"
+onclick="toggleBox('advanceBox')">
 
-<div class="actions">
+<span>√x ADVANCE MATH</span>
 
-<div style="display:flex;justify-content:space-between;width:100%;gap:10px;">
-
-<button onclick="prevQuestion()">
-Previous
-</button>
-
-<button onclick="nextQuestion()">
-Next
-</button>
+<span>⌄</span>
 
 </div>
 
-<div style="width:100%;text-align:center;">
+<div id="advanceBox"
+class="topic-box"></div>
 
-<button onclick="submitQuiz()">
-Submit
+<!-- Bottom -->
+
+<div class="bottom-bar">
+
+<div class="selected-count">
+
+<span id="selectedCount">0</span>
+
+Chapter(s) Selected
+
+</div>
+
+<button class="start-btn"
+onclick="startPractice()">
+
+✓ Start Practice
+
 </button>
 
 </div>
 
 </div>
-
-</section>
-
-<!-- Result -->
-
-<section id="result" class="card hidden">
-
-<h2 style="text-align:center;">Result</h2>
-
-<p class="score" id="scoreText"></p>
-
-<p id="resultMsg"
-style="text-align:center;margin:10px 0;">
-</p>
-
-<div class="actions"
-style="justify-content:center;">
-
-<button onclick="goHome()">Home</button>
-
-<button onclick="showReview()">
-Answer Review
-</button>
-
-</div>
-
-</section>
-
-<!-- Review -->
-
-<section id="review" class="card hidden">
-
-<h2>Answer Review</h2>
-
-<div id="reviewBox"></div>
-
-<div style="text-align:center;">
-<button onclick="goHome()">Back Home</button>
-</div>
-
-</section>
 
 </div>
 
 <footer>
-© Quick Revision | Maths Practice Site
-</footer>
 
-</div>
+© Quick Revision | Maths Practice Site
+
+</footer>
 
 <script>
 
-/* Splash */
+/* Arithmetic Topics */
 
-setTimeout(function(){
+const arithmeticTopics=[
 
-document.getElementById("splash").remove();
+"TEST YOUR CALCULATION",
+"PERCENTAGE",
+"PROFIT AND LOSS",
+"DISCOUNT",
+"PARTNERSHIP",
+"RATIO AND PROPORTION",
+"MIXTURE",
+"ALLIGATION",
+"SIMPLE INTEREST",
+"COMPOUND INTEREST",
+"AVERAGE",
+"TIME AND WORK",
+"PIPE AND CISTERN",
+"TIME AND DISTANCE",
+"TRAIN",
+"BOAT AND STREAM",
+"LINEAR AND CIRCULAR RACE",
+"PERMUTATION AND COMBINATION",
+"PROBABILITY",
+"STATICS",
+"LOGARITHM"
 
-document.getElementById("mainSite").style.display="block";
+];
 
-document.getElementById("mainSite").classList.remove("hidden");
+/* Advance Topics */
 
-},5000);
+const advanceTopics=[
 
-/* Questions */
+"NUMBER SYSTEM",
+"LCM AND HCF",
+"SEQUENCE AND SERIES",
+"SIMPLIFICATION",
+"SQUARE AND INDICES",
+"GEOMETRY",
+"MENSURATION 2D",
+"MENSURATION 3D",
+"ALGEBRA",
+"TRIGONOMETRY",
+"HEIGHT AND DISTANCE",
+"CO-ORDINATE GEOMETRY"
 
-const questionSet={
+];
 
-percentage:[
+/* Create Topics */
 
-{
-q:"50 का 20% कितना होगा?",
-a:["5","10","15","20"],
-c:1
-},
+function makeTopics(list,boxId){
 
-{
-q:"200 का 25% कितना होगा?",
-a:["25","50","75","100"],
-c:1
-}
-
-],
-
-profit:[
-ú
-{
-q:"100 रुपये की वस्तु 120 में बेची गई, लाभ कितना?",
-a:["10","15","20","25"],
-c:2
-},
-
-{
-q:"500 की वस्तु 450 में बेची गई, हानि कितनी?",
-a:["10%","20%","5%","15%"],
-c:0
-}
-
-],
-
-ratio:[
-
-{
-q:"2:4 का सरल रूप क्या है?",
-a:["1:2","2:3","4:8","3:4"],
-c:0
-},
-
-{
-q:"5:10 = ?",
-a:["2:5","1:2","3:4","5:6"],
-c:1
-}
-
-],
-
-simple:[
-
-{
-q:"1000 पर 10% वार्षिक दर से 1 वर्ष का साधारण ब्याज?",
-a:["50","100","150","200"],
-c:1
-},
-
-{
-q:"2000 पर 5% दर से 2 वर्ष का ब्याज?",
-a:["100","150","200","250"],
-c:2
-}
-
-]
-
-};
-
-let currentSet=[];
-jlet currentIndex=0;
-let answers=[];
-let timer;
-let timeLeft=600;
-
-/* Start Quiz */
-
-function startQuiz(chapter){
-
-currentSet=questionSet[chapter];
-
-currentIndex=0;
-
-answers=new Array(currentSet.length).fill(null);
-
-document.getElementById("home").classList.add("hidden");
-
-document.getElementById("quiz").classList.remove("hidden");
-
-document.getElementById("chapterTitle").innerText=chapter.toUpperCase();
-
-document.getElementById("totalQ").innerText=currentSet.length;
-
-timeLeft=600;
-
-startTimer();
-
-loadQuestion();
-
-}
-
-/* Load Question */
-
-function loadQuestion(){
-
-const item=currentSet[currentIndex];
-
-document.getElementById("qNo").innerText=currentIndex+1;
-
-document.getElementById("question").innerText=item.q;
-
-const box=document.getElementById("options");
+const box=document.getElementById(boxId);
 
 box.innerHTML="";
 
-item.a.forEach((opt,i)=>{
+list.forEach((topic,index)=>{
 
-const btn=document.createElement("button");
+const div=document.createElement("div");
 
-btn.className="option";
+div.className="topic";
 
-btn.innerText=opt;
+div.innerHTML=`
 
-if(answers[currentIndex]===i){
+<div class="left">
 
-btn.classList.add("selected");
+<input type="checkbox"
+class="check"
+onchange="updateCount()">
 
-}
+<span>${index+1}. ${topic}</span>
 
-btn.onclick=()=>selectOption(i);
+</div>
 
-box.appendChild(btn);
+<div class="badges">
+
+<span class="badge-blue">
+5 sets
+</span>
+
+<span class="badge-green">
+50 Questions
+</span>
+
+</div>
+
+`;
+
+box.appendChild(div);
 
 });
 
 }
 
-/* Select */
+makeTopics(arithmeticTopics,"arithmeticBox");
 
-function selectOption(i){
+makeTopics(advanceTopics,"advanceBox");
 
-answers[currentIndex]=i;
+/* Toggle */
 
-loadQuestion();
+function toggleBox(id){
 
-}
-
-/* Next */
-
-function nextQuestion(){
-
-if(currentIndex<currentSet.length-1){
-
-currentIndex++;
-
-loadQuestion();
+document.getElementById(id).classList.toggle("hidden");
 
 }
 
-}
+/* Count */
 
-/* Previous */
+function updateCount(){
 
-function prevQuestion(){
-
-if(currentIndex>0){
-
-currentIndex--;
-
-loadQuestion();
+document.getElementById("selectedCount").innerText=
+document.querySelectorAll(".check:checked").length;
 
 }
 
+/* Start */
+
+function startPractice(){
+
+let total=document.querySelectorAll(".check:checked").length;
+
+if(total===0){
+
+alert("पहले कोई topic select करें");
+
+}else{
+
+alert(total+" chapter selected. Practice जल्द start होगा.");
+
 }
-
-/* Timer */
-
-function startTimer(){
-
-clearInterval(timer);
-
-timer=setInterval(()=>{
-
-timeLeft--;
-
-let min=Math.floor(timeLeft/60);
-
-let sec=timeLeft%60;
-
-document.getElementById("time").innerText=
-dd("hidden");
-
-document.getElementById("home").classList.remove("hidden");
 
 }
 
 </script>
 
 </body>
+
 </html>
- 
