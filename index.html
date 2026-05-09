@@ -4,27 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quick Revision</title>
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f4f7fb;color:#111}
-.hidden{display:none}
+body{background:#f4f7fb;color:#111}.hidden{display:none}
 
-#splash-screen{
-position:fixed;top:0;left:0;width:100%;height:100vh;background:white;
-display:flex;justify-content:center;align-items:center;z-index:9999;
-animation:fadeOut 1s ease forwards;animation-delay:3s
-}
+#splash-screen{position:fixed;top:0;left:0;width:100%;height:100vh;background:white;display:flex;justify-content:center;align-items:center;z-index:9999;animation:fadeOut 1s ease forwards;animation-delay:3s}
 #splash-screen img{width:90%;max-width:420px;animation:zoomIn 2s ease}
 @keyframes zoomIn{0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
 @keyframes fadeOut{to{opacity:0;visibility:hidden}}
 
-#loginPage{
-position:fixed;top:0;left:0;width:100%;height:100vh;background:#f4f7fb;
-display:flex;justify-content:center;align-items:center;z-index:9998
-}
-.login-box{background:white;padding:30px;width:320px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.15)}
-.login-box h2{text-align:center;color:#0759d8;margin-bottom:20px}
+#loginPage{position:fixed;top:0;left:0;width:100%;height:100vh;background:#f4f7fb;display:flex;justify-content:center;align-items:center;z-index:9998}
+.login-box{background:white;padding:25px;width:340px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.login-box h2{text-align:center;color:#0759d8;margin-bottom:10px}
+.login-head{text-align:center;font-weight:bold;color:#0759d8;margin-bottom:15px;font-size:14px;line-height:1.5}
 .login-box input{width:100%;padding:12px;margin-bottom:12px;border:1px solid #ccc;border-radius:8px}
 .login-box button{width:100%;padding:12px;border:0;border-radius:8px;color:white;font-size:16px;margin-bottom:10px;cursor:pointer}
 .signup-btn{background:#16a34a}.login-btn{background:#0759d8}
@@ -32,19 +24,18 @@ display:flex;justify-content:center;align-items:center;z-index:9998
 
 #mainContent{display:none}
 header{background:linear-gradient(135deg,#06163d,#0759d8);color:white;padding:25px;text-align:center}
-header h1{font-size:42px}
-header p{font-size:18px;margin-top:6px}
-
+header h1{font-size:42px} header p{font-size:18px;margin-top:6px}
 .container{max-width:1150px;margin:20px auto;padding:15px}
 .card{background:white;padding:22px;border-radius:18px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:18px}
 .card h2{font-size:32px;margin-bottom:8px}.card p{color:#555;margin-bottom:18px}
 
-.test-buttons{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.test-btn{padding:35px;border-radius:18px;border:2px solid #0759d8;background:white;color:#0759d8;font-size:28px;font-weight:bold;cursor:pointer}
+.test-buttons,.set-grid,.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.test-btn,.set-btn,.lang-btn{padding:30px;border-radius:18px;border:2px solid #0759d8;background:white;color:#0759d8;font-size:24px;font-weight:bold;cursor:pointer}
+.test-btn:hover,.set-btn:hover,.lang-btn:hover{background:#eef2ff}
 
 .section-title{background:linear-gradient(135deg,#0036b8,#0759d8);color:white;padding:18px;border-radius:14px 14px 0 0;font-size:24px;font-weight:bold;display:flex;justify-content:space-between;cursor:pointer;margin-top:20px}
 .topic-grid{border:2px solid #0759d8;border-top:0;padding:14px;border-radius:0 0 14px 14px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.topic{border:2px solid #c7d2fe;padding:14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;font-weight:bold;background:white;cursor:pointer}
+.topic{border:2px solid #c7d2fe;padding:14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;font-weight:bold;background:white;cursor:pointer;font-size:16px}
 .badges{display:flex;gap:6px;white-space:nowrap}
 .badge-blue{border:1px solid #4f7cff;padding:5px 8px;border-radius:8px;color:#0759d8;font-size:12px}
 .badge-green{border:1px solid #4ade80;padding:5px 8px;border-radius:8px;color:green;font-size:12px}
@@ -64,9 +55,9 @@ button{border:0;border-radius:12px;padding:12px 18px;font-weight:bold;cursor:poi
 footer{text-align:center;padding:20px;color:#555}
 
 @media(max-width:768px){
-.test-buttons,.topic-grid{grid-template-columns:1fr}
-header h1{font-size:30px}.test-btn{font-size:24px}.topic{font-size:12px}
-.badge-blue,.badge-green{font-size:10px;padding:4px 5px}
+.test-buttons,.topic-grid,.set-grid,.lang-grid{grid-template-columns:1fr}
+header h1{font-size:30px}.test-btn,.set-btn,.lang-btn{font-size:22px}.topic{font-size:16px}
+.badges{flex-direction:column;gap:4px}.badge-blue,.badge-green{font-size:11px;padding:4px 5px}
 }
 </style>
 </head>
@@ -78,6 +69,7 @@ header h1{font-size:30px}.test-btn{font-size:24px}.topic{font-size:12px}
 <div id="loginPage">
 <div class="login-box">
 <h2>Login / Signup</h2>
+<p class="login-head">Railway | Bank | Bihar SI | Bihar Police | Bihar Teacher | SSC | Banking</p>
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Password">
 <button class="signup-btn" onclick="signup()">Signup</button>
@@ -108,7 +100,7 @@ header h1{font-size:30px}.test-btn{font-size:24px}.topic{font-size:12px}
 
 <section id="chapterPage" class="card hidden">
 <h2>Chapter Select करें</h2>
-<p>किसी भी topic पर click करके quiz start करें।</p>
+<p>किसी भी topic पर click करें।</p>
 <div class="section-title" onclick="toggleBox('arithmeticBox')"><span>▦ ARITHMETICS</span><span>⌄</span></div>
 <div id="arithmeticBox" class="topic-grid"></div>
 <div class="section-title" onclick="toggleBox('advanceBox')"><span>√x ADVANCE MATH</span><span>⌄</span></div>
@@ -116,10 +108,35 @@ header h1{font-size:30px}.test-btn{font-size:24px}.topic{font-size:12px}
 <div style="text-align:center;margin-top:20px"><button onclick="backToTestSelect()">Back</button></div>
 </section>
 
+<section id="setPage" class="card hidden">
+<h2 id="setTitle">Select Set</h2>
+<p>हर set में 30 questions होंगे।</p>
+<div class="set-grid">
+<button class="set-btn" onclick="chooseSet(1)">SET 1<br><small>30 Ques / Set</small></button>
+<button class="set-btn" onclick="chooseSet(2)">SET 2<br><small>30 Ques / Set</small></button>
+<button class="set-btn" onclick="chooseSet(3)">SET 3<br><small>30 Ques / Set</small></button>
+<button class="set-btn" onclick="chooseSet(4)">SET 4<br><small>30 Ques / Set</small></button>
+<button class="set-btn" onclick="chooseSet(5)">SET 5<br><small>30 Ques / Set</small></button>
+</div>
+<div style="text-align:center;margin-top:20px"><button onclick="showChapterTest()">Back</button></div>
+</section>
+
+<section id="languagePage" class="card hidden">
+<h2>Language Choose करें</h2>
+<p id="langInfo">Hindi या English चुनें।</p>
+<div class="lang-grid">
+<button class="lang-btn" onclick="chooseLanguage('Hindi')">Hindi</button>
+<button class="lang-btn" onclick="chooseLanguage('English')">English</button>
+</div>
+<div style="text-align:center;margin-top:20px">
+<button class="submit-btn" onclick="startSelectedTest()">START TEST</button>
+</div>
+</section>
+
 <section id="quiz" class="card hidden">
 <div class="quiz-top">
 <h2 id="quizTitle">Quiz</h2>
-<div class="timer">Time: <span id="time">10:00</span></div>
+<div class="timer">Time: <span id="time">00:30</span></div>
 </div>
 <div class="progress">Question <span id="qNo">1</span> / <span id="totalQ">0</span></div>
 <div id="question" class="question"></div>
@@ -137,13 +154,13 @@ header h1{font-size:30px}.test-btn{font-size:24px}.topic{font-size:12px}
 <p id="resultMsg" style="text-align:center;margin:10px 0"></p>
 <div style="text-align:center;margin-top:15px">
 <button onclick="backToTestSelect()">Home</button>
-<button onclick="showReview()">Answer Review</button>
+<button onclick="showReview()">Analysis With Solution</button>
 <button onclick="showLeaderboard()">Leaderboard</button>
 </div>
 </section>
 
 <section id="review" class="card hidden">
-<h2>Answer Review</h2>
+<h2>Test Analysis With Solution</h2>
 <div id="reviewBox"></div>
 <div style="text-align:center"><button onclick="backToTestSelect()">Back Home</button></div>
 </section>
@@ -180,27 +197,29 @@ window.currentUserEmail="Guest";
 window.signup=function(){
 const email=document.getElementById("email").value;
 const password=document.getElementById("password").value;
-createUserWithEmailAndPassword(auth,email,password).then(()=>{window.currentUserEmail=email;document.getElementById("userInfo").innerText="Signup Successful ✅";openMain();}).catch(e=>document.getElementById("userInfo").innerText=e.message);
+createUserWithEmailAndPassword(auth,email,password).then(()=>{
+window.currentUserEmail=email;
+document.getElementById("userInfo").innerText="Signup Successful ✅";
+openMain();
+}).catch(e=>document.getElementById("userInfo").innerText=e.message);
 };
 
 window.login=function(){
 const email=document.getElementById("email").value;
 const password=document.getElementById("password").value;
-signInWithEmailAndPassword(auth,email,password).then(()=>{window.currentUserEmail=email;document.getElementById("userInfo").innerText="Login Successful ✅";openMain();}).catch(e=>document.getElementById("userInfo").innerText=e.message);
+signInWithEmailAndPassword(auth,email,password).then(()=>{
+window.currentUserEmail=email;
+document.getElementById("userInfo").innerText="Login Successful ✅";
+openMain();
+}).catch(e=>document.getElementById("userInfo").innerText=e.message);
 };
 
 function openMain(){
 setTimeout(()=>{document.getElementById("loginPage").style.display="none";document.getElementById("mainContent").style.display="block";},800);
 }
 
-window.saveScore=async function(score,total,topic){
-await addDoc(collection(db,"scores"),{
-email:window.currentUserEmail,
-score:score,
-total:total,
-topic:topic,
-date:new Date()
-});
+window.saveScore=async function(score,total,topic,setNo,lang){
+await addDoc(collection(db,"scores"),{email:window.currentUserEmail,score,total,topic,setNo,lang,date:new Date()});
 };
 
 window.loadLeaderboard=async function(){
@@ -212,10 +231,10 @@ box.innerHTML="";
 let rank=1;
 snap.forEach(doc=>{
 const d=doc.data();
-box.innerHTML+=`<div class="leader-item">${rank}. ${d.email} — ${d.score}/${d.total} (${d.topic})</div>`;
+box.innerHTML+=`<div class="leader-item">${rank}. ${d.email} — ${d.score}/${d.total} (${d.topic} Set ${d.setNo})</div>`;
 rank++;
 });
-if(rank===1){box.innerHTML="अभी कोई score नहीं है।";}
+if(rank===1)box.innerHTML="अभी कोई score नहीं है।";
 };
 </script>
 
@@ -224,251 +243,14 @@ const arithmeticTopics=["TEST YOUR CALCULATION","PERCENTAGE","PROFIT AND LOSS","
 const advanceTopics=["NUMBER SYSTEM","LCM AND HCF","SEQUENCE AND SERIES","SIMPLIFICATION","SQUARE AND INDICES","GEOMETRY","MENSURATION 2D","MENSURATION 3D","ALGEBRA","TRIGONOMETRY","HEIGHT AND DISTANCE","CO-ORDINATE GEOMETRY"];
 
 const demoQuestions=[
-
-{
-q:"999 × 999 कितना होगा?",
-a:["998001","999001","997001","996001"],
-c:0,
-solution:"(1000-1)² = 1000000 - 2000 +1 = 998001",
-trick:"(a-b)² formula"
-},
-
-{
-q:"48 × 52 कितना होगा?",
-a:["2396","2496","2596","2696"],
-c:1,
-solution:"(50-2)(50+2)=2500-4=2496",
-trick:"(a-b)(a+b)=a²-b²"
-},
-
-{
-q:"625 ÷ 25 कितना होगा?",
-a:["15","20","25","30"],
-c:2,
-solution:"625 ÷ 25 = 25",
-trick:"25 × 25 = 625"
-},
-
-{
-q:"45² कितना होगा?",
-a:["1925","2025","2125","2225"],
-c:1,
-solution:"45 × 45 = 2025",
-trick:"5 पर खत्म होने वाले square trick"
-},
-
-{
-q:"0.25 × 0.25 कितना होगा?",
-a:["0.625","0.0625","0.00625","0.652"],
-c:1,
-solution:"25 × 25 = 625 और 4 decimal places",
-trick:"decimal counting"
-},
-
-{
-q:"1444 ÷ 38 कितना होगा?",
-a:["36","37","38","39"],
-c:2,
-solution:"38 × 38 = 1444",
-trick:"square पहचानो"
-},
-
-{
-q:"75 × 75 कितना होगा?",
-a:["5525","5625","5725","5825"],
-c:1,
-solution:"75² = 5625",
-trick:"5 ending square trick"
-},
-
-{
-q:"84 ÷ 0.7 कितना होगा?",
-a:["110","120","130","140"],
-c:1,
-solution:"84 ÷ 0.7 = 840 ÷ 7 = 120",
-trick:"decimal हटाओ"
-},
-
-{
-q:"125 × 48 कितना होगा?",
-a:["5000","5500","6000","6500"],
-c:2,
-solution:"125 × 48 = 6000",
-trick:"125 × 8 =1000"
-},
-
-{
-q:"9999 + 999 + 99 + 9 कितना होगा?",
-a:["11106","11100","11116","11016"],
-c:0,
-solution:"9999+999+99+9=11106",
-trick:"pattern observation"
-},
-
-{
-q:"72 × 28 कितना होगा?",
-a:["1916","2016","2116","2216"],
-c:1,
-solution:"72×28=2016",
-trick:"70×28 +2×28"
-},
-
-{
-q:"15% of 480 कितना होगा?",
-a:["62","72","82","92"],
-c:1,
-solution:"10%=48, 5%=24 → total 72",
-trick:"10% + 5%"
-},
-
-{
-q:"√2025 कितना होगा?",
-a:["35","40","45","50"],
-c:2,
-solution:"45×45=2025",
-trick:"perfect square पहचानो"
-},
-
-{
-q:"888 ÷ 24 कितना होगा?",
-a:["35","36","37","38"],
-c:2,
-solution:"24×37=888",
-trick:"multiplication reverse"
-},
-
-{
-q:"19 × 19 कितना होगा?",
-a:["341","351","361","371"],
-c:2,
-solution:"19²=361",
-trick:"(20-1)²"
-},
-
-{
-q:"999 × 12 कितना होगा?",
-a:["11988","10988","12988","9999"],
-c:0,
-solution:"999×12=11988",
-trick:"1000×12 -12"
-},
-
-{
-q:"0.5 of 0.5 कितना होगा?",
-a:["0.25","0.5","0.75","1"],
-c:0,
-solution:"1/2 ×1/2 =1/4",
-trick:"fraction convert"
-},
-
-{
-q:"875 + 125 कितना होगा?",
-a:["900","950","1000","1050"],
-c:2,
-solution:"875+125=1000",
-trick:"1000 completion"
-},
-
-{
-q:"88 × 88 कितना होगा?",
-a:["7644","7744","7844","7944"],
-c:1,
-solution:"88²=7744",
-trick:"(80+8)²"
-},
-
-{
-q:"1200 ÷ 15 कितना होगा?",
-a:["70","75","80","85"],
-c:2,
-solution:"1200÷15=80",
-trick:"15×8=120"
-},
-
-{
-q:"35² कितना होगा?",
-a:["1125","1225","1325","1425"],
-c:1,
-solution:"35²=1225",
-trick:"5 ending square"
-},
-
-{
-q:"64 × 64 कितना होगा?",
-a:["3996","4096","4196","4296"],
-c:1,
-solution:"64²=4096",
-trick:"square memorize"
-},
-
-{
-q:"48% of 250 कितना होगा?",
-a:["110","115","120","125"],
-c:2,
-solution:"250×48/100=120",
-trick:"half of 48% =24%"
-},
-
-{
-q:"18 × 22 कितना होगा?",
-a:["376","386","396","406"],
-c:2,
-solution:"18×22=396",
-trick:"20²-2²"
-},
-
-{
-q:"99999 + 1 कितना होगा?",
-a:["100000","100001","99990","99991"],
-c:0,
-solution:"99999+1=100000",
-trick:"number completion"
-},
-
-{
-q:"121 × 11 कितना होगा?",
-a:["1221","1331","1441","1551"],
-c:1,
-solution:"121×11=1331",
-trick:"11 multiplication trick"
-},
-
-{
-q:"14% of 350 कितना होगा?",
-a:["39","49","59","69"],
-c:1,
-solution:"10%=35, 4%=14 →49",
-trick:"percentage split"
-},
-
-{
-q:"97 × 97 कितना होगा?",
-a:["9309","9409","9509","9609"],
-c:1,
-solution:"(100-3)²=9409",
-trick:"(a-b)²"
-},
-
-{
-q:"2500 ÷ 125 कितना होगा?",
-a:["10","15","20","25"],
-c:2,
-solution:"125×20=2500",
-trick:"125 pattern"
-},
-
-{
-q:"111 × 111 कितना होगा?",
-a:["12221","12321","12421","12521"],
-c:1,
-solution:"111²=12321",
-trick:"pattern square"
-
-}
-
+{q:"999 × 999 कितना होगा?",a:["998001","999001","997001","996001"],c:0,solution:"(1000-1)² = 1000000 - 2000 + 1 = 998001",trick:"(a-b)² formula"},
+{q:"48 × 52 कितना होगा?",a:["2396","2496","2596","2696"],c:1,solution:"(50-2)(50+2)=2500-4=2496",trick:"Difference of squares"},
+{q:"625 ÷ 25 कितना होगा?",a:["15","20","25","30"],c:2,solution:"25 × 25 = 625",trick:"Reverse multiplication"},
+{q:"45² कितना होगा?",a:["1925","2025","2125","2225"],c:1,solution:"45×45=2025",trick:"5 ending square trick"},
+{q:"84 ÷ 0.7 कितना होगा?",a:["110","120","130","140"],c:1,solution:"84÷0.7 = 840÷7 = 120",trick:"Decimal हटाओ"}
 ];
 
-let currentSet=[],currentIndex=0,answers=[],timer,timeLeft=600,currentTopic="";
+let currentSet=[],currentIndex=0,answers=[],timer,timeLeft=30,currentTopic="",selectedSet=1,selectedLang="Hindi";
 
 function makeTopics(list,boxId){
 const box=document.getElementById(boxId);
@@ -476,8 +258,8 @@ box.innerHTML="";
 list.forEach((topic,index)=>{
 const div=document.createElement("div");
 div.className="topic";
-div.onclick=function(){startQuiz(topic)};
-div.innerHTML=`<span>${index+1}. ${topic}</span><div class="badges"><span class="badge-blue">5 sets</span><span class="badge-green">50 Questions</span></div>`;
+div.onclick=function(){openSetPage(topic)};
+div.innerHTML=`<span>${index+1}. ${topic}</span><div class="badges"><span class="badge-blue">5 sets</span><span class="badge-green">30 Ques / Set</span></div>`;
 box.appendChild(div);
 });
 }
@@ -485,16 +267,33 @@ makeTopics(arithmeticTopics,"arithmeticBox");
 makeTopics(advanceTopics,"advanceBox");
 
 function toggleBox(id){document.getElementById(id).classList.toggle("hidden")}
-function showOnly(id){["testSelect","chapterPage","quiz","result","review","leaderboard"].forEach(x=>document.getElementById(x).classList.add("hidden"));document.getElementById(id).classList.remove("hidden")}
+function showOnly(id){["testSelect","chapterPage","setPage","languagePage","quiz","result","review","leaderboard"].forEach(x=>document.getElementById(x).classList.add("hidden"));document.getElementById(id).classList.remove("hidden")}
 function showChapterTest(){showOnly("chapterPage")}
 function backToTestSelect(){clearInterval(timer);showOnly("testSelect")}
-function startMixTest(){startQuiz("MIX TEST")}
+function startMixTest(){currentTopic="MIX TEST";selectedSet=1;showOnly("languagePage")}
 function showLeaderboard(){showOnly("leaderboard");loadLeaderboard()}
 
+function openSetPage(topic){
+currentTopic=topic;
+document.getElementById("setTitle").innerText=topic+" - Select Set";
+showOnly("setPage");
+}
+function chooseSet(n){
+selectedSet=n;
+document.getElementById("langInfo").innerText=currentTopic+" | Set "+n+" | Hindi या English चुनें";
+showOnly("languagePage");
+}
+function chooseLanguage(lang){
+selectedLang=lang;
+document.getElementById("langInfo").innerText=currentTopic+" | Set "+selectedSet+" | "+lang;
+}
+function startSelectedTest(){startQuiz(currentTopic)}
+
 function startQuiz(topic){
-currentTopic=topic;currentSet=demoQuestions;currentIndex=0;answers=new Array(currentSet.length).fill(null);
-showOnly("quiz");document.getElementById("quizTitle").innerText=topic;document.getElementById("totalQ").innerText=currentSet.length;
-timeLeft=600;startTimer();loadQuestion();
+currentSet=demoQuestions;currentIndex=0;answers=new Array(currentSet.length).fill(null);
+showOnly("quiz");document.getElementById("quizTitle").innerText=topic+" | Set "+selectedSet+" | "+selectedLang;
+document.getElementById("totalQ").innerText=currentSet.length;
+timeLeft=30;startTimer();loadQuestion();
 }
 
 function loadQuestion(){
@@ -503,11 +302,13 @@ document.getElementById("qNo").innerText=currentIndex+1;
 document.getElementById("question").innerText=item.q;
 const box=document.getElementById("options");box.innerHTML="";
 item.a.forEach((opt,i)=>{
-const btn=document.createElement("button");btn.className="option";btn.innerText=opt;
+const btn=document.createElement("button");
+btn.className="option";btn.innerText=opt;
 if(answers[currentIndex]===i)btn.classList.add("selected");
 btn.onclick=function(){answers[currentIndex]=i;loadQuestion()};
 box.appendChild(btn);
 });
+timeLeft=30;
 }
 
 function nextQuestion(){if(currentIndex<currentSet.length-1){currentIndex++;loadQuestion()}}
@@ -517,9 +318,8 @@ function startTimer(){
 clearInterval(timer);
 timer=setInterval(function(){
 timeLeft--;
-let min=Math.floor(timeLeft/60),sec=timeLeft%60;
-document.getElementById("time").innerText=String(min).padStart(2,"0")+":"+String(sec).padStart(2,"0");
-if(timeLeft<=0){clearInterval(timer);submitQuiz()}
+document.getElementById("time").innerText="00:"+String(timeLeft).padStart(2,"0");
+if(timeLeft<=0){nextQuestion()}
 },1000);
 }
 
@@ -527,10 +327,10 @@ function submitQuiz(){
 clearInterval(timer);
 let score=0;
 currentSet.forEach((q,i)=>{if(answers[i]===q.c)score++});
-saveScore(score,currentSet.length,currentTopic);
+saveScore(score,currentSet.length,currentTopic,selectedSet,selectedLang);
 showOnly("result");
 document.getElementById("scoreText").innerText=score+" / "+currentSet.length;
-document.getElementById("resultMsg").innerText=score>=currentSet.length/2?"बहुत अच्छा! आपकी तैयारी मजबूत है।":"थोड़ा और revision करें।";
+document.getElementById("resultMsg").innerText=score>=currentSet.length/2?"बहुत अच्छा!":"थोड़ा और practice करें।";
 }
 
 function showReview(){
@@ -538,7 +338,7 @@ showOnly("review");
 const reviewBox=document.getElementById("reviewBox");reviewBox.innerHTML="";
 currentSet.forEach((q,i)=>{
 const div=document.createElement("div");div.className="review-item";
-div.innerHTML=`<h3>Q${i+1}. ${q.q}</h3><p><b>Your Answer:</b> ${answers[i]!=null?q.a[answers[i]]:"Not Answered"}</p><p><b>Correct Answer:</b> ${q.a[q.c]}</p>`;
+div.innerHTML=`<h3>Q${i+1}. ${q.q}</h3><p><b>Your Answer:</b> ${answers[i]!=null?q.a[answers[i]]:"Not Answered"}</p><p><b>Correct Answer:</b> ${q.a[q.c]}</p><p><b>Solution:</b> ${q.solution}</p><p><b>Trick:</b> ${q.trick}</p>`;
 reviewBox.appendChild(div);
 });
 }
