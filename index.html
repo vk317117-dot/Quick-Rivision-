@@ -8,6 +8,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f4f7fb;color:#111}
+.hidden{display:none}
 
 #splash-screen{
 position:fixed;top:0;left:0;width:100%;height:100vh;background:white;
@@ -40,17 +41,14 @@ header p{font-size:18px;margin-top:6px}
 
 .test-buttons{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .test-btn{padding:35px;border-radius:18px;border:2px solid #0759d8;background:white;color:#0759d8;font-size:28px;font-weight:bold;cursor:pointer}
-.test-btn:hover{background:#eef2ff}
 
 .section-title{background:linear-gradient(135deg,#0036b8,#0759d8);color:white;padding:18px;border-radius:14px 14px 0 0;font-size:24px;font-weight:bold;display:flex;justify-content:space-between;cursor:pointer;margin-top:20px}
 .topic-grid{border:2px solid #0759d8;border-top:0;padding:14px;border-radius:0 0 14px 14px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .topic{border:2px solid #c7d2fe;padding:14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;font-weight:bold;background:white;cursor:pointer}
-.topic:hover{background:#eef2ff}
 .badges{display:flex;gap:6px;white-space:nowrap}
 .badge-blue{border:1px solid #4f7cff;padding:5px 8px;border-radius:8px;color:#0759d8;font-size:12px}
 .badge-green{border:1px solid #4ade80;padding:5px 8px;border-radius:8px;color:green;font-size:12px}
 
-.hidden{display:none}
 .quiz-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
 .timer{background:#fee2e2;color:#991b1b;padding:10px 14px;border-radius:12px;font-weight:bold}
 .progress{font-weight:bold;color:#0759d8;margin:12px 0}
@@ -62,6 +60,7 @@ button{border:0;border-radius:12px;padding:12px 18px;font-weight:bold;cursor:poi
 .submit-btn{background:#16a34a;margin-top:15px}
 .score{text-align:center;font-size:30px;color:#0759d8;font-weight:bold}
 .review-item{border-left:5px solid #0759d8;padding:14px;margin:14px 0;background:#f8fafc;border-radius:10px}
+.leader-item{padding:12px;border-bottom:1px solid #ddd;font-weight:bold}
 footer{text-align:center;padding:20px;color:#555}
 
 @media(max-width:768px){
@@ -102,18 +101,18 @@ header h1{font-size:30px}.test-btn{font-size:24px}.topic{font-size:12px}
 <button class="test-btn" onclick="startMixTest()">MIX TEST</button>
 <button class="test-btn" onclick="showChapterTest()">CHAPTER TEST</button>
 </div>
+<div style="text-align:center;margin-top:20px">
+<button onclick="showLeaderboard()">🏆 Leaderboard</button>
+</div>
 </section>
 
 <section id="chapterPage" class="card hidden">
 <h2>Chapter Select करें</h2>
 <p>किसी भी topic पर click करके quiz start करें।</p>
-
 <div class="section-title" onclick="toggleBox('arithmeticBox')"><span>▦ ARITHMETICS</span><span>⌄</span></div>
 <div id="arithmeticBox" class="topic-grid"></div>
-
 <div class="section-title" onclick="toggleBox('advanceBox')"><span>√x ADVANCE MATH</span><span>⌄</span></div>
 <div id="advanceBox" class="topic-grid"></div>
-
 <div style="text-align:center;margin-top:20px"><button onclick="backToTestSelect()">Back</button></div>
 </section>
 
@@ -139,6 +138,7 @@ header h1{font-size:30px}.test-btn{font-size:24px}.topic{font-size:12px}
 <div style="text-align:center;margin-top:15px">
 <button onclick="backToTestSelect()">Home</button>
 <button onclick="showReview()">Answer Review</button>
+<button onclick="showLeaderboard()">Leaderboard</button>
 </div>
 </section>
 
@@ -148,6 +148,12 @@ header h1{font-size:30px}.test-btn{font-size:24px}.topic{font-size:12px}
 <div style="text-align:center"><button onclick="backToTestSelect()">Back Home</button></div>
 </section>
 
+<section id="leaderboard" class="card hidden">
+<h2>🏆 Leaderboard</h2>
+<div id="leaderboardBox">Loading...</div>
+<div style="text-align:center;margin-top:15px"><button onclick="backToTestSelect()">Back</button></div>
+</section>
+
 </div>
 <footer>© Quick Revision | Maths Practice Site</footer>
 </div>
@@ -155,6 +161,7 @@ header h1{font-size:30px}.test-btn{font-size:24px}.topic{font-size:12px}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const firebaseConfig={
 apiKey:"AIzaSyDX45cM3C-iZSIDua_GGqb8nL1pVibzlWE",
@@ -167,35 +174,54 @@ appId:"1:200424391350:web:251d8eb2148f4b8960dc17"
 
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
+const db=getFirestore(app);
+window.currentUserEmail="Guest";
 
 window.signup=function(){
 const email=document.getElementById("email").value;
 const password=document.getElementById("password").value;
-createUserWithEmailAndPassword(auth,email,password).then(()=>{document.getElementById("userInfo").innerText="Signup Successful ✅";openMain();}).catch(e=>document.getElementById("userInfo").innerText=e.message);
+createUserWithEmailAndPassword(auth,email,password).then(()=>{window.currentUserEmail=email;document.getElementById("userInfo").innerText="Signup Successful ✅";openMain();}).catch(e=>document.getElementById("userInfo").innerText=e.message);
 };
 
 window.login=function(){
 const email=document.getElementById("email").value;
 const password=document.getElementById("password").value;
-signInWithEmailAndPassword(auth,email,password).then(()=>{document.getElementById("userInfo").innerText="Login Successful ✅";openMain();}).catch(e=>document.getElementById("userInfo").innerText=e.message);
+signInWithEmailAndPassword(auth,email,password).then(()=>{window.currentUserEmail=email;document.getElementById("userInfo").innerText="Login Successful ✅";openMain();}).catch(e=>document.getElementById("userInfo").innerText=e.message);
 };
 
 function openMain(){
-setTimeout(()=>{
-document.getElementById("loginPage").style.display="none";
-document.getElementById("mainContent").style.display="block";
-},800);
+setTimeout(()=>{document.getElementById("loginPage").style.display="none";document.getElementById("mainContent").style.display="block";},800);
 }
+
+window.saveScore=async function(score,total,topic){
+await addDoc(collection(db,"scores"),{
+email:window.currentUserEmail,
+score:score,
+total:total,
+topic:topic,
+date:new Date()
+});
+};
+
+window.loadLeaderboard=async function(){
+const box=document.getElementById("leaderboardBox");
+box.innerHTML="Loading...";
+const q=query(collection(db,"scores"),orderBy("score","desc"),limit(10));
+const snap=await getDocs(q);
+box.innerHTML="";
+let rank=1;
+snap.forEach(doc=>{
+const d=doc.data();
+box.innerHTML+=`<div class="leader-item">${rank}. ${d.email} — ${d.score}/${d.total} (${d.topic})</div>`;
+rank++;
+});
+if(rank===1){box.innerHTML="अभी कोई score नहीं है।";}
+};
 </script>
 
 <script>
-const arithmeticTopics=[
-"TEST YOUR CALCULATION","PERCENTAGE","PROFIT AND LOSS","DISCOUNT","PARTNERSHIP","RATIO AND PROPORTION","MIXTURE","ALLIGATION","SIMPLE INTEREST","COMPOUND INTEREST","AVERAGE","TIME AND WORK","PIPE AND CISTERN","TIME AND DISTANCE","TRAIN","BOAT AND STREAM","LINEAR AND CIRCULAR RACE","PERMUTATION AND COMBINATION","PROBABILITY","STATICS","LOGARITHM"
-];
-
-const advanceTopics=[
-"NUMBER SYSTEM","LCM AND HCF","SEQUENCE AND SERIES","SIMPLIFICATION","SQUARE AND INDICES","GEOMETRY","MENSURATION 2D","MENSURATION 3D","ALGEBRA","TRIGONOMETRY","HEIGHT AND DISTANCE","CO-ORDINATE GEOMETRY"
-];
+const arithmeticTopics=["TEST YOUR CALCULATION","PERCENTAGE","PROFIT AND LOSS","DISCOUNT","PARTNERSHIP","RATIO AND PROPORTION","MIXTURE","ALLIGATION","SIMPLE INTEREST","COMPOUND INTEREST","AVERAGE","TIME AND WORK","PIPE AND CISTERN","TIME AND DISTANCE","TRAIN","BOAT AND STREAM","LINEAR AND CIRCULAR RACE","PERMUTATION AND COMBINATION","PROBABILITY","STATICS","LOGARITHM"];
+const advanceTopics=["NUMBER SYSTEM","LCM AND HCF","SEQUENCE AND SERIES","SIMPLIFICATION","SQUARE AND INDICES","GEOMETRY","MENSURATION 2D","MENSURATION 3D","ALGEBRA","TRIGONOMETRY","HEIGHT AND DISTANCE","CO-ORDINATE GEOMETRY"];
 
 const demoQuestions=[
 {q:"50 का 20% कितना होगा?",a:["5","10","15","20"],c:1},
@@ -205,7 +231,7 @@ const demoQuestions=[
 {q:"1000 पर 10% दर से 1 वर्ष का साधारण ब्याज?",a:["50","100","150","200"],c:1}
 ];
 
-let currentSet=[],currentIndex=0,answers=[],timer,timeLeft=600;
+let currentSet=[],currentIndex=0,answers=[],timer,timeLeft=600,currentTopic="";
 
 function makeTopics(list,boxId){
 const box=document.getElementById(boxId);
@@ -222,37 +248,25 @@ makeTopics(arithmeticTopics,"arithmeticBox");
 makeTopics(advanceTopics,"advanceBox");
 
 function toggleBox(id){document.getElementById(id).classList.toggle("hidden")}
-
-function showOnly(id){
-["testSelect","chapterPage","quiz","result","review"].forEach(x=>document.getElementById(x).classList.add("hidden"));
-document.getElementById(id).classList.remove("hidden");
-}
+function showOnly(id){["testSelect","chapterPage","quiz","result","review","leaderboard"].forEach(x=>document.getElementById(x).classList.add("hidden"));document.getElementById(id).classList.remove("hidden")}
 function showChapterTest(){showOnly("chapterPage")}
 function backToTestSelect(){clearInterval(timer);showOnly("testSelect")}
 function startMixTest(){startQuiz("MIX TEST")}
+function showLeaderboard(){showOnly("leaderboard");loadLeaderboard()}
 
 function startQuiz(topic){
-currentSet=demoQuestions;
-currentIndex=0;
-answers=new Array(currentSet.length).fill(null);
-showOnly("quiz");
-document.getElementById("quizTitle").innerText=topic;
-document.getElementById("totalQ").innerText=currentSet.length;
-timeLeft=600;
-startTimer();
-loadQuestion();
+currentTopic=topic;currentSet=demoQuestions;currentIndex=0;answers=new Array(currentSet.length).fill(null);
+showOnly("quiz");document.getElementById("quizTitle").innerText=topic;document.getElementById("totalQ").innerText=currentSet.length;
+timeLeft=600;startTimer();loadQuestion();
 }
 
 function loadQuestion(){
 const item=currentSet[currentIndex];
 document.getElementById("qNo").innerText=currentIndex+1;
 document.getElementById("question").innerText=item.q;
-const box=document.getElementById("options");
-box.innerHTML="";
+const box=document.getElementById("options");box.innerHTML="";
 item.a.forEach((opt,i)=>{
-const btn=document.createElement("button");
-btn.className="option";
-btn.innerText=opt;
+const btn=document.createElement("button");btn.className="option";btn.innerText=opt;
 if(answers[currentIndex]===i)btn.classList.add("selected");
 btn.onclick=function(){answers[currentIndex]=i;loadQuestion()};
 box.appendChild(btn);
@@ -276,6 +290,7 @@ function submitQuiz(){
 clearInterval(timer);
 let score=0;
 currentSet.forEach((q,i)=>{if(answers[i]===q.c)score++});
+saveScore(score,currentSet.length,currentTopic);
 showOnly("result");
 document.getElementById("scoreText").innerText=score+" / "+currentSet.length;
 document.getElementById("resultMsg").innerText=score>=currentSet.length/2?"बहुत अच्छा! आपकी तैयारी मजबूत है।":"थोड़ा और revision करें।";
@@ -283,11 +298,9 @@ document.getElementById("resultMsg").innerText=score>=currentSet.length/2?"ब�
 
 function showReview(){
 showOnly("review");
-const reviewBox=document.getElementById("reviewBox");
-reviewBox.innerHTML="";
+const reviewBox=document.getElementById("reviewBox");reviewBox.innerHTML="";
 currentSet.forEach((q,i)=>{
-const div=document.createElement("div");
-div.className="review-item";
+const div=document.createElement("div");div.className="review-item";
 div.innerHTML=`<h3>Q${i+1}. ${q.q}</h3><p><b>Your Answer:</b> ${answers[i]!=null?q.a[answers[i]]:"Not Answered"}</p><p><b>Correct Answer:</b> ${q.a[q.c]}</p>`;
 reviewBox.appendChild(div);
 });
