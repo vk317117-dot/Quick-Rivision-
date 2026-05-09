@@ -25,29 +25,10 @@ header p{font-size:18px;margin-top:6px}
 
 .container{max-width:1100px;margin:22px auto;padding:14px}
 .card{background:white;border-radius:18px;padding:20px;box-shadow:0 8px 22px rgba(0,0,0,.08);margin-bottom:18px}
-.hidden{display:none}
-
-input{
-width:100%;padding:13px;margin:10px 0;border:2px solid #dbeafe;
-border-radius:12px;font-size:16px;
-}
-
-button{
-border:0;border-radius:12px;padding:12px 18px;font-weight:bold;
-cursor:pointer;background:#0759d8;color:white;margin:5px;
-}
-
-.green{background:#16a34a}
-.red{background:#dc2626}
-
-.userbar{
-display:flex;justify-content:space-between;align-items:center;
-gap:10px;flex-wrap:wrap;margin-bottom:15px;
-}
 
 .section-title{
-background:linear-gradient(135deg,#0036b8,#0759d8);color:white;
-padding:18px;border-radius:14px 14px 0 0;font-size:26px;font-weight:bold;
+background:linear-gradient(135deg,#0036b8,#0759d8);color:white;padding:18px;
+border-radius:14px 14px 0 0;font-size:26px;font-weight:bold;
 display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-top:20px
 }
 
@@ -67,11 +48,13 @@ font-weight:bold;font-size:14px;background:white;cursor:pointer
 .badge-blue{border:1px solid #8aa8ff;color:#0046d8;padding:5px 8px;border-radius:7px;font-size:12px}
 .badge-green{border:1px solid #7ccf8a;color:#087a20;padding:5px 8px;border-radius:7px;font-size:12px}
 
+.hidden{display:none}
+
 .quiz-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .timer{background:#fee2e2;color:#991b1b;padding:10px 14px;border-radius:12px;font-weight:bold}
 .progress{font-weight:bold;color:#0759d8;margin:12px 0}
-.question{font-size:22px;font-weight:bold;margin:18px 0}
 
+.question{font-size:22px;font-weight:bold;margin:18px 0}
 .option{
 display:block;width:100%;text-align:left;background:#f9fafb;color:#111;
 border:2px solid #e5e7eb;margin:10px 0;padding:14px;border-radius:12px;cursor:pointer
@@ -80,17 +63,17 @@ border:2px solid #e5e7eb;margin:10px 0;padding:14px;border-radius:12px;cursor:po
 
 .actions{display:flex;flex-direction:column;gap:12px;margin-top:18px}
 .nav-buttons{display:flex;justify-content:space-between;width:100%;gap:10px}
-.submit-box{text-align:center}
-.score{text-align:center;font-size:30px;color:#0759d8;font-weight:bold}
 
-.review-item{
-border-left:5px solid #0759d8;padding:14px;margin:14px 0;
-background:#f8fafc;border-radius:10px;
+button{
+border:0;border-radius:12px;padding:12px 18px;font-weight:bold;cursor:pointer;
+background:#0759d8;color:white
 }
+button:hover{background:#0036b8}
+.submit-box{text-align:center}
+.submit-btn{background:#16a34a}
 
-table{width:100%;border-collapse:collapse;margin-top:12px}
-th,td{border:1px solid #ddd;padding:10px;text-align:center}
-th{background:#0759d8;color:white}
+.score{text-align:center;font-size:30px;color:#0759d8;font-weight:bold}
+.review-item{border-left:5px solid #0759d8;padding:14px;margin:14px 0;background:#f8fafc;border-radius:10px}
 
 footer{text-align:center;padding:18px;color:#555}
 
@@ -117,23 +100,7 @@ header h1{font-size:30px}
 
 <div class="container">
 
-<section id="loginPage" class="card">
-<h2>Login / Signup</h2>
-<p style="color:#555;margin-top:8px">अपना नाम डालकर start करें।</p>
-<input type="text" id="userNameInput" placeholder="Enter your name">
-<button class="green" onclick="loginUser()">Login / Signup</button>
-</section>
-
-<section id="home" class="card hidden">
-
-<div class="userbar">
-<h2>Welcome, <span id="showUser"></span></h2>
-<div>
-<button onclick="showLeaderboard()">Leaderboard</button>
-<button class="red" onclick="logoutUser()">Logout</button>
-</div>
-</div>
-
+<section id="home" class="card">
 <h2>Chapter Select करें</h2>
 <p style="color:#555;margin-top:8px">किसी भी topic पर click करके quiz start करें।</p>
 
@@ -154,7 +121,10 @@ header h1{font-size:30px}
 <div class="timer">Time: <span id="time">10:00</span></div>
 </div>
 
-<div class="progress">Question <span id="qNo">1</span> / <span id="totalQ">0</span></div>
+<div class="progress">
+Question <span id="qNo">1</span> / <span id="totalQ">0</span>
+</div>
+
 <div id="question" class="question"></div>
 <div id="options"></div>
 
@@ -164,7 +134,7 @@ header h1{font-size:30px}
 <button onclick="nextQuestion()">Next</button>
 </div>
 <div class="submit-box">
-<button class="green" onclick="submitQuiz()">Submit</button>
+<button class="submit-btn" onclick="submitQuiz()">Submit</button>
 </div>
 </div>
 </section>
@@ -176,7 +146,6 @@ header h1{font-size:30px}
 <div style="text-align:center;margin-top:15px">
 <button onclick="goHome()">Home</button>
 <button onclick="showReview()">Answer Review</button>
-<button onclick="showLeaderboard()">Leaderboard</button>
 </div>
 </section>
 
@@ -184,14 +153,6 @@ header h1{font-size:30px}
 <h2>Answer Review</h2>
 <div id="reviewBox"></div>
 <div style="text-align:center">
-<button onclick="goHome()">Back Home</button>
-</div>
-</section>
-
-<section id="leaderboard" class="card hidden">
-<h2>Leaderboard</h2>
-<div id="leaderboardBox"></div>
-<div style="text-align:center;margin-top:15px">
 <button onclick="goHome()">Back Home</button>
 </div>
 </section>
@@ -223,52 +184,11 @@ const demoQuestions=[
 {q:"1000 पर 10% दर से 1 वर्ष का साधारण ब्याज?",a:["50","100","150","200"],c:1}
 ];
 
-let currentUser="";
 let currentSet=[];
 let currentIndex=0;
 let answers=[];
 let timer;
 let timeLeft=600;
-let currentTopic="";
-
-function hideAll(){
-document.getElementById("loginPage").classList.add("hidden");
-document.getElementById("home").classList.add("hidden");
-document.getElementById("quiz").classList.add("hidden");
-document.getElementById("result").classList.add("hidden");
-document.getElementById("review").classList.add("hidden");
-document.getElementById("leaderboard").classList.add("hidden");
-}
-
-function loginUser(){
-let name=document.getElementById("userNameInput").value.trim();
-if(name===""){
-alert("अपना नाम डालें");
-return;
-}
-localStorage.setItem("qrUser",name);
-currentUser=name;
-showHome();
-}
-
-function logoutUser(){
-localStorage.removeItem("qrUser");
-currentUser="";
-hideAll();
-document.getElementById("loginPage").classList.remove("hidden");
-}
-
-function showHome(){
-currentUser=localStorage.getItem("qrUser") || "";
-if(currentUser===""){
-hideAll();
-document.getElementById("loginPage").classList.remove("hidden");
-return;
-}
-document.getElementById("showUser").innerText=currentUser;
-hideAll();
-document.getElementById("home").classList.remove("hidden");
-}
 
 function makeTopics(list,boxId){
 const box=document.getElementById(boxId);
@@ -295,12 +215,13 @@ document.getElementById(id).classList.toggle("hidden");
 }
 
 function startQuiz(topic){
-currentTopic=topic;
 currentSet=demoQuestions;
 currentIndex=0;
 answers=new Array(currentSet.length).fill(null);
 
-hideAll();
+document.getElementById("home").classList.add("hidden");
+document.getElementById("result").classList.add("hidden");
+document.getElementById("review").classList.add("hidden");
 document.getElementById("quiz").classList.remove("hidden");
 
 document.getElementById("quizTitle").innerText=topic;
@@ -323,16 +244,8 @@ item.a.forEach((opt,i)=>{
 const btn=document.createElement("button");
 btn.className="option";
 btn.innerText=opt;
-
-if(answers[currentIndex]===i){
-btn.classList.add("selected");
-}
-
-btn.onclick=function(){
-answers[currentIndex]=i;
-loadQuestion();
-};
-
+if(answers[currentIndex]===i){btn.classList.add("selected")}
+btn.onclick=function(){answers[currentIndex]=i;loadQuestion()};
 box.appendChild(btn);
 });
 }
@@ -355,10 +268,8 @@ function startTimer(){
 clearInterval(timer);
 timer=setInterval(function(){
 timeLeft--;
-
 let min=Math.floor(timeLeft/60);
 let sec=timeLeft%60;
-
 document.getElementById("time").innerText=
 String(min).padStart(2,"0")+":"+String(sec).padStart(2,"0");
 
@@ -372,40 +283,20 @@ submitQuiz();
 function submitQuiz(){
 clearInterval(timer);
 let score=0;
-
 currentSet.forEach((q,i)=>{
-if(answers[i]===q.c){
-score++;
-}
+if(answers[i]===q.c){score++}
 });
 
-saveScore(score,currentSet.length);
-
-hideAll();
+document.getElementById("quiz").classList.add("hidden");
 document.getElementById("result").classList.remove("hidden");
 
 document.getElementById("scoreText").innerText=score+" / "+currentSet.length;
-
 document.getElementById("resultMsg").innerText=
-score>=currentSet.length/2
-? "बहुत अच्छा! आपकी तैयारी मजबूत है।"
-: "थोड़ा और revision करें।";
-}
-
-function saveScore(score,total){
-let data=JSON.parse(localStorage.getItem("qrLeaderboard") || "[]");
-data.push({
-name:currentUser,
-topic:currentTopic,
-score:score,
-total:total,
-date:new Date().toLocaleDateString()
-});
-localStorage.setItem("qrLeaderboard",JSON.stringify(data));
+score>=currentSet.length/2 ? "बहुत अच्छा! आपकी तैयारी मजबूत है।" : "थोड़ा और revision करें।";
 }
 
 function showReview(){
-hideAll();
+document.getElementById("result").classList.add("hidden");
 document.getElementById("review").classList.remove("hidden");
 
 const reviewBox=document.getElementById("reviewBox");
@@ -423,39 +314,13 @@ reviewBox.appendChild(div);
 });
 }
 
-function showLeaderboard(){
-hideAll();
-document.getElementById("leaderboard").classList.remove("hidden");
-
-let data=JSON.parse(localStorage.getItem("qrLeaderboard") || "[]");
-data.sort((a,b)=>b.score-a.score);
-
-let html="<table><tr><th>Rank</th><th>Name</th><th>Topic</th><th>Score</th><th>Date</th></tr>";
-
-if(data.length===0){
-html+="<tr><td colspan='5'>No score yet</td></tr>";
-}else{
-data.forEach((item,index)=>{
-html+=`<tr>
-<td>${index+1}</td>
-<td>${item.name}</td>
-<td>${item.topic}</td>
-<td>${item.score}/${item.total}</td>
-<td>${item.date}</td>
-</tr>`;
-});
-}
-
-html+="</table>";
-document.getElementById("leaderboardBox").innerHTML=html;
-}
-
 function goHome(){
 clearInterval(timer);
-showHome();
+document.getElementById("quiz").classList.add("hidden");
+document.getElementById("result").classList.add("hidden");
+document.getElementById("review").classList.add("hidden");
+document.getElementById("home").classList.remove("hidden");
 }
-
-showHome();
 </script>
 
 </body>
