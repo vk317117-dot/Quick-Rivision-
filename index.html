@@ -8,93 +8,157 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f4f7fb;color:#111}.hidden{display:none}
+body{background:#f4f7fb;color:#111}
+.hidden{display:none}
 
-#splash-screen{position:fixed;top:0;left:0;width:100%;height:100vh;background:white;display:flex;justify-content:center;align-items:center;z-index:9999;animation:fadeOut 1s ease forwards;animation-delay:3s}
+#splash-screen{
+position:fixed;top:0;left:0;width:100%;height:100vh;background:white;
+display:flex;justify-content:center;align-items:center;z-index:9999;
+animation:fadeOut 1s ease forwards;animation-delay:3s
+}
 #splash-screen img{width:90%;max-width:420px;animation:zoomIn 2s ease}
 @keyframes zoomIn{0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
 @keyframes fadeOut{to{opacity:0;visibility:hidden}}
 
-#loginPage{position:fixed;top:0;left:0;width:100%;height:100vh;background:#f4f7fb;display:flex;justify-content:center;align-items:center;z-index:9998}
-.login-box{background:white;padding:22px;width:350px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+#loginPage{
+position:fixed;top:0;left:0;width:100%;height:100vh;background:#f4f7fb;
+display:flex;justify-content:center;align-items:center;z-index:9998
+}
+.login-box{
+background:white;padding:22px;width:350px;border-radius:16px;
+box-shadow:0 4px 20px rgba(0,0,0,.15)
+}
 .login-box h2{text-align:center;color:#0759d8;margin-bottom:10px}
 .login-head{text-align:center;font-weight:bold;color:#0759d8;margin-bottom:15px;font-size:14px;line-height:1.5}
 .login-box input{width:100%;padding:12px;margin-bottom:10px;border:1px solid #ccc;border-radius:8px}
 .login-box button{width:100%;padding:12px;border:0;border-radius:8px;color:white;font-size:15px;margin-bottom:9px;cursor:pointer}
-.signup-btn{background:#16a34a}.login-btn{background:#0759d8}.otp-btn{background:#9333ea}
+.otp-btn{background:#0759d8}
+.verify-btn{background:#16a34a}
 #userInfo{text-align:center;color:#0759d8;font-size:14px;margin-top:5px}
 
 #mainContent{display:none}
-header{background:linear-gradient(135deg,#06163d,#0759d8);color:white;padding:18px;text-align:center;position:sticky;top:0;z-index:1000}
-header h1{font-size:38px} header p{font-size:16px;margin-top:5px}
+
+header{
+background:linear-gradient(135deg,#06163d,#0759d8);
+color:white;padding:18px;text-align:center;
+position:sticky;top:0;z-index:1000
+}
+header h1{font-size:38px}
+header p{font-size:16px;margin-top:5px}
 
 .container{max-width:1150px;margin:20px auto;padding:15px}
-.card{background:white;padding:22px;border-radius:18px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:18px}
-.card h2{font-size:30px;margin-bottom:8px}.card p{color:#555;margin-bottom:18px}
+.card{
+background:white;padding:22px;border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+margin-bottom:18px
+}
+.card h2{font-size:30px;margin-bottom:8px}
+.card p{color:#555;margin-bottom:18px}
 
-.test-buttons,.set-grid,.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.test-btn,.set-btn,.lang-btn{padding:28px;border-radius:18px;border:2px solid #0759d8;background:white;color:#0759d8;font-size:24px;font-weight:bold;cursor:pointer}
-.test-btn:hover,.set-btn:hover,.lang-btn:hover{background:#eef2ff}
+.test-buttons,.set-grid,.lang-grid,.category-buttons{
+display:grid;grid-template-columns:1fr 1fr;gap:18px
+}
+.test-btn,.set-btn,.lang-btn,.category-btn{
+padding:28px;border-radius:18px;border:2px solid #0759d8;
+background:white;color:#0759d8;font-size:24px;font-weight:bold;cursor:pointer
+}
+.test-btn:hover,.set-btn:hover,.lang-btn:hover,.category-btn:hover{background:#eef2ff}
 
-.category-buttons{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
-.category-btn{padding:25px;border-radius:16px;border:2px solid #0759d8;background:white;color:#0759d8;font-size:24px;font-weight:bold;cursor:pointer}
-
-.topic-grid{padding:14px;display:grid;grid-template-columns:1fr;gap:12px}
-.topic{border:2px solid #c7d2fe;padding:14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;font-weight:bold;background:white;cursor:pointer;font-size:16px}
+.topic-grid{
+padding:14px;display:grid;grid-template-columns:1fr;gap:12px
+}
+.topic{
+border:2px solid #c7d2fe;padding:14px;border-radius:12px;
+display:flex;justify-content:space-between;align-items:center;
+font-weight:bold;background:white;cursor:pointer;font-size:16px
+}
 .badges{display:flex;gap:6px;white-space:nowrap}
 .badge-blue{border:1px solid #4f7cff;padding:5px 8px;border-radius:8px;color:#0759d8;font-size:12px}
 .badge-green{border:1px solid #4ade80;padding:5px 8px;border-radius:8px;color:green;font-size:12px}
 
-.page-nav{display:flex;justify-content:space-between;margin-top:18px}
+.page-nav,.nav-buttons{
+display:flex;justify-content:space-between;margin-top:18px
+}
+
 .quiz-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
 .timer{background:#fee2e2;color:#991b1b;padding:10px 14px;border-radius:12px;font-weight:bold}
 .progress{font-weight:bold;color:#0759d8;margin:12px 0}
 .question{font-size:22px;font-weight:bold;margin:18px 0}
-.option{display:block;width:100%;text-align:left;background:#f9fafb;border:2px solid #e5e7eb;margin:10px 0;padding:14px;border-radius:12px;cursor:pointer;color:#111}
+.option{
+display:block;width:100%;text-align:left;background:#f9fafb;
+border:2px solid #e5e7eb;margin:10px 0;padding:14px;
+border-radius:12px;cursor:pointer;color:#111
+}
 .option.selected{border-color:#0759d8;background:#dbeafe}
-.nav-buttons{display:flex;justify-content:space-between;margin-top:18px}
-button{border:0;border-radius:12px;padding:12px 18px;font-weight:bold;cursor:pointer;background:#0759d8;color:white}
+
+button{
+border:0;border-radius:12px;padding:12px 18px;
+font-weight:bold;cursor:pointer;background:#0759d8;color:white
+}
 .submit-btn{background:#16a34a;margin-top:15px}
 .score{text-align:center;font-size:30px;color:#0759d8;font-weight:bold}
-.review-item{border-left:5px solid #0759d8;padding:14px;margin:14px 0;background:#f8fafc;border-radius:10px}
+.review-item{
+border-left:5px solid #0759d8;padding:14px;margin:14px 0;
+background:#f8fafc;border-radius:10px
+}
 .leader-item{padding:12px;border-bottom:1px solid #ddd;font-weight:bold}
-footer{text-align:center;padding:20px;color:#555}
+
+.result-buttons{
+display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:15px
+}
+
+footer{
+text-align:center;
+padding:20px;
+color:#555;
+line-height:1.8;
+font-weight:bold;
+}
 
 @media(max-width:768px){
 .test-buttons,.set-grid,.lang-grid,.category-buttons{grid-template-columns:1fr}
-header h1{font-size:30px}.test-btn,.set-btn,.lang-btn,.category-btn{font-size:22px}.topic{font-size:16px}
-.badges{flex-direction:column;gap:4px}.badge-blue,.badge-green{font-size:11px;padding:4px 5px}
+header h1{font-size:30px}
+.test-btn,.set-btn,.lang-btn,.category-btn{font-size:22px}
+.topic{font-size:16px}
+.badges{flex-direction:column;gap:4px}
+.badge-blue,.badge-green{font-size:11px;padding:4px 5px}
 }
 </style>
 </head>
 
 <body>
 
-<div id="splash-screen"><img src="logo.png" alt="Logo"></div>
+<div id="splash-screen">
+<img src="logo.png" alt="Logo">
+</div>
 
 <div id="loginPage">
 <div class="login-box">
+
 <h2>Login / Signup</h2>
-<p class="login-head">Railway | Bank | Bihar SI | Bihar Police | Bihar Teacher | SSC | Banking</p>
 
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="New Password / Password">
-<button class="signup-btn" onclick="signup()">Signup</button>
-<button class="login-btn" onclick="login()">Login</button>
+<p class="login-head">
+Railway | Bihar SI | Bihar Police | Bihar Teacher | SSC | Banking | BPSC | Other Competitive Exams
+</p>
 
-<hr style="margin:12px 0">
+<input type="text" id="name" placeholder="Name">
 
 <input type="text" id="phone" placeholder="Mobile Number: +91XXXXXXXXXX">
+
 <button class="otp-btn" onclick="sendOTP()">Send OTP</button>
+
 <input type="text" id="otp" placeholder="Enter OTP">
-<button class="login-btn" onclick="verifyOTP()">Verify OTP Login</button>
+
+<button class="verify-btn" onclick="verifyOTP()">Verify & Continue</button>
 
 <div id="recaptcha-container"></div>
-<p id="userInfo"></p>
-</div>
-</div>
 
+<p id="userInfo"></p>
+
+</div>
+</div>
 <div id="mainContent">
+
 <header>
 <h1>Quick Revision</h1>
 <p>Maths Practice Set for Competitive Exams</p>
@@ -105,10 +169,12 @@ header h1{font-size:30px}.test-btn,.set-btn,.lang-btn,.category-btn{font-size:22
 <section id="testSelect" class="card">
 <h2>Test Select करें</h2>
 <p>अपना practice mode चुनें।</p>
+
 <div class="test-buttons">
 <button class="test-btn" onclick="startMixTest()">MIX TEST</button>
 <button class="test-btn" onclick="showChapterTest()">CHAPTER TEST</button>
 </div>
+
 <div style="text-align:center;margin-top:20px">
 <button onclick="showLeaderboard()">🏆 Leaderboard</button>
 </div>
@@ -130,12 +196,15 @@ header h1{font-size:30px}.test-btn,.set-btn,.lang-btn,.category-btn{font-size:22
 <button onclick="nextTopicPage()">Next</button>
 </div>
 
-<div style="text-align:center;margin-top:20px"><button onclick="backToTestSelect()">Back</button></div>
+<div style="text-align:center;margin-top:20px">
+<button onclick="backToTestSelect()">Back</button>
+</div>
 </section>
 
 <section id="setPage" class="card hidden">
 <h2 id="setTitle">Select Set</h2>
 <p>हर set में 30 questions होंगे।</p>
+
 <div class="set-grid">
 <button class="set-btn" onclick="chooseSet(1)">SET 1<br><small>30 Ques / Set</small></button>
 <button class="set-btn" onclick="chooseSet(2)">SET 2<br><small>30 Ques / Set</small></button>
@@ -143,16 +212,21 @@ header h1{font-size:30px}.test-btn,.set-btn,.lang-btn,.category-btn{font-size:22
 <button class="set-btn" onclick="chooseSet(4)">SET 4<br><small>30 Ques / Set</small></button>
 <button class="set-btn" onclick="chooseSet(5)">SET 5<br><small>30 Ques / Set</small></button>
 </div>
-<div style="text-align:center;margin-top:20px"><button onclick="showChapterTest()">Back</button></div>
+
+<div style="text-align:center;margin-top:20px">
+<button onclick="showChapterTest()">Back</button>
+</div>
 </section>
 
 <section id="languagePage" class="card hidden">
 <h2>Language Choose करें</h2>
 <p id="langInfo">Hindi या English चुनें।</p>
+
 <div class="lang-grid">
 <button class="lang-btn" onclick="chooseLanguage('Hindi')">Hindi</button>
 <button class="lang-btn" onclick="chooseLanguage('English')">English</button>
 </div>
+
 <div style="text-align:center;margin-top:20px">
 <button class="submit-btn" onclick="startSelectedTest()">START TEST</button>
 </div>
@@ -163,21 +237,30 @@ header h1{font-size:30px}.test-btn,.set-btn,.lang-btn,.category-btn{font-size:22
 <h2 id="quizTitle">Quiz</h2>
 <div class="timer">Time: <span id="time">00:30</span></div>
 </div>
-<div class="progress">Question <span id="qNo">1</span> / <span id="totalQ">0</span></div>
+
+<div class="progress">
+Question <span id="qNo">1</span> / <span id="totalQ">0</span>
+</div>
+
 <div id="question" class="question"></div>
 <div id="options"></div>
+
 <div class="nav-buttons">
 <button onclick="prevQuestion()">Previous</button>
 <button onclick="nextQuestion()">Next</button>
 </div>
-<div style="text-align:center"><button class="submit-btn" onclick="submitQuiz()">Submit</button></div>
+
+<div style="text-align:center">
+<button class="submit-btn" onclick="submitQuiz()">Submit</button>
+</div>
 </section>
 
 <section id="result" class="card hidden">
 <h2 style="text-align:center">Result</h2>
 <p id="scoreText" class="score"></p>
 <p id="resultMsg" style="text-align:center;margin:10px 0"></p>
-<div style="text-align:center;margin-top:15px">
+
+<div class="result-buttons">
 <button onclick="backToTestSelect()">Home</button>
 <button onclick="showReview()">Analysis With Solution</button>
 <button onclick="showLeaderboard()">Leaderboard</button>
@@ -187,22 +270,33 @@ header h1{font-size:30px}.test-btn,.set-btn,.lang-btn,.category-btn{font-size:22
 <section id="review" class="card hidden">
 <h2>Test Analysis With Solution</h2>
 <div id="reviewBox"></div>
-<div style="text-align:center"><button onclick="backToTestSelect()">Back Home</button></div>
+
+<div style="text-align:center">
+<button onclick="backToTestSelect()">Back Home</button>
+</div>
 </section>
 
 <section id="leaderboard" class="card hidden">
 <h2>🏆 Leaderboard</h2>
 <div id="leaderboardBox">Loading...</div>
-<div style="text-align:center;margin-top:15px"><button onclick="backToTestSelect()">Back</button></div>
+
+<div style="text-align:center;margin-top:15px">
+<button onclick="backToTestSelect()">Back</button>
+</div>
 </section>
 
 </div>
-<footer>© Quick Revision | Maths Practice Site</footer>
-</div>
 
+<footer>
+© Quick Revision | Maths Practice Site<br>
+Founder: Vicky Kumar<br>
+Mobile No: 6200848211
+</footer>
+
+</div>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const firebaseConfig={
@@ -217,86 +311,227 @@ appId:"1:200424391350:web:251d8eb2148f4b8960dc17"
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getFirestore(app);
+
 window.currentUserEmail="Guest";
 
 function openMain(){
-setTimeout(()=>{document.getElementById("loginPage").style.display="none";document.getElementById("mainContent").style.display="block";},800);
+setTimeout(()=>{
+document.getElementById("loginPage").style.display="none";
+document.getElementById("mainContent").style.display="block";
+},800);
 }
 
-window.signup=function(){
-const email=document.getElementById("email").value;
-const password=document.getElementById("password").value;
-createUserWithEmailAndPassword(auth,email,password).then(()=>{
-window.currentUserEmail=email;
-document.getElementById("userInfo").innerText="Signup Successful ✅";
-openMain();
-}).catch(e=>document.getElementById("userInfo").innerText=e.message);
-};
-
-window.login=function(){
-const email=document.getElementById("email").value;
-const password=document.getElementById("password").value;
-signInWithEmailAndPassword(auth,email,password).then(()=>{
-window.currentUserEmail=email;
-document.getElementById("userInfo").innerText="Login Successful ✅";
-openMain();
-}).catch(e=>document.getElementById("userInfo").innerText=e.message);
-};
-
 window.sendOTP=function(){
-const phone=document.getElementById("phone").value;
+const name=document.getElementById("name").value.trim();
+const phone=document.getElementById("phone").value.trim();
+
+if(name===""){
+document.getElementById("userInfo").innerText="Name डालें";
+return;
+}
+
+if(phone===""){
+document.getElementById("userInfo").innerText="Mobile number डालें";
+return;
+}
+
 if(!window.recaptchaVerifier){
 window.recaptchaVerifier=new RecaptchaVerifier(auth,"recaptcha-container",{size:"invisible"});
 }
-signInWithPhoneNumber(auth,phone,window.recaptchaVerifier).then((confirmationResult)=>{
+
+signInWithPhoneNumber(auth,phone,window.recaptchaVerifier)
+.then((confirmationResult)=>{
 window.confirmationResult=confirmationResult;
+window.currentUserEmail=name+" | "+phone;
 document.getElementById("userInfo").innerText="OTP Sent ✅";
-}).catch(e=>document.getElementById("userInfo").innerText=e.message);
+})
+.catch((e)=>{
+document.getElementById("userInfo").innerText=e.message;
+});
 };
 
 window.verifyOTP=function(){
-const code=document.getElementById("otp").value;
-window.confirmationResult.confirm(code).then((result)=>{
-window.currentUserEmail=result.user.phoneNumber;
-document.getElementById("userInfo").innerText="Phone Login Successful ✅";
+const code=document.getElementById("otp").value.trim();
+
+if(!window.confirmationResult){
+document.getElementById("userInfo").innerText="पहले OTP भेजें";
+return;
+}
+
+window.confirmationResult.confirm(code)
+.then((result)=>{
+window.currentUserEmail=document.getElementById("name").value+" | "+result.user.phoneNumber;
+document.getElementById("userInfo").innerText="Login Successful ✅";
 openMain();
-}).catch(e=>document.getElementById("userInfo").innerText=e.message);
+})
+.catch((e)=>{
+document.getElementById("userInfo").innerText=e.message;
+});
 };
 
 window.saveScore=async function(score,total,topic,setNo,lang){
-await addDoc(collection(db,"scores"),{email:window.currentUserEmail,score,total,topic,setNo,lang,date:new Date()});
+await addDoc(collection(db,"scores"),{
+email:window.currentUserEmail,
+score:score,
+total:total,
+topic:topic,
+setNo:setNo,
+lang:lang,
+date:new Date()
+});
 };
 
 window.loadLeaderboard=async function(){
 const box=document.getElementById("leaderboardBox");
 box.innerHTML="Loading...";
+
 const q=query(collection(db,"scores"),orderBy("score","desc"),limit(10));
 const snap=await getDocs(q);
+
 box.innerHTML="";
 let rank=1;
+
 snap.forEach(doc=>{
 const d=doc.data();
-box.innerHTML+=`<div class="leader-item">${rank}. ${d.email} — ${d.score}/${d.total} (${d.topic} Set ${d.setNo})</div>`;
+box.innerHTML+=`
+<div class="leader-item">
+${rank}. ${d.email} — ${d.score}/${d.total} (${d.topic} Set ${d.setNo})
+</div>`;
 rank++;
 });
-if(rank===1)box.innerHTML="अभी कोई score नहीं है।";
+
+if(rank===1){
+box.innerHTML="अभी कोई score नहीं है।";
+}
 };
 </script>
 
 <script>
-const arithmeticTopics=["TEST YOUR CALCULATION","PERCENTAGE","PROFIT AND LOSS","DISCOUNT","PARTNERSHIP","RATIO AND PROPORTION","MIXTURE","ALLIGATION","SIMPLE INTEREST","COMPOUND INTEREST","AVERAGE","TIME AND WORK","PIPE AND CISTERN","TIME AND DISTANCE","TRAIN","BOAT AND STREAM","LINEAR AND CIRCULAR RACE","PERMUTATION AND COMBINATION","PROBABILITY","STATICS","LOGARITHM"];
-const advanceTopics=["NUMBER SYSTEM","LCM AND HCF","SEQUENCE AND SERIES","SIMPLIFICATION","SQUARE AND INDICES","GEOMETRY","MENSURATION 2D","MENSURATION 3D","ALGEBRA","TRIGONOMETRY","HEIGHT AND DISTANCE","CO-ORDINATE GEOMETRY"];
-
-const demoQuestions=[
-{q:"999 × 999 कितना होगा?",a:["998001","999001","997001","996001"],c:0,solution:"(1000-1)² = 1000000 - 2000 + 1 = 998001",trick:"(a-b)² formula"},
-{q:"48 × 52 कितना होगा?",a:["2396","2496","2596","2696"],c:1,solution:"(50-2)(50+2)=2500-4=2496",trick:"Difference of squares"},
-{q:"625 ÷ 25 कितना होगा?",a:["15","20","25","30"],c:2,solution:"25 × 25 = 625",trick:"Reverse multiplication"},
-{q:"45² कितना होगा?",a:["1925","2025","2125","2225"],c:1,solution:"45×45=2025",trick:"5 ending square trick"},
-{q:"84 ÷ 0.7 कितना होगा?",a:["110","120","130","140"],c:1,solution:"84÷0.7 = 840÷7 = 120",trick:"Decimal हटाओ"}
+const arithmeticTopics=[
+"TEST YOUR CALCULATION",
+"PERCENTAGE",
+"PROFIT AND LOSS",
+"DISCOUNT",
+"PARTNERSHIP",
+"RATIO AND PROPORTION",
+"MIXTURE",
+"ALLIGATION",
+"SIMPLE INTEREST",
+"COMPOUND INTEREST",
+"AVERAGE",
+"TIME AND WORK",
+"PIPE AND CISTERN",
+"TIME AND DISTANCE",
+"TRAIN",
+"BOAT AND STREAM",
+"LINEAR AND CIRCULAR RACE",
+"PERMUTATION AND COMBINATION",
+"PROBABILITY",
+"STATISTICS",
+"LOGARITHM"
 ];
 
-let currentSet=[],currentIndex=0,answers=[],timer,timeLeft=30,currentTopic="",selectedSet=1,selectedLang="Hindi";
-let activeCategory="",topicPage=0;
+const advanceTopics=[
+"NUMBER SYSTEM",
+"LCM AND HCF",
+"SEQUENCE AND SERIES",
+"SIMPLIFICATION",
+"SQUARE AND INDICES",
+"GEOMETRY",
+"MENSURATION 2D",
+"MENSURATION 3D",
+"ALGEBRA",
+"TRIGONOMETRY",
+"HEIGHT AND DISTANCE",
+"CO-ORDINATE GEOMETRY"
+];
+
+const hindiQuestions=[
+{
+q:"999 × 999 कितना होगा?",
+a:["998001","999001","997001","996001"],
+c:0,
+solution:"(1000-1)² = 1000000 - 2000 + 1 = 998001",
+trick:"(a-b)² formula"
+},
+{
+q:"48 × 52 कितना होगा?",
+a:["2396","2496","2596","2696"],
+c:1,
+solution:"(50-2)(50+2)=2500-4=2496",
+trick:"Difference of squares"
+},
+{
+q:"625 ÷ 25 कितना होगा?",
+a:["15","20","25","30"],
+c:2,
+solution:"25 × 25 = 625",
+trick:"Reverse multiplication"
+},
+{
+q:"45² कितना होगा?",
+a:["1925","2025","2125","2225"],
+c:1,
+solution:"45×45=2025",
+trick:"5 ending square trick"
+},
+{
+q:"84 ÷ 0.7 कितना होगा?",
+a:["110","120","130","140"],
+c:1,
+solution:"84÷0.7 = 840÷7 = 120",
+trick:"Decimal हटाओ"
+}
+];
+
+const englishQuestions=[
+{
+q:"What is 999 × 999?",
+a:["998001","999001","997001","996001"],
+c:0,
+solution:"(1000-1)² = 1000000 - 2000 + 1 = 998001",
+trick:"Use (a-b)² formula"
+},
+{
+q:"What is 48 × 52?",
+a:["2396","2496","2596","2696"],
+c:1,
+solution:"(50-2)(50+2)=2500-4=2496",
+trick:"Use difference of squares"
+},
+{
+q:"What is 625 ÷ 25?",
+a:["15","20","25","30"],
+c:2,
+solution:"25 × 25 = 625, so answer is 25",
+trick:"Use reverse multiplication"
+},
+{
+q:"What is 45²?",
+a:["1925","2025","2125","2225"],
+c:1,
+solution:"45 × 45 = 2025",
+trick:"Square trick for numbers ending in 5"
+},
+{
+q:"What is 84 ÷ 0.7?",
+a:["110","120","130","140"],
+c:1,
+solution:"84 ÷ 0.7 = 840 ÷ 7 = 120",
+trick:"Remove decimal by multiplying by 10"
+}
+];
+
+let currentSet=[];
+let currentIndex=0;
+let answers=[];
+let timer;
+let timeLeft=30;
+let currentTopic="";
+let selectedSet=1;
+let selectedLang="Hindi";
+let activeCategory="";
+let topicPage=0;
 const topicsPerPage=7;
 
 function openCategory(type){
@@ -308,102 +543,206 @@ renderTopics();
 function renderTopics(){
 const box=document.getElementById("categoryTopics");
 box.innerHTML="";
+
 let list=activeCategory==="arithmetic"?arithmeticTopics:advanceTopics;
 let start=topicPage*topicsPerPage;
 let pageItems=list.slice(start,start+topicsPerPage);
+
 pageItems.forEach((topic,index)=>{
 const div=document.createElement("div");
 div.className="topic";
-div.onclick=function(){openSetPage(topic)};
-div.innerHTML=`<span>${start+index+1}. ${topic}</span><div class="badges"><span class="badge-blue">5 sets</span><span class="badge-green">30 Ques / Set</span></div>`;
+div.onclick=function(){
+openSetPage(topic);
+};
+div.innerHTML=`
+<span>${start+index+1}. ${topic}</span>
+<div class="badges">
+<span class="badge-blue">5 sets</span>
+<span class="badge-green">30 Ques / Set</span>
+</div>`;
 box.appendChild(div);
 });
 }
 
 function nextTopicPage(){
 let list=activeCategory==="arithmetic"?arithmeticTopics:advanceTopics;
-if((topicPage+1)*topicsPerPage<list.length){topicPage++;renderTopics();}
+if((topicPage+1)*topicsPerPage<list.length){
+topicPage++;
+renderTopics();
+}
 }
 
 function prevTopicPage(){
-if(topicPage>0){topicPage--;renderTopics();}
+if(topicPage>0){
+topicPage--;
+renderTopics();
+}
 }
 
 function showOnly(id){
-["testSelect","chapterPage","setPage","languagePage","quiz","result","review","leaderboard"].forEach(x=>document.getElementById(x).classList.add("hidden"));
+["testSelect","chapterPage","setPage","languagePage","quiz","result","review","leaderboard"].forEach(x=>{
+document.getElementById(x).classList.add("hidden");
+});
 document.getElementById(id).classList.remove("hidden");
 }
-function showChapterTest(){showOnly("chapterPage")}
-function backToTestSelect(){clearInterval(timer);showOnly("testSelect")}
-function startMixTest(){currentTopic="MIX TEST";selectedSet=1;showOnly("languagePage")}
-function showLeaderboard(){showOnly("leaderboard");loadLeaderboard()}
+
+function showChapterTest(){
+showOnly("chapterPage");
+document.getElementById("categoryTopics").innerHTML="";
+}
+
+function backToTestSelect(){
+clearInterval(timer);
+showOnly("testSelect");
+}
+
+function startMixTest(){
+currentTopic="MIX TEST";
+selectedSet=1;
+document.getElementById("langInfo").innerText="MIX TEST | Hindi या English चुनें";
+showOnly("languagePage");
+}
+
+function showLeaderboard(){
+showOnly("leaderboard");
+loadLeaderboard();
+}
 
 function openSetPage(topic){
 currentTopic=topic;
 document.getElementById("setTitle").innerText=topic+" - Select Set";
 showOnly("setPage");
 }
+
 function chooseSet(n){
 selectedSet=n;
 document.getElementById("langInfo").innerText=currentTopic+" | Set "+n+" | Hindi या English चुनें";
 showOnly("languagePage");
 }
+
 function chooseLanguage(lang){
 selectedLang=lang;
 document.getElementById("langInfo").innerText=currentTopic+" | Set "+selectedSet+" | "+lang;
 }
-function startSelectedTest(){startQuiz(currentTopic)}
+
+function startSelectedTest(){
+startQuiz(currentTopic);
+}
 
 function startQuiz(topic){
-currentSet=demoQuestions;currentIndex=0;answers=new Array(currentSet.length).fill(null);
-showOnly("quiz");document.getElementById("quizTitle").innerText=topic+" | Set "+selectedSet+" | "+selectedLang;
+currentSet=selectedLang==="English"?englishQuestions:hindiQuestions;
+currentIndex=0;
+answers=new Array(currentSet.length).fill(null);
+
+showOnly("quiz");
+
+document.getElementById("quizTitle").innerText=topic+" | Set "+selectedSet+" | "+selectedLang;
 document.getElementById("totalQ").innerText=currentSet.length;
-timeLeft=30;startTimer();loadQuestion();
+
+timeLeft=30;
+startTimer();
+loadQuestion();
 }
 
 function loadQuestion(){
 const item=currentSet[currentIndex];
+
 document.getElementById("qNo").innerText=currentIndex+1;
 document.getElementById("question").innerText=item.q;
-const box=document.getElementById("options");box.innerHTML="";
+
+const box=document.getElementById("options");
+box.innerHTML="";
+
 item.a.forEach((opt,i)=>{
 const btn=document.createElement("button");
-btn.className="option";btn.innerText=opt;
-if(answers[currentIndex]===i)btn.classList.add("selected");
-btn.onclick=function(){answers[currentIndex]=i;loadQuestion()};
-box.appendChild(btn);
-});
-timeLeft=30;
+btn.className="option";
+btn.innerText=opt;
+
+if(answers[currentIndex]===i){
+btn.classList.add("selected");
 }
 
-function nextQuestion(){if(currentIndex<currentSet.length-1){currentIndex++;loadQuestion()}else{submitQuiz()}}
-function prevQuestion(){if(currentIndex>0){currentIndex--;loadQuestion()}}
+btn.onclick=function(){
+answers[currentIndex]=i;
+loadQuestion();
+};
+
+box.appendChild(btn);
+});
+
+timeLeft=30;
+document.getElementById("time").innerText="00:30";
+}
+
+function nextQuestion(){
+if(currentIndex<currentSet.length-1){
+currentIndex++;
+loadQuestion();
+}else{
+submitQuiz();
+}
+}
+
+function prevQuestion(){
+if(currentIndex>0){
+currentIndex--;
+loadQuestion();
+}
+}
 
 function startTimer(){
 clearInterval(timer);
+
 timer=setInterval(function(){
 timeLeft--;
+
 document.getElementById("time").innerText="00:"+String(timeLeft).padStart(2,"0");
-if(timeLeft<=0){nextQuestion()}
+
+if(timeLeft<=0){
+nextQuestion();
+}
 },1000);
 }
 
 function submitQuiz(){
 clearInterval(timer);
+
 let score=0;
-currentSet.forEach((q,i)=>{if(answers[i]===q.c)score++});
+
+currentSet.forEach((q,i)=>{
+if(answers[i]===q.c){
+score++;
+}
+});
+
 saveScore(score,currentSet.length,currentTopic,selectedSet,selectedLang);
+
 showOnly("result");
+
 document.getElementById("scoreText").innerText=score+" / "+currentSet.length;
-document.getElementById("resultMsg").innerText=score>=currentSet.length/2?"बहुत अच्छा!":"थोड़ा और practice करें।";
+
+document.getElementById("resultMsg").innerText=
+score>=currentSet.length/2?"बहुत अच्छा!":"थोड़ा और practice करें।";
 }
 
 function showReview(){
 showOnly("review");
-const reviewBox=document.getElementById("reviewBox");reviewBox.innerHTML="";
+
+const reviewBox=document.getElementById("reviewBox");
+reviewBox.innerHTML="";
+
 currentSet.forEach((q,i)=>{
-const div=document.createElement("div");div.className="review-item";
-div.innerHTML=`<h3>Q${i+1}. ${q.q}</h3><p><b>Your Answer:</b> ${answers[i]!=null?q.a[answers[i]]:"Not Answered"}</p><p><b>Correct Answer:</b> ${q.a[q.c]}</p><p><b>Solution:</b> ${q.solution}</p><p><b>Trick:</b> ${q.trick}</p>`;
+const div=document.createElement("div");
+div.className="review-item";
+
+div.innerHTML=`
+<h3>Q${i+1}. ${q.q}</h3>
+<p><b>Your Answer:</b> ${answers[i]!=null?q.a[answers[i]]:"Not Answered"}</p>
+<p><b>Correct Answer:</b> ${q.a[q.c]}</p>
+<p><b>Solution:</b> ${q.solution}</p>
+<p><b>Trick:</b> ${q.trick}</p>
+`;
+
 reviewBox.appendChild(div);
 });
 }
