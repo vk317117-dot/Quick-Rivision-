@@ -341,5 +341,56 @@ document.getElementById("home").classList.remove("hidden");
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 </script>
+  <div id="authBox" style="
+position:fixed;
+top:20px;
+right:20px;
+background:white;
+padding:15px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
+z-index:999;
+width:260px;
+">
+
+<h3 style="margin-bottom:10px;">Login</h3>
+
+<input type="email" id="email"
+placeholder="Email"
+style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ccc;border-radius:8px;">
+
+<input type="password" id="password"
+placeholder="Password"
+style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ccc;border-radius:8px;">
+
+<button onclick="signup()" style="
+width:100%;
+padding:10px;
+margin-bottom:10px;
+background:#16a34a;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+">
+Signup
+</button>
+
+<button onclick="login()" style="
+width:100%;
+padding:10px;
+background:#0759d8;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+">
+Login
+</button>
+
+<p id="userInfo"
+style="margin-top:10px;font-size:14px;color:#0759d8;"></p>
+
+</div>
 </body>
 </html>
