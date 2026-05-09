@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quick Revision - Maths Practice</title>
+<title>Quick Revision</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f4f7fb;color:#111;overflow-x:hidden}
+body{background:#f4f7fb;color:#111}
 
 #splash-screen{
 position:fixed;top:0;left:0;width:100%;height:100vh;background:white;
@@ -23,66 +23,51 @@ position:fixed;top:0;left:0;width:100%;height:100vh;background:#f4f7fb;
 display:flex;justify-content:center;align-items:center;z-index:9998
 }
 .login-box{background:white;padding:30px;width:320px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.15)}
-.login-box h2{text-align:center;margin-bottom:20px;color:#0759d8}
+.login-box h2{text-align:center;color:#0759d8;margin-bottom:20px}
 .login-box input{width:100%;padding:12px;margin-bottom:12px;border:1px solid #ccc;border-radius:8px}
-.login-box button{width:100%;padding:12px;border:none;border-radius:8px;font-size:16px;cursor:pointer;color:white;margin-bottom:10px}
+.login-box button{width:100%;padding:12px;border:0;border-radius:8px;color:white;font-size:16px;margin-bottom:10px;cursor:pointer}
 .signup-btn{background:#16a34a}.login-btn{background:#0759d8}
-#userInfo{text-align:center;font-size:14px;color:#0759d8}
+#userInfo{text-align:center;color:#0759d8;font-size:14px}
 
 #mainContent{display:none}
 header{background:linear-gradient(135deg,#06163d,#0759d8);color:white;padding:25px;text-align:center}
-header h1{font-size:48px} header p{font-size:20px;margin-top:5px}
+header h1{font-size:42px}
+header p{font-size:18px;margin-top:6px}
 
-.container{max-width:1200px;margin:20px auto;padding:15px}
+.container{max-width:1150px;margin:20px auto;padding:15px}
 .card{background:white;padding:22px;border-radius:18px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:18px}
-.card h2{font-size:34px;margin-bottom:8px}.card p{color:#555;margin-bottom:20px;font-size:18px}
+.card h2{font-size:32px;margin-bottom:8px}.card p{color:#555;margin-bottom:18px}
 
 .test-buttons{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.test-btn{
-padding:30px;border-radius:18px;border:2px solid #0759d8;background:white;
-font-size:28px;font-weight:bold;color:#0759d8;cursor:pointer
-}
+.test-btn{padding:35px;border-radius:18px;border:2px solid #0759d8;background:white;color:#0759d8;font-size:28px;font-weight:bold;cursor:pointer}
 .test-btn:hover{background:#eef2ff}
 
-.section-title{
-background:linear-gradient(135deg,#0036b8,#0759d8);color:white;padding:18px;
-border-radius:14px 14px 0 0;font-size:26px;font-weight:bold;
-display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-top:20px
-}
-.topic-grid{
-border:2px solid #0759d8;border-top:0;padding:14px;border-radius:0 0 14px 14px;
-display:grid;grid-template-columns:repeat(2,1fr);gap:15px
-}
-.topic{
-border:2px solid #c7d2fe;padding:18px;border-radius:14px;display:flex;
-justify-content:space-between;align-items:center;font-weight:bold;background:white;cursor:pointer
-}
+.section-title{background:linear-gradient(135deg,#0036b8,#0759d8);color:white;padding:18px;border-radius:14px 14px 0 0;font-size:24px;font-weight:bold;display:flex;justify-content:space-between;cursor:pointer;margin-top:20px}
+.topic-grid{border:2px solid #0759d8;border-top:0;padding:14px;border-radius:0 0 14px 14px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.topic{border:2px solid #c7d2fe;padding:14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;font-weight:bold;background:white;cursor:pointer}
 .topic:hover{background:#eef2ff}
-.badges{display:flex;gap:10px}
-.badge-blue{border:1px solid #4f7cff;padding:5px 10px;border-radius:10px;color:#0759d8;font-size:14px}
-.badge-green{border:1px solid #4ade80;padding:5px 10px;border-radius:10px;color:green;font-size:14px}
-.hidden{display:none}
+.badges{display:flex;gap:6px;white-space:nowrap}
+.badge-blue{border:1px solid #4f7cff;padding:5px 8px;border-radius:8px;color:#0759d8;font-size:12px}
+.badge-green{border:1px solid #4ade80;padding:5px 8px;border-radius:8px;color:green;font-size:12px}
 
-.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.hidden{display:none}
+.quiz-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
 .timer{background:#fee2e2;color:#991b1b;padding:10px 14px;border-radius:12px;font-weight:bold}
 .progress{font-weight:bold;color:#0759d8;margin:12px 0}
 .question{font-size:22px;font-weight:bold;margin:18px 0}
-.option{
-display:block;width:100%;text-align:left;background:#f9fafb;color:#111;
-border:2px solid #e5e7eb;margin:10px 0;padding:14px;border-radius:12px;cursor:pointer
-}
+.option{display:block;width:100%;text-align:left;background:#f9fafb;border:2px solid #e5e7eb;margin:10px 0;padding:14px;border-radius:12px;cursor:pointer;color:#111}
 .option.selected{border-color:#0759d8;background:#dbeafe}
-.actions{display:flex;flex-direction:column;gap:12px;margin-top:18px}
-.nav-buttons{display:flex;justify-content:space-between;width:100%;gap:10px}
+.nav-buttons{display:flex;justify-content:space-between;margin-top:18px}
 button{border:0;border-radius:12px;padding:12px 18px;font-weight:bold;cursor:pointer;background:#0759d8;color:white}
-.submit-btn{background:#16a34a}.score{text-align:center;font-size:30px;color:#0759d8;font-weight:bold}
+.submit-btn{background:#16a34a;margin-top:15px}
+.score{text-align:center;font-size:30px;color:#0759d8;font-weight:bold}
 .review-item{border-left:5px solid #0759d8;padding:14px;margin:14px 0;background:#f8fafc;border-radius:10px}
-footer{text-align:center;padding:30px;font-size:20px;color:#444}
+footer{text-align:center;padding:20px;color:#555}
 
 @media(max-width:768px){
-header h1{font-size:32px}.test-buttons{grid-template-columns:1fr}.topic-grid{grid-template-columns:1fr}
-.card h2{font-size:28px}.topic{font-size:13px}.badges{gap:5px}
-.badge-blue,.badge-green{font-size:11px;padding:4px 6px}
+.test-buttons,.topic-grid{grid-template-columns:1fr}
+header h1{font-size:30px}.test-btn{font-size:24px}.topic{font-size:12px}
+.badge-blue,.badge-green{font-size:10px;padding:4px 5px}
 }
 </style>
 </head>
@@ -123,19 +108,13 @@ header h1{font-size:32px}.test-buttons{grid-template-columns:1fr}.topic-grid{gri
 <h2>Chapter Select करें</h2>
 <p>किसी भी topic पर click करके quiz start करें।</p>
 
-<div class="section-title" onclick="toggleBox('arithmeticBox')">
-<span>▦ ARITHMETICS</span><span>⌄</span>
-</div>
+<div class="section-title" onclick="toggleBox('arithmeticBox')"><span>▦ ARITHMETICS</span><span>⌄</span></div>
 <div id="arithmeticBox" class="topic-grid"></div>
 
-<div class="section-title" onclick="toggleBox('advanceBox')">
-<span>√x ADVANCE MATH</span><span>⌄</span>
-</div>
+<div class="section-title" onclick="toggleBox('advanceBox')"><span>√x ADVANCE MATH</span><span>⌄</span></div>
 <div id="advanceBox" class="topic-grid"></div>
 
-<div style="text-align:center;margin-top:20px">
-<button onclick="backToTestSelect()">Back</button>
-</div>
+<div style="text-align:center;margin-top:20px"><button onclick="backToTestSelect()">Back</button></div>
 </section>
 
 <section id="quiz" class="card hidden">
@@ -146,15 +125,11 @@ header h1{font-size:32px}.test-buttons{grid-template-columns:1fr}.topic-grid{gri
 <div class="progress">Question <span id="qNo">1</span> / <span id="totalQ">0</span></div>
 <div id="question" class="question"></div>
 <div id="options"></div>
-<div class="actions">
 <div class="nav-buttons">
 <button onclick="prevQuestion()">Previous</button>
 <button onclick="nextQuestion()">Next</button>
 </div>
-<div style="text-align:center">
-<button class="submit-btn" onclick="submitQuiz()">Submit</button>
-</div>
-</div>
+<div style="text-align:center"><button class="submit-btn" onclick="submitQuiz()">Submit</button></div>
 </section>
 
 <section id="result" class="card hidden">
@@ -174,7 +149,6 @@ header h1{font-size:32px}.test-buttons{grid-template-columns:1fr}.topic-grid{gri
 </section>
 
 </div>
-
 <footer>© Quick Revision | Maths Practice Site</footer>
 </div>
 
@@ -197,19 +171,13 @@ const auth=getAuth(app);
 window.signup=function(){
 const email=document.getElementById("email").value;
 const password=document.getElementById("password").value;
-createUserWithEmailAndPassword(auth,email,password).then(()=>{
-document.getElementById("userInfo").innerText="Signup Successful ✅";
-openMain();
-}).catch(error=>document.getElementById("userInfo").innerText=error.message);
+createUserWithEmailAndPassword(auth,email,password).then(()=>{document.getElementById("userInfo").innerText="Signup Successful ✅";openMain();}).catch(e=>document.getElementById("userInfo").innerText=e.message);
 };
 
 window.login=function(){
 const email=document.getElementById("email").value;
 const password=document.getElementById("password").value;
-signInWithEmailAndPassword(auth,email,password).then(()=>{
-document.getElementById("userInfo").innerText="Login Successful ✅";
-openMain();
-}).catch(error=>document.getElementById("userInfo").innerText=error.message);
+signInWithEmailAndPassword(auth,email,password).then(()=>{document.getElementById("userInfo").innerText="Login Successful ✅";openMain();}).catch(e=>document.getElementById("userInfo").innerText=e.message);
 };
 
 function openMain(){
@@ -222,17 +190,11 @@ document.getElementById("mainContent").style.display="block";
 
 <script>
 const arithmeticTopics=[
-"TEST YOUR CALCULATION","PERCENTAGE","PROFIT AND LOSS","DISCOUNT","PARTNERSHIP",
-"RATIO AND PROPORTION","MIXTURE","ALLIGATION","SIMPLE INTEREST","COMPOUND INTEREST",
-"AVERAGE","TIME AND WORK","PIPE AND CISTERN","TIME AND DISTANCE","TRAIN",
-"BOAT AND STREAM","LINEAR AND CIRCULAR RACE","PERMUTATION AND COMBINATION",
-"PROBABILITY","STATICS","LOGARITHM"
+"TEST YOUR CALCULATION","PERCENTAGE","PROFIT AND LOSS","DISCOUNT","PARTNERSHIP","RATIO AND PROPORTION","MIXTURE","ALLIGATION","SIMPLE INTEREST","COMPOUND INTEREST","AVERAGE","TIME AND WORK","PIPE AND CISTERN","TIME AND DISTANCE","TRAIN","BOAT AND STREAM","LINEAR AND CIRCULAR RACE","PERMUTATION AND COMBINATION","PROBABILITY","STATICS","LOGARITHM"
 ];
 
 const advanceTopics=[
-"NUMBER SYSTEM","LCM AND HCF","SEQUENCE AND SERIES","SIMPLIFICATION","SQUARE AND INDICES",
-"GEOMETRY","MENSURATION 2D","MENSURATION 3D","ALGEBRA","TRIGONOMETRY",
-"HEIGHT AND DISTANCE","CO-ORDINATE GEOMETRY"
+"NUMBER SYSTEM","LCM AND HCF","SEQUENCE AND SERIES","SIMPLIFICATION","SQUARE AND INDICES","GEOMETRY","MENSURATION 2D","MENSURATION 3D","ALGEBRA","TRIGONOMETRY","HEIGHT AND DISTANCE","CO-ORDINATE GEOMETRY"
 ];
 
 const demoQuestions=[
@@ -265,7 +227,6 @@ function showOnly(id){
 ["testSelect","chapterPage","quiz","result","review"].forEach(x=>document.getElementById(x).classList.add("hidden"));
 document.getElementById(id).classList.remove("hidden");
 }
-
 function showChapterTest(){showOnly("chapterPage")}
 function backToTestSelect(){clearInterval(timer);showOnly("testSelect")}
 function startMixTest(){startQuiz("MIX TEST")}
