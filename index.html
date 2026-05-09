@@ -380,7 +380,9 @@ Answer Review
 
 setTimeout(function(){
 
-document.getElementById("splash").style.display="none";
+document.getElementById("splash").remove();
+
+document.getElementById("mainSite").style.display="block";
 
 document.getElementById("mainSite").classList.remove("hidden");
 
