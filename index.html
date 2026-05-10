@@ -1058,12 +1058,20 @@ window.currentUserName="Guest";
 function setAuthMsg(msg){
 document.getElementById("authMsg").innerText=msg;
 }
-
 function openMain(){
 document.getElementById("authPage").style.display="none";
 document.getElementById("mainContent").style.display="block";
-showOnly("testSelect");
-document.getElementById("mainContent").scrollIntoView();
+
+document.getElementById("testSelect").classList.remove("hidden");
+document.getElementById("chapterPage").classList.add("hidden");
+document.getElementById("setPage").classList.add("hidden");
+document.getElementById("languagePage").classList.add("hidden");
+document.getElementById("quiz").classList.add("hidden");
+document.getElementById("result").classList.add("hidden");
+document.getElementById("review").classList.add("hidden");
+document.getElementById("leaderboard").classList.add("hidden");
+
+window.scrollTo(0,0);
 }
 
 window.showLogin=function(){
