@@ -1062,6 +1062,8 @@ document.getElementById("authMsg").innerText=msg;
 function openMain(){
 document.getElementById("authPage").style.display="none";
 document.getElementById("mainContent").style.display="block";
+showOnly("testSelect");
+document.getElementById("mainContent").scrollIntoView();
 }
 
 window.showLogin=function(){
