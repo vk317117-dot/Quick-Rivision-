@@ -1036,10 +1036,26 @@ Mobile No: 6200848211
 </div>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
-import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
-const firebaseConfig={
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+RecaptchaVerifier,
+signInWithPhoneNumber
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+getDocs,
+query,
+orderBy,
+limit
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
 apiKey:"AIzaSyDX45cM3C-iZSIDua_GGqb8nL1pVibzlWE",
 authDomain:"quick-revision-854ab.firebaseapp.com",
 projectId:"quick-revision-854ab",
@@ -1048,43 +1064,50 @@ messagingSenderId:"200424391350",
 appId:"1:200424391350:web:251d8eb2148f4b8960dc17"
 };
 
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
 window.currentUserEmail="Guest";
 window.currentUserName="Guest";
 
+/* OPEN MAIN */
+
 function openMain(){
-setTimeout(()=>{
 document.getElementById("authPage").style.display="none";
 document.getElementById("mainContent").style.display="block";
-},600);
 }
+
+/* MESSAGE */
 
 function setAuthMsg(msg){
 document.getElementById("authMsg").innerText=msg;
 }
 
+/* LOGIN / SIGNUP TAB */
+
 window.showLogin=function(){
 document.getElementById("loginSection").classList.remove("hidden");
 document.getElementById("signupSection").classList.add("hidden");
+
 document.getElementById("loginTabBtn").classList.add("active");
 document.getElementById("signupTabBtn").classList.remove("active");
-setAuthMsg("");
 };
 
 window.showSignup=function(){
 document.getElementById("signupSection").classList.remove("hidden");
 document.getElementById("loginSection").classList.add("hidden");
+
 document.getElementById("signupTabBtn").classList.add("active");
 document.getElementById("loginTabBtn").classList.remove("active");
-setAuthMsg("");
 };
+
+/* LOGIN METHOD */
 
 window.showLoginEmail=function(){
 document.getElementById("loginEmailBox").classList.remove("hidden");
 document.getElementById("loginPhoneBox").classList.add("hidden");
+
 document.getElementById("loginEmailBtn").classList.add("active");
 document.getElementById("loginPhoneBtn").classList.remove("active");
 };
@@ -1092,13 +1115,17 @@ document.getElementById("loginPhoneBtn").classList.remove("active");
 window.showLoginPhone=function(){
 document.getElementById("loginPhoneBox").classList.remove("hidden");
 document.getElementById("loginEmailBox").classList.add("hidden");
+
 document.getElementById("loginPhoneBtn").classList.add("active");
 document.getElementById("loginEmailBtn").classList.remove("active");
 };
 
+/* SIGNUP METHOD */
+
 window.showSignupEmail=function(){
 document.getElementById("signupEmailBox").classList.remove("hidden");
 document.getElementById("signupPhoneBox").classList.add("hidden");
+
 document.getElementById("signupEmailBtn").classList.add("active");
 document.getElementById("signupPhoneBtn").classList.remove("active");
 };
@@ -1106,11 +1133,15 @@ document.getElementById("signupPhoneBtn").classList.remove("active");
 window.showSignupPhone=function(){
 document.getElementById("signupPhoneBox").classList.remove("hidden");
 document.getElementById("signupEmailBox").classList.add("hidden");
+
 document.getElementById("signupPhoneBtn").classList.add("active");
 document.getElementById("signupEmailBtn").classList.remove("active");
 };
 
-window.loginEmailPassword=function(){
+/* EMAIL LOGIN */
+
+window.loginEmailPassword = async function(){
+
 const email=document.getElementById("loginEmail").value.trim();
 const password=document.getElementById("loginPassword").value.trim();
 
@@ -1119,68 +1150,116 @@ setAuthMsg("Email और Password डालें");
 return;
 }
 
-signInWithEmailAndPassword(auth,email,password)
-.then(()=>{
+try{
+
+await signInWithEmailAndPassword(auth,email,password);
+
 window.currentUserEmail=email;
 window.currentUserName=email;
+
 setAuthMsg("Login Successful ✅");
+
 openMain();
-})
-.catch(e=>setAuthMsg(e.message));
+
+}catch(e){
+
+setAuthMsg(e.message);
+
+}
+
 };
 
-window.signupEmailPassword=function(){
+/* EMAIL SIGNUP */
+
+window.signupEmailPassword = async function(){
+
 const name=document.getElementById("signupName").value.trim();
 const email=document.getElementById("signupEmail").value.trim();
 const password=document.getElementById("signupPassword").value.trim();
 
 if(name==="" || email==="" || password===""){
-setAuthMsg("Name, Email और Password डालें");
+setAuthMsg("सभी fields भरें");
 return;
 }
 
-createUserWithEmailAndPassword(auth,email,password)
-.then(()=>{
+try{
+
+await createUserWithEmailAndPassword(auth,email,password);
+
 window.currentUserEmail=email;
 window.currentUserName=name;
+
 setAuthMsg("Account Created ✅");
+
 openMain();
-})
-.catch(e=>setAuthMsg(e.message));
+
+}catch(e){
+
+setAuthMsg(e.message);
+
+}
+
 };
 
-function getPhoneNumber(id){
+/* PHONE */
+
+function getPhone(id){
+
 let phone=document.getElementById(id).value.trim();
-phone=phone.replace(/\D/g,"");
+
+phone=phone.replace(/\D/g,'');
+
 if(phone.length!==10){
-setAuthMsg("10 digit mobile number डालें");
+setAuthMsg("10 digit number डालें");
 return null;
 }
+
 return "+91"+phone;
+
 }
 
 function setupRecaptcha(){
+
 if(!window.recaptchaVerifier){
-window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
-  size: "invisible",
-  callback: function(response){}
+
+window.recaptchaVerifier = new RecaptchaVerifier(auth,"recaptcha-container",{
+size:"invisible"
 });
 
-window.sendLoginOTP=function(){
-const phone=getPhoneNumber("loginPhone");
+}
+
+}
+
+/* LOGIN OTP */
+
+window.sendLoginOTP = async function(){
+
+const phone=getPhone("loginPhone");
+
 if(!phone)return;
 
 setupRecaptcha();
 
-signInWithPhoneNumber(auth,phone,window.recaptchaVerifier)
-.then(result=>{
-window.loginConfirmation=result;
+try{
+
+window.loginConfirmation = await signInWithPhoneNumber(
+auth,
+phone,
+window.recaptchaVerifier
+);
+
 setAuthMsg("OTP Sent ✅");
-})
-.catch(e=>setAuthMsg(e.message));
+
+}catch(e){
+
+setAuthMsg(e.message);
+
+}
+
 };
 
-window.verifyLoginOTP=function(){
+window.verifyLoginOTP = async function(){
+
 const otp=document.getElementById("loginOtp").value.trim();
 
 if(!window.loginConfirmation){
@@ -1188,24 +1267,37 @@ setAuthMsg("पहले OTP भेजें");
 return;
 }
 
-window.loginConfirmation.confirm(otp)
-.then(result=>{
+try{
+
+const result = await window.loginConfirmation.confirm(otp);
+
 window.currentUserEmail=result.user.phoneNumber;
 window.currentUserName=result.user.phoneNumber;
-setAuthMsg("Mobile Login Successful ✅");
+
+setAuthMsg("Login Successful ✅");
+
 openMain();
-})
-.catch(e=>setAuthMsg(e.message));
+
+}catch(e){
+
+setAuthMsg(e.message);
+
+}
+
 };
 
-window.sendSignupOTP=function(){
+/* SIGNUP OTP */
+
+window.sendSignupOTP = async function(){
+
 const name=document.getElementById("signupPhoneName").value.trim();
-const phone=getPhoneNumber("signupPhone");
 
 if(name===""){
-setAuthMsg("Full Name डालें");
+setAuthMsg("Name डालें");
 return;
 }
+
+const phone=getPhone("signupPhone");
 
 if(!phone)return;
 
@@ -1213,15 +1305,26 @@ window.pendingSignupName=name;
 
 setupRecaptcha();
 
-signInWithPhoneNumber(auth,phone,window.recaptchaVerifier)
-.then(result=>{
-window.signupConfirmation=result;
+try{
+
+window.signupConfirmation = await signInWithPhoneNumber(
+auth,
+phone,
+window.recaptchaVerifier
+);
+
 setAuthMsg("OTP Sent ✅");
-})
-.catch(e=>setAuthMsg(e.message));
+
+}catch(e){
+
+setAuthMsg(e.message);
+
+}
+
 };
 
-window.verifySignupOTP=function(){
+window.verifySignupOTP = async function(){
+
 const otp=document.getElementById("signupOtp").value.trim();
 
 if(!window.signupConfirmation){
@@ -1229,53 +1332,26 @@ setAuthMsg("पहले OTP भेजें");
 return;
 }
 
-window.signupConfirmation.confirm(otp)
-.then(result=>{
+try{
+
+const result = await window.signupConfirmation.confirm(otp);
+
 window.currentUserEmail=result.user.phoneNumber;
-window.currentUserName=window.pendingSignupName || result.user.phoneNumber;
+window.currentUserName=window.pendingSignupName;
+
 setAuthMsg("Signup Successful ✅");
+
 openMain();
-})
-.catch(e=>setAuthMsg(e.message));
-};
 
-window.saveScore=async function(score,total,topic,setNo,lang){
-await addDoc(collection(db,"scores"),{
-email:window.currentUserEmail,
-name:window.currentUserName,
-score:score,
-total:total,
-topic:topic,
-setNo:setNo,
-lang:lang,
-date:new Date()
-});
-};
+}catch(e){
 
-window.loadLeaderboard=async function(){
-const box=document.getElementById("leaderboardBox");
-box.innerHTML="Loading...";
+setAuthMsg(e.message);
 
-const q=query(collection(db,"scores"),orderBy("score","desc"),limit(10));
-const snap=await getDocs(q);
-
-box.innerHTML="";
-let rank=1;
-
-snap.forEach(doc=>{
-const d=doc.data();
-box.innerHTML+=`
-<div class="leader-item">
-${rank}. ${d.name || d.email} — ${d.score}/${d.total} (${d.topic} Set ${d.setNo})
-</div>`;
-rank++;
-});
-
-if(rank===1){
-box.innerHTML="अभी कोई score नहीं है।";
 }
+
 };
-</script>  
+</script>
+  
   <script>
 const arithmeticTopics=[
 "TEST YOUR CALCULATION",
