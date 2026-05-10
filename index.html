@@ -1,9 +1,13 @@
+# Quick Revision - Full Fixed index.html
+
+नीचे वाला पूरा code अपनी `index.html` file में paste करें। पुराना code पूरा delete कर दें।
+
+```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="M46Z6EK5jIu97Pz4PKcqCxXcKvShrtd-8AOmrpYaS0Y" />
 <title>Quick Revision</title>
 
 <style>
@@ -15,56 +19,12 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#f4f7fb;
-color:#111;
+background:#eef3fb;
 }
 
 .hidden{
 display:none!important;
 }
-
-/* SPLASH SCREEN */
-
-#splash-screen{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100vh;
-background:white;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-animation:fadeOut 1s ease forwards;
-animation-delay:3s;
-}
-
-#splash-screen img{
-width:90%;
-max-width:420px;
-animation:zoomIn 2s ease;
-}
-
-@keyframes zoomIn{
-0%{
-transform:scale(.7);
-opacity:0;
-}
-100%{
-transform:scale(1);
-opacity:1;
-}
-}
-
-@keyframes fadeOut{
-to{
-opacity:0;
-visibility:hidden;
-}
-}
-
-/* PREMIUM AUTH PAGE */
 
 #authPage{
 position:fixed;
@@ -72,968 +32,333 @@ top:0;
 left:0;
 width:100%;
 height:100vh;
-background:linear-gradient(135deg,#eaf2ff,#f8fbff);
+background:#eef3fb;
 display:flex;
 justify-content:center;
 align-items:center;
-z-index:99999;
 padding:15px;
+z-index:99999;
 }
+
 .auth-card{
 width:100%;
 max-width:430px;
 background:white;
+padding:22px;
 border-radius:24px;
-box-shadow:0 12px 35px rgba(0,0,0,.18);
-padding:24px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
 .auth-title{
 text-align:center;
-margin-bottom:12px;
+margin-bottom:18px;
 }
 
-.auth-title h2{
-color:#0759d8;
-font-size:30px;
+.auth-title h1{
+font-size:54px;
+color:#0b57d0;
+margin-bottom:8px;
 }
 
 .auth-title p{
-font-size:13px;
+font-size:14px;
 font-weight:bold;
-color:#0759d8;
-line-height:1.6;
-margin-top:8px;
+color:#0b57d0;
+line-height:1.7;
 }
 
-.auth-tabs{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-background:#eef2ff;
-padding:6px;
-border-radius:16px;
-margin:18px 0;
-}
-
-.auth-tab{
-border:none;
-padding:12px;
-border-radius:12px;
-background:transparent;
-color:#0759d8;
-font-weight:bold;
-cursor:pointer;
-}
-
-.auth-tab.active{
-background:#0759d8;
-color:white;
-}
-
+.auth-tabs,
 .method-tabs{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:8px;
-margin-bottom:14px;
+gap:10px;
+margin-bottom:18px;
 }
 
-.method-btn{
-border:1.5px solid #0759d8;
-background:white;
-color:#0759d8;
-padding:11px;
-border-radius:12px;
+.auth-tabs button,
+.method-tabs button{
+padding:14px;
+border:none;
+border-radius:14px;
 font-weight:bold;
+font-size:18px;
 cursor:pointer;
+background:#dfe6f7;
+color:#0b57d0;
 }
 
-.method-btn.active{
-background:#0759d8;
+.auth-tabs button.active,
+.method-tabs button.active{
+background:#0b57d0;
 color:white;
 }
 
-.auth-card input{
+input{
 width:100%;
-padding:13px;
-margin-bottom:10px;
-border:1px solid #cbd5e1;
-border-radius:12px;
-font-size:15px;
+padding:15px;
+border:1px solid #cfd8ea;
+border-radius:14px;
+margin-bottom:12px;
+font-size:16px;
 }
 
 .phone-row{
 display:flex;
-gap:8px;
+gap:10px;
 }
 
-.country-code{
-width:64px;
-padding:13px;
-border:1px solid #cbd5e1;
-border-radius:12px;
-background:#f8fafc;
+.code{
+width:70px;
+background:#f3f6fd;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:14px;
 font-weight:bold;
-text-align:center;
-margin-bottom:10px;
+border:1px solid #cfd8ea;
+margin-bottom:12px;
 }
 
-.primary-btn{
+.main-btn{
 width:100%;
+padding:15px;
 border:none;
-background:#0759d8;
+border-radius:14px;
+font-size:20px;
+font-weight:bold;
+background:#0b57d0;
 color:white;
-padding:13px;
-border-radius:12px;
-font-weight:bold;
-font-size:16px;
 cursor:pointer;
-margin-bottom:10px;
+margin-bottom:12px;
 }
 
-.success-btn{
-width:100%;
-border:none;
+.green-btn{
 background:#16a34a;
-color:white;
-padding:13px;
-border-radius:12px;
-font-weight:bold;
-font-size:16px;
-cursor:pointer;
-margin-bottom:10px;
 }
 
 #authMsg{
 text-align:center;
-font-size:14px;
 font-weight:bold;
-color:#0759d8;
-min-height:22px;
-margin-top:6px;
+color:#0b57d0;
+min-height:25px;
 }
 
-.small-note{
-font-size:12px;
-color:#666;
-text-align:center;
-line-height:1.5;
-}
-
-/* MAIN CONTENT */
 #mainContent{
 display:none;
 }
+
 header{
-background:linear-gradient(135deg,#06163d,#0759d8);
+background:#0b57d0;
 color:white;
 padding:18px;
 text-align:center;
 position:sticky;
 top:0;
-z-index:1000;
+z-index:100;
 }
 
 header h1{
-font-size:38px;
-}
-
-header p{
-font-size:16px;
-margin-top:5px;
+font-size:42px;
 }
 
 .container{
-max-width:1150px;
-margin:20px auto;
-padding:15px;
+max-width:1200px;
+margin:auto;
+padding:18px;
 }
-/* CARDS */
 
 .card{
 background:white;
-padding:22px;
-border-radius:18px;
+padding:20px;
+border-radius:20px;
+margin-bottom:20px;
 box-shadow:0 4px 12px rgba(0,0,0,.08);
-margin-bottom:18px;
 }
 
-.card h2{
-font-size:30px;
-margin-bottom:8px;
-}
-
-.card p{
-color:#555;
-margin-bottom:18px;
-}
-
-/* BUTTONS */
-
-.test-buttons,
-.set-grid,
-.lang-grid,
-.category-buttons{
+.grid2{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:18px;
 }
 
-.test-btn,
-.set-btn,
-.lang-btn,
-.category-btn{
-padding:28px;
-border-radius:18px;
-border:2px solid #0759d8;
-background:white;
-color:#0759d8;
-font-size:24px;
+.big-btn{
+padding:35px;
+font-size:32px;
 font-weight:bold;
+background:white;
+border:2px solid #0b57d0;
+color:#0b57d0;
+border-radius:22px;
 cursor:pointer;
-transition:.2s;
-}
-
-.test-btn:hover,
-.set-btn:hover,
-.lang-btn:hover,
-.category-btn:hover{
-background:#eef2ff;
-transform:translateY(-2px);
-}
-
-/* TOPICS */
-
-.topic-grid{
-padding:14px;
-display:grid;
-grid-template-columns:1fr;
-gap:12px;
 }
 
 .topic{
-border:2px solid #c7d2fe;
-padding:14px;
-border-radius:12px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+padding:18px;
+border:2px solid #cfd8ea;
+border-radius:16px;
+margin-bottom:12px;
 font-weight:bold;
-background:white;
+font-size:18px;
 cursor:pointer;
-font-size:16px;
-transition:.2s;
-}
-
-.topic:hover{
-transform:translateY(-2px);
-background:#eef4ff;
-}
-
-.badges{
-display:flex;
-gap:6px;
-white-space:nowrap;
-}
-
-.badge-blue{
-border:1px solid #4f7cff;
-padding:5px 8px;
-border-radius:8px;
-color:#0759d8;
-font-size:12px;
-}
-
-.badge-green{
-border:1px solid #4ade80;
-padding:5px 8px;
-border-radius:8px;
-color:green;
-font-size:12px;
-}
-
-/* NAVIGATION */
-
-.page-nav,
-.nav-buttons{
-display:flex;
-justify-content:space-between;
-margin-top:18px;
-gap:10px;
-}
-
-/* QUIZ */
-
-.quiz-top{
 display:flex;
 justify-content:space-between;
 align-items:center;
-flex-wrap:wrap;
-gap:10px;
 }
 
-.timer{
-background:#fee2e2;
-color:#991b1b;
-padding:10px 14px;
-border-radius:12px;
-font-weight:bold;
-}
-
-.progress{
-font-weight:bold;
-color:#0759d8;
-margin:12px 0;
+.badge{
+background:#eef3ff;
+padding:6px 10px;
+border-radius:10px;
+font-size:12px;
+color:#0b57d0;
 }
 
 .question{
-font-size:22px;
+font-size:28px;
 font-weight:bold;
-margin:18px 0;
-line-height:1.5;
+margin:20px 0;
 }
 
 .option{
-display:block;
 width:100%;
+padding:16px;
+margin-bottom:12px;
 text-align:left;
-background:#f9fafb;
-border:2px solid #e5e7eb;
-margin:10px 0;
-padding:14px;
-border-radius:12px;
+font-size:18px;
+border:2px solid #dbe3f5;
+background:white;
+border-radius:14px;
 cursor:pointer;
-color:#111;
-font-size:16px;
-transition:.2s;
-}
-
-.option:hover{
-background:#eef4ff;
-}
-
-.option.selected{
-border-color:#0759d8;
-background:#dbeafe;
-}
-
-/* GENERAL BUTTON */
-
-button{
-border:none;
-border-radius:12px;
-padding:12px 18px;
-font-weight:bold;
-cursor:pointer;
-background:#0759d8;
-color:white;
-}
-
-.submit-btn{
-background:#16a34a;
-margin-top:15px;
-}
-
-/* RESULT */
-
-.score{
-text-align:center;
-font-size:34px;
-color:#0759d8;
-font-weight:bold;
-margin-top:8px;
 }
 
 .result-buttons{
 display:flex;
 justify-content:center;
-gap:15px;
 flex-wrap:wrap;
+gap:14px;
 margin-top:18px;
 }
 
-/* REVIEW */
-
-.review-item{
-border-left:5px solid #0759d8;
-padding:14px;
-margin:14px 0;
-background:#f8fafc;
-border-radius:10px;
-line-height:1.7;
-}
-
-/* LEADERBOARD */
-
-.leader-item{
-padding:12px;
-border-bottom:1px solid #ddd;
-font-weight:bold;
-}
-
-/* FOOTER */
-
 footer{
 text-align:center;
-padding:22px;
-color:#555;
-line-height:1.8;
+padding:25px;
 font-weight:bold;
+line-height:1.8;
 }
 
-/* MOBILE */
-
 @media(max-width:768px){
-
-.test-buttons,
-.set-grid,
-.lang-grid,
-.category-buttons{
+.grid2{
 grid-template-columns:1fr;
 }
 
+.big-btn{
+font-size:24px;
+padding:28px;
+}
+
 header h1{
-font-size:30px;
+font-size:32px;
 }
-
-.test-btn,
-.set-btn,
-.lang-btn,
-.category-btn{
-font-size:22px;
-}
-
-.topic{
-font-size:16px;
-}
-
-.badges{
-flex-direction:column;
-gap:4px;
-}
-
-.badge-blue,
-.badge-green{
-font-size:11px;
-padding:4px 5px;
-}
-
-.auth-card{
-padding:18px;
-}
-
-.question{
-font-size:19px;
-}
-
 }
 </style>
 </head>
-
 <body>
 
-<!-- SPLASH -->
-
-<div id="splash-screen">
-<img src="logo.png" alt="Logo">
-</div>
-
-<!-- AUTH -->
-
 <div id="authPage">
-
 <div class="auth-card">
 
 <div class="auth-title">
-<h2>Quick Revision</h2>
-
+<h1>Quick Revision</h1>
 <p>
-Railway | Bihar SI | Bihar Police | Bihar Teacher | SSC | Banking | BPSC | Other Competitive Exams
+Railway | Bihar SI | Bihar Police | Bihar Teacher | SSC |
+Banking | BPSC | Other Competitive Exams
 </p>
 </div>
 
 <div class="auth-tabs">
-
-<button class="auth-tab active" id="loginTabBtn" onclick="showLogin()">
-LOGIN
-</button>
-
-<button class="auth-tab" id="signupTabBtn" onclick="showSignup()">
-NEW USER
-</button>
-
+<button id="loginTab" class="active" onclick="showLogin()">LOGIN</button>
+<button id="signupTab" onclick="showSignup()">NEW USER</button>
 </div>
 
-<!-- LOGIN SECTION -->
-
-<div id="loginSection" class="auth-section">
-
-<h3 class="auth-title">Login Your Account</h3>
-
+<div id="loginBox">
 <div class="method-tabs">
-
-<button class="method-btn active" id="loginEmailBtn" onclick="showLoginEmail()">
-Email Login
-</button>
-
-<button class="method-btn" id="loginPhoneBtn" onclick="showLoginPhone()">
-Mobile OTP
-</button>
-
+<button id="loginEmailBtn" class="active" onclick="loginEmailMode()">Email Login</button>
+<button id="loginPhoneBtn" onclick="loginPhoneMode()">Mobile OTP</button>
 </div>
 
-<!-- EMAIL LOGIN -->
-
-<div id="loginEmailBox">
-
+<div id="loginEmailArea">
 <input type="email" id="loginEmail" placeholder="Enter Email">
-
 <input type="password" id="loginPassword" placeholder="Enter Password">
-
-<button class="primary-btn" onclick="loginEmailPassword()">
-Login
-</button>
-
+<button class="main-btn" onclick="loginEmailPassword()">Login</button>
 </div>
 
-<!-- PHONE LOGIN -->
-
-<div id="loginPhoneBox" class="hidden">
-
+<div id="loginPhoneArea" class="hidden">
 <div class="phone-row">
-
-<div class="country-code">
-+91
-</div>
-
+<div class="code">+91</div>
 <input type="text" id="loginPhone" placeholder="Enter Mobile Number">
-
 </div>
-
-<button class="primary-btn" onclick="sendLoginOTP()">
-Send OTP
-</button>
-
+<button class="main-btn" onclick="sendLoginOTP()">Send OTP</button>
 <input type="text" id="loginOtp" placeholder="Enter OTP">
-
-<button class="success-btn" onclick="verifyLoginOTP()">
-Verify & Login
-</button>
-
+<button class="main-btn green-btn" onclick="verifyLoginOTP()">Verify & Login</button>
+</div>
 </div>
 
-</div>
-
-<!-- SIGNUP SECTION -->
-
-<div id="signupSection" class="auth-section hidden">
-
-<h3 class="auth-title">Create New Account</h3>
-
+<div id="signupBox" class="hidden">
 <div class="method-tabs">
-
-<button class="method-btn active" id="signupEmailBtn" onclick="showSignupEmail()">
-Email Signup
-</button>
-
-<button class="method-btn" id="signupPhoneBtn" onclick="showSignupPhone()">
-Mobile OTP
-</button>
-
+<button id="signupEmailBtn" class="active" onclick="signupEmailMode()">Email Signup</button>
+<button id="signupPhoneBtn" onclick="signupPhoneMode()">Mobile OTP</button>
 </div>
 
-<!-- EMAIL SIGNUP -->
-
-<div id="signupEmailBox">
-
+<div id="signupEmailArea">
 <input type="text" id="signupName" placeholder="Full Name">
-
 <input type="email" id="signupEmail" placeholder="Enter Email">
-
 <input type="password" id="signupPassword" placeholder="Create Password">
-
-<button class="success-btn" onclick="signupEmailPassword()">
-Create Account
-</button>
-
+<button class="main-btn green-btn" onclick="signupEmailPassword()">Create Account</button>
 </div>
 
-<!-- PHONE SIGNUP -->
-
-<div id="signupPhoneBox" class="hidden">
-
+<div id="signupPhoneArea" class="hidden">
 <input type="text" id="signupPhoneName" placeholder="Full Name">
-
 <div class="phone-row">
-
-<div class="country-code">
-+91
-</div>
-
+<div class="code">+91</div>
 <input type="text" id="signupPhone" placeholder="Enter Mobile Number">
-
 </div>
-
-<button class="primary-btn" onclick="sendSignupOTP()">
-Send OTP
-</button>
-
+<button class="main-btn" onclick="sendSignupOTP()">Send OTP</button>
 <input type="text" id="signupOtp" placeholder="Enter OTP">
-
-<button class="success-btn" onclick="verifySignupOTP()">
-Verify & Continue
-</button>
-
+<button class="main-btn green-btn" onclick="verifySignupOTP()">Verify & Continue</button>
+</div>
 </div>
 
 <div id="recaptcha-container"></div>
-
 <div id="authMsg"></div>
 
-<p class="small-note">
-Secure Authentication System with Firebase
-</p>
-
+</div>
 </div>
 
-</div>
-
-<!-- MAIN CONTENT -->
-
-<div id="mainContent" style="display:block;">
-
+<div id="mainContent">
 <header>
-
 <h1>Quick Revision</h1>
-
-<p>
-Maths Practice Set for Competitive Exams
-</p>
-
+<p>Maths Practice Set for Competitive Exams</p>
 </header>
 
 <div class="container">
-
-<!-- TEST SELECT -->
-
-<section id="testSelect" class="card">
-
-<h2>Test Select करें</h2>
-
-<p>
-अपना practice mode चुनें।
-</p>
-
-<div class="test-buttons">
-
-<button class="test-btn" onclick="startMixTest()">
-MIX TEST
-</button>
-
-<button class="test-btn" onclick="showChapterTest()">
-CHAPTER TEST
-</button>
-
+<div class="card" id="testSelect">
+<h2 style="margin-bottom:15px;">Test Select करें</h2>
+<div class="grid2">
+<button class="big-btn">MIX TEST</button>
+<button class="big-btn">CHAPTER TEST</button>
 </div>
-
-<div style="text-align:center;margin-top:20px;">
-
-<button onclick="showLeaderboard()">
-🏆 Leaderboard
-</button>
-
 </div>
-
-</section>
-
-<!-- CHAPTER PAGE -->
-
-<section id="chapterPage" class="card hidden">
-
-<h2>Chapter Select करें</h2>
-
-<p>
-पहले category चुनें। 1 page में 7 topics दिखेंगे।
-</p>
-
-<div class="category-buttons">
-
-<button class="category-btn" onclick="openCategory('arithmetic')">
-ARITHMETICS
-</button>
-
-<button class="category-btn" onclick="openCategory('advance')">
-ADVANCE MATH
-</button>
-
-</div>
-
-<div id="categoryTopics" class="topic-grid"></div>
-
-<div class="page-nav">
-
-<button onclick="prevTopicPage()">
-Previous
-</button>
-
-<button onclick="nextTopicPage()">
-Next
-</button>
-
-</div>
-
-<div style="text-align:center;margin-top:20px">
-
-<button onclick="backToTestSelect()">
-Back
-</button>
-
-</div>
-
-</section> 
-
-<!-- SET PAGE -->
-
-<section id="setPage" class="card hidden">
-
-<h2 id="setTitle">
-Select Set
-</h2>
-
-<p>
-हर set में 30 questions होंगे।
-</p>
-
-<div class="set-grid">
-
-<button class="set-btn" onclick="chooseSet(1)">
-SET 1
-<br>
-<small>30 Ques / Set</small>
-</button>
-
-<button class="set-btn" onclick="chooseSet(2)">
-SET 2
-<br>
-<small>30 Ques / Set</small>
-</button>
-
-<button class="set-btn" onclick="chooseSet(3)">
-SET 3
-<br>
-<small>30 Ques / Set</small>
-</button>
-
-<button class="set-btn" onclick="chooseSet(4)">
-SET 4
-<br>
-<small>30 Ques / Set</small>
-</button>
-
-<button class="set-btn" onclick="chooseSet(5)">
-SET 5
-<br>
-<small>30 Ques / Set</small>
-</button>
-
-</div>
-
-<div style="text-align:center;margin-top:20px">
-
-<button onclick="showChapterTest()">
-Back
-</button>
-
-</div>
-
-</section>
-
-<!-- LANGUAGE PAGE -->
-
-<section id="languagePage" class="card hidden">
-
-<h2>
-Language Choose करें
-</h2>
-
-<p id="langInfo">
-Hindi या English चुनें।
-</p>
-
-<div class="lang-grid">
-
-<button class="lang-btn" onclick="chooseLanguage('Hindi')">
-Hindi
-</button>
-
-<button class="lang-btn" onclick="chooseLanguage('English')">
-English
-</button>
-
-</div>
-
-<div style="text-align:center;margin-top:20px">
-
-<button class="submit-btn" onclick="startSelectedTest()">
-START TEST
-</button>
-
-</div>
-
-</section>
-
-<!-- QUIZ PAGE -->
-
-<section id="quiz" class="card hidden">
-
-<div class="quiz-top">
-
-<h2 id="quizTitle">
-Quiz
-</h2>
-
-<div class="timer">
-Time:
-<span id="time">
-00:30
-</span>
-</div>
-
-</div>
-
-<div class="progress">
-
-Question
-<span id="qNo">
-1
-</span>
-
-/
-
-<span id="totalQ">
-0
-</span>
-
-</div>
-
-<div id="question" class="question"></div>
-
-<div id="options"></div>
-
-<div class="nav-buttons">
-
-<button onclick="prevQuestion()">
-Previous
-</button>
-
-<button onclick="nextQuestion()">
-Next
-</button>
-
-</div>
-
-<div style="text-align:center">
-
-<button class="submit-btn" onclick="submitQuiz()">
-Submit
-</button>
-
-</div>
-
-</section>
-
-<!-- RESULT PAGE -->
-
-<section id="result" class="card hidden">
-
-<h2 style="text-align:center">
-Result
-</h2>
-
-<p id="scoreText" class="score"></p>
-
-<p id="resultMsg" style="text-align:center;margin:10px 0"></p>
-
-<div class="result-buttons">
-
-<button onclick="backToTestSelect()">
-Home
-</button>
-
-<button onclick="showReview()">
-Analysis
-</button>
-
-<button onclick="showLeaderboard()">
-Leaderboard
-</button>
-
-</div>
-
-</section>
-
-<!-- REVIEW PAGE -->
-
-<section id="review" class="card hidden">
-
-<h2>
-Test Analysis With Solution
-</h2>
-
-<div id="reviewBox"></div>
-
-<div style="text-align:center">
-
-<button onclick="backToTestSelect()">
-Back Home
-</button>
-
-</div>
-
-</section>
-
-<!-- LEADERBOARD -->
-
-<section id="leaderboard" class="card hidden">
-
-<h2>
-🏆 Leaderboard
-</h2>
-
-<div id="leaderboardBox">
-Loading...
-</div>
-
-<div style="text-align:center;margin-top:15px">
-
-<button onclick="backToTestSelect()">
-Back
-</button>
-
-</div>
-
-</section>
-
 </div>
 
 <footer>
-
-© Quick Revision | Maths Practice Site
-
-<br>
-
-Founder: Vicky Kumar
-
-<br>
-
+© Quick Revision | Maths Practice Site<br>
+Founder: Vicky Kumar<br>
 Mobile No: 6200848211
-
 </footer>
-
 </div>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
 const firebaseConfig={
@@ -1047,106 +372,80 @@ appId:"1:200424391350:web:251d8eb2148f4b8960dc17"
 
 firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth();
-const db=firebase.firestore();
 
-window.currentUserEmail="Guest";
-window.currentUserName="Guest";
-
-function setAuthMsg(msg){
-document.getElementById("authMsg").innerText=msg;
+function msg(t){
+document.getElementById("authMsg").innerText=t;
 }
+
 function openMain(){
 document.getElementById("authPage").style.display="none";
 document.getElementById("mainContent").style.display="block";
-
-document.getElementById("testSelect").classList.remove("hidden");
-document.getElementById("chapterPage").classList.add("hidden");
-document.getElementById("setPage").classList.add("hidden");
-document.getElementById("languagePage").classList.add("hidden");
-document.getElementById("quiz").classList.add("hidden");
-document.getElementById("result").classList.add("hidden");
-document.getElementById("review").classList.add("hidden");
-document.getElementById("leaderboard").classList.add("hidden");
-
-window.scrollTo(0,0);
 }
 
-window.showLogin=function(){
-loginSection.classList.remove("hidden");
-signupSection.classList.add("hidden");
-loginTabBtn.classList.add("active");
-signupTabBtn.classList.remove("active");
-};
+function showLogin(){
+loginBox.classList.remove("hidden");
+signupBox.classList.add("hidden");
+loginTab.classList.add("active");
+signupTab.classList.remove("active");
+}
 
-window.showSignup=function(){
-signupSection.classList.remove("hidden");
-loginSection.classList.add("hidden");
-signupTabBtn.classList.add("active");
-loginTabBtn.classList.remove("active");
-};
+function showSignup(){
+signupBox.classList.remove("hidden");
+loginBox.classList.add("hidden");
+signupTab.classList.add("active");
+loginTab.classList.remove("active");
+}
 
-window.showLoginEmail=function(){
-loginEmailBox.classList.remove("hidden");
-loginPhoneBox.classList.add("hidden");
+function loginEmailMode(){
+loginEmailArea.classList.remove("hidden");
+loginPhoneArea.classList.add("hidden");
 loginEmailBtn.classList.add("active");
 loginPhoneBtn.classList.remove("active");
-};
+}
 
-window.showLoginPhone=function(){
-loginPhoneBox.classList.remove("hidden");
-loginEmailBox.classList.add("hidden");
+function loginPhoneMode(){
+loginPhoneArea.classList.remove("hidden");
+loginEmailArea.classList.add("hidden");
 loginPhoneBtn.classList.add("active");
 loginEmailBtn.classList.remove("active");
-};
+}
 
-window.showSignupEmail=function(){
-signupEmailBox.classList.remove("hidden");
-signupPhoneBox.classList.add("hidden");
+function signupEmailMode(){
+signupEmailArea.classList.remove("hidden");
+signupPhoneArea.classList.add("hidden");
 signupEmailBtn.classList.add("active");
 signupPhoneBtn.classList.remove("active");
-};
+}
 
-window.showSignupPhone=function(){
-signupPhoneBox.classList.remove("hidden");
-signupEmailBox.classList.add("hidden");
+function signupPhoneMode(){
+signupPhoneArea.classList.remove("hidden");
+signupEmailArea.classList.add("hidden");
 signupPhoneBtn.classList.add("active");
 signupEmailBtn.classList.remove("active");
-};
-
-window.loginEmailPassword=function(){
-const email=loginEmail.value.trim();
-const password=loginPassword.value.trim();
-
-auth.signInWithEmailAndPassword(email,password)
-.then(()=>{
-window.currentUserEmail=email;
-window.currentUserName=email;
-openMain();
-})
-.catch(e=>setAuthMsg(e.message));
-};
-
-window.signupEmailPassword=function(){
-const name=signupName.value.trim();
-const email=signupEmail.value.trim();
-const password=signupPassword.value.trim();
-
-auth.createUserWithEmailAndPassword(email,password)
-.then(()=>{
-window.currentUserEmail=email;
-window.currentUserName=name;
-openMain();
-})
-.catch(e=>setAuthMsg(e.message));
-};
-
-function getPhone(id){
-let p=document.getElementById(id).value.replace(/\D/g,"");
-if(p.length!==10){
-setAuthMsg("10 digit mobile number डालें");
-return null;
 }
-return "+91"+p;
+
+function loginEmailPassword(){
+const email=loginEmail.value.trim();
+const pass=loginPassword.value.trim();
+
+auth.signInWithEmailAndPassword(email,pass)
+.then(()=>{
+msg("Login Successful ✅");
+openMain();
+})
+.catch(e=>msg(e.message));
+}
+
+function signupEmailPassword(){
+const email=signupEmail.value.trim();
+const pass=signupPassword.value.trim();
+
+auth.createUserWithEmailAndPassword(email,pass)
+.then(()=>{
+msg("Account Created ✅");
+openMain();
+})
+.catch(e=>msg(e.message));
 }
 
 function setupCaptcha(){
@@ -1157,435 +456,62 @@ size:"invisible"
 }
 }
 
-window.sendLoginOTP=function(){
-const phone=getPhone("loginPhone");
+function phoneValue(id){
+let p=document.getElementById(id).value.replace(/\D/g,"");
+if(p.length!==10){
+msg("10 digit number डालें");
+return null;
+}
+return "+91"+p;
+}
+
+function sendLoginOTP(){
+const phone=phoneValue("loginPhone");
 if(!phone)return;
 setupCaptcha();
 
 auth.signInWithPhoneNumber(phone,window.recaptchaVerifier)
-.then(res=>{
-window.loginConfirmation=res;
-setAuthMsg("OTP Sent ✅");
+.then(r=>{
+window.loginConfirm=r;
+msg("OTP Sent ✅");
 })
-.catch(e=>setAuthMsg(e.message));
-};
+.catch(e=>msg(e.message));
+}
 
-window.verifyLoginOTP=function(){
+function verifyLoginOTP(){
 const otp=loginOtp.value.trim();
-if(!window.loginConfirmation){
-setAuthMsg("पहले OTP भेजें");
-return;
-}
-
-window.loginConfirmation.confirm(otp)
-.then(res=>{
-window.currentUserEmail=res.user.phoneNumber;
-window.currentUserName=res.user.phoneNumber;
+window.loginConfirm.confirm(otp)
+.then(()=>{
+msg("Login Successful ✅");
 openMain();
 })
-.catch(e=>setAuthMsg(e.message));
-};
-
-window.sendSignupOTP=function(){
-const name=signupPhoneName.value.trim();
-const phone=getPhone("signupPhone");
-
-if(name===""){
-setAuthMsg("Name डालें");
-return;
+.catch(e=>msg(e.message));
 }
-if(!phone)return;
 
-window.pendingSignupName=name;
+function sendSignupOTP(){
+const phone=phoneValue("signupPhone");
+if(!phone)return;
 setupCaptcha();
 
 auth.signInWithPhoneNumber(phone,window.recaptchaVerifier)
-.then(res=>{
-window.signupConfirmation=res;
-setAuthMsg("OTP Sent ✅");
+.then(r=>{
+window.signupConfirm=r;
+msg("OTP Sent ✅");
 })
-.catch(e=>setAuthMsg(e.message));
-};
-
-window.verifySignupOTP=function(){
-const otp=signupOtp.value.trim();
-if(!window.signupConfirmation){
-setAuthMsg("पहले OTP भेजें");
-return;
+.catch(e=>msg(e.message));
 }
 
-window.signupConfirmation.confirm(otp)
-.then(res=>{
-window.currentUserEmail=res.user.phoneNumber;
-window.currentUserName=window.pendingSignupName;
+function verifySignupOTP(){
+const otp=signupOtp.value.trim();
+window.signupConfirm.confirm(otp)
+.then(()=>{
+msg("Signup Successful ✅");
 openMain();
 })
-.catch(e=>setAuthMsg(e.message));
-};
-
-window.saveScore=async function(score,total,topic,setNo,lang){
-await db.collection("scores").add({
-email:window.currentUserEmail,
-name:window.currentUserName,
-score,total,topic,setNo,lang,
-date:new Date()
-});
-};
-
-window.loadLeaderboard=async function(){
-leaderboardBox.innerHTML="Loading...";
-const snap=await db.collection("scores").orderBy("score","desc").limit(10).get();
-leaderboardBox.innerHTML="";
-let rank=1;
-snap.forEach(doc=>{
-let d=doc.data();
-leaderboardBox.innerHTML+=`<div class="leader-item">${rank}. ${d.name || d.email} — ${d.score}/${d.total} (${d.topic} Set ${d.setNo})</div>`;
-rank++;
-});
-if(rank===1)leaderboardBox.innerHTML="अभी कोई score नहीं है।";
-};
-</script>  
-  <script>
-const arithmeticTopics=[
-"TEST YOUR CALCULATION",
-"PERCENTAGE",
-"PROFIT AND LOSS",
-"DISCOUNT",
-"PARTNERSHIP",
-"RATIO AND PROPORTION",
-"MIXTURE",
-"ALLIGATION",
-"SIMPLE INTEREST",
-"COMPOUND INTEREST",
-"AVERAGE",
-"TIME AND WORK",
-"PIPE AND CISTERN",
-"TIME AND DISTANCE",
-"TRAIN",
-"BOAT AND STREAM",
-"LINEAR AND CIRCULAR RACE",
-"PERMUTATION AND COMBINATION",
-"PROBABILITY",
-"STATISTICS",
-"LOGARITHM"
-];
-
-const advanceTopics=[
-"NUMBER SYSTEM",
-"LCM AND HCF",
-"SEQUENCE AND SERIES",
-"SIMPLIFICATION",
-"SQUARE AND INDICES",
-"GEOMETRY",
-"MENSURATION 2D",
-"MENSURATION 3D",
-"ALGEBRA",
-"TRIGONOMETRY",
-"HEIGHT AND DISTANCE",
-"CO-ORDINATE GEOMETRY"
-];
-
-const hindiQuestions=[
-{
-q:"999 × 999 कितना होगा?",
-a:["998001","999001","997001","996001"],
-c:0,
-solution:"(1000-1)² = 1000000 - 2000 + 1 = 998001",
-trick:"(a-b)² formula"
-},
-{
-q:"48 × 52 कितना होगा?",
-a:["2396","2496","2596","2696"],
-c:1,
-solution:"(50-2)(50+2)=2500-4=2496",
-trick:"Difference of squares"
-},
-{
-q:"625 ÷ 25 कितना होगा?",
-a:["15","20","25","30"],
-c:2,
-solution:"25 × 25 = 625",
-trick:"Reverse multiplication"
-},
-{
-q:"45² कितना होगा?",
-a:["1925","2025","2125","2225"],
-c:1,
-solution:"45×45=2025",
-trick:"5 ending square trick"
-},
-{
-q:"84 ÷ 0.7 कितना होगा?",
-a:["110","120","130","140"],
-c:1,
-solution:"84÷0.7 = 840÷7 = 120",
-trick:"Decimal हटाओ"
-}
-];
-
-const englishQuestions=[
-{
-q:"What is 999 × 999?",
-a:["998001","999001","997001","996001"],
-c:0,
-solution:"(1000-1)² = 1000000 - 2000 + 1 = 998001",
-trick:"Use (a-b)² formula"
-},
-{
-q:"What is 48 × 52?",
-a:["2396","2496","2596","2696"],
-c:1,
-solution:"(50-2)(50+2)=2500-4=2496",
-trick:"Use difference of squares"
-},
-{
-q:"What is 625 ÷ 25?",
-a:["15","20","25","30"],
-c:2,
-solution:"25 × 25 = 625, so answer is 25",
-trick:"Use reverse multiplication"
-},
-{
-q:"What is 45²?",
-a:["1925","2025","2125","2225"],
-c:1,
-solution:"45 × 45 = 2025",
-trick:"Square trick for numbers ending in 5"
-},
-{
-q:"What is 84 ÷ 0.7?",
-a:["110","120","130","140"],
-c:1,
-solution:"84 ÷ 0.7 = 840 ÷ 7 = 120",
-trick:"Remove decimal by multiplying by 10"
-}
-];
-
-let currentSet=[];
-let currentIndex=0;
-let answers=[];
-let timer;
-let timeLeft=30;
-let currentTopic="";
-let selectedSet=1;
-let selectedLang="Hindi";
-let activeCategory="";
-let topicPage=0;
-const topicsPerPage=7;
-
-function openCategory(type){
-activeCategory=type;
-topicPage=0;
-renderTopics();
-}
-
-function renderTopics(){
-const box=document.getElementById("categoryTopics");
-box.innerHTML="";
-
-let list=activeCategory==="arithmetic"?arithmeticTopics:advanceTopics;
-let start=topicPage*topicsPerPage;
-let pageItems=list.slice(start,start+topicsPerPage);
-
-pageItems.forEach((topic,index)=>{
-const div=document.createElement("div");
-div.className="topic";
-div.onclick=function(){
-openSetPage(topic);
-};
-div.innerHTML=`
-<span>${start+index+1}. ${topic}</span>
-<div class="badges">
-<span class="badge-blue">5 sets</span>
-<span class="badge-green">30 Ques / Set</span>
-</div>`;
-box.appendChild(div);
-});
-}
-
-function nextTopicPage(){
-let list=activeCategory==="arithmetic"?arithmeticTopics:advanceTopics;
-if((topicPage+1)*topicsPerPage<list.length){
-topicPage++;
-renderTopics();
-}
-}
-
-function prevTopicPage(){
-if(topicPage>0){
-topicPage--;
-renderTopics();
-}
-}
-
-function showOnly(id){
-["testSelect","chapterPage","setPage","languagePage","quiz","result","review","leaderboard"].forEach(x=>{
-document.getElementById(x).classList.add("hidden");
-});
-document.getElementById(id).classList.remove("hidden");
-}
-
-function showChapterTest(){
-showOnly("chapterPage");
-document.getElementById("categoryTopics").innerHTML="";
-}
-
-function backToTestSelect(){
-clearInterval(timer);
-showOnly("testSelect");
-}
-
-function startMixTest(){
-currentTopic="MIX TEST";
-selectedSet=1;
-document.getElementById("langInfo").innerText="MIX TEST | Hindi या English चुनें";
-showOnly("languagePage");
-}
-
-function showLeaderboard(){
-showOnly("leaderboard");
-loadLeaderboard();
-}
-
-function openSetPage(topic){
-currentTopic=topic;
-document.getElementById("setTitle").innerText=topic+" - Select Set";
-showOnly("setPage");
-}
-
-function chooseSet(n){
-selectedSet=n;
-document.getElementById("langInfo").innerText=currentTopic+" | Set "+n+" | Hindi या English चुनें";
-showOnly("languagePage");
-}
-
-function chooseLanguage(lang){
-selectedLang=lang;
-document.getElementById("langInfo").innerText=currentTopic+" | Set "+selectedSet+" | "+lang;
-}
-
-function startSelectedTest(){
-startQuiz(currentTopic);
-}
-
-function startQuiz(topic){
-currentSet=selectedLang==="English"?englishQuestions:hindiQuestions;
-currentIndex=0;
-answers=new Array(currentSet.length).fill(null);
-
-showOnly("quiz");
-
-document.getElementById("quizTitle").innerText=topic+" | Set "+selectedSet+" | "+selectedLang;
-document.getElementById("totalQ").innerText=currentSet.length;
-
-timeLeft=30;
-startTimer();
-loadQuestion();
-}
-
-function loadQuestion(){
-const item=currentSet[currentIndex];
-
-document.getElementById("qNo").innerText=currentIndex+1;
-document.getElementById("question").innerText=item.q;
-
-const box=document.getElementById("options");
-box.innerHTML="";
-
-item.a.forEach((opt,i)=>{
-const btn=document.createElement("button");
-btn.className="option";
-btn.innerText=opt;
-
-if(answers[currentIndex]===i){
-btn.classList.add("selected");
-}
-
-btn.onclick=function(){
-answers[currentIndex]=i;
-loadQuestion();
-};
-
-box.appendChild(btn);
-});
-
-timeLeft=30;
-document.getElementById("time").innerText="00:30";
-}
-
-function nextQuestion(){
-if(currentIndex<currentSet.length-1){
-currentIndex++;
-loadQuestion();
-}else{
-submitQuiz();
-}
-}
-
-function prevQuestion(){
-if(currentIndex>0){
-currentIndex--;
-loadQuestion();
-}
-}
-
-function startTimer(){
-clearInterval(timer);
-
-timer=setInterval(function(){
-timeLeft--;
-
-document.getElementById("time").innerText="00:"+String(timeLeft).padStart(2,"0");
-
-if(timeLeft<=0){
-nextQuestion();
-}
-},1000);
-}
-
-function submitQuiz(){
-clearInterval(timer);
-
-let score=0;
-
-currentSet.forEach((q,i)=>{
-if(answers[i]===q.c){
-score++;
-}
-});
-
-saveScore(score,currentSet.length,currentTopic,selectedSet,selectedLang);
-
-showOnly("result");
-
-document.getElementById("scoreText").innerText=score+" / "+currentSet.length;
-
-document.getElementById("resultMsg").innerText=
-score>=currentSet.length/2?"बहुत अच्छा!":"थोड़ा और practice करें।";
-}
-
-function showReview(){
-showOnly("review");
-
-const reviewBox=document.getElementById("reviewBox");
-reviewBox.innerHTML="";
-
-currentSet.forEach((q,i)=>{
-const div=document.createElement("div");
-div.className="review-item";
-
-div.innerHTML=`
-<h3>Q${i+1}. ${q.q}</h3>
-<p><b>Your Answer:</b> ${answers[i]!=null?q.a[answers[i]]:"Not Answered"}</p>
-<p><b>Correct Answer:</b> ${q.a[q.c]}</p>
-<p><b>Solution:</b> ${q.solution}</p>
-<p><b>Trick:</b> ${q.trick}</p>
-`;
-
-reviewBox.appendChild(div);
-});
+.catch(e=>msg(e.message));
 }
 </script>
 
 </body>
 </html>
+```
