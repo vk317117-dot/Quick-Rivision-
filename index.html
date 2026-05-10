@@ -7,296 +7,1036 @@
 <title>Quick Revision</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f4f7fb;color:#111}
-.hidden{display:none}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f7fb;
+color:#111;
+}
+
+.hidden{
+display:none!important;
+}
+
+/* SPLASH SCREEN */
 
 #splash-screen{
-position:fixed;top:0;left:0;width:100%;height:100vh;background:white;
-display:flex;justify-content:center;align-items:center;z-index:9999;
-animation:fadeOut 1s ease forwards;animation-delay:3s
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+animation:fadeOut 1s ease forwards;
+animation-delay:3s;
 }
-#splash-screen img{width:90%;max-width:420px;animation:zoomIn 2s ease}
-@keyframes zoomIn{0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
-@keyframes fadeOut{to{opacity:0;visibility:hidden}}
 
-#loginPage{
-position:fixed;top:0;left:0;width:100%;height:100vh;background:#f4f7fb;
-display:flex;justify-content:center;align-items:center;z-index:9998
+#splash-screen img{
+width:90%;
+max-width:420px;
+animation:zoomIn 2s ease;
 }
-.login-box{
-background:white;padding:22px;width:350px;border-radius:16px;
-box-shadow:0 4px 20px rgba(0,0,0,.15)
-}
-.login-box h2{text-align:center;color:#0759d8;margin-bottom:10px}
-.login-head{text-align:center;font-weight:bold;color:#0759d8;margin-bottom:15px;font-size:14px;line-height:1.5}
-.login-box input{width:100%;padding:12px;margin-bottom:10px;border:1px solid #ccc;border-radius:8px}
-.login-box button{width:100%;padding:12px;border:0;border-radius:8px;color:white;font-size:15px;margin-bottom:9px;cursor:pointer}
-.otp-btn{background:#0759d8}
-.verify-btn{background:#16a34a}
-#userInfo{text-align:center;color:#0759d8;font-size:14px;margin-top:5px}
 
-#mainContent{display:none}
+@keyframes zoomIn{
+0%{
+transform:scale(.7);
+opacity:0;
+}
+100%{
+transform:scale(1);
+opacity:1;
+}
+}
+
+@keyframes fadeOut{
+to{
+opacity:0;
+visibility:hidden;
+}
+}
+
+/* PREMIUM AUTH PAGE */
+
+#authPage{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:linear-gradient(135deg,#eaf2ff,#f8fbff);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9998;
+padding:15px;
+}
+
+.auth-card{
+width:100%;
+max-width:430px;
+background:white;
+border-radius:24px;
+box-shadow:0 12px 35px rgba(0,0,0,.18);
+padding:24px;
+}
+
+.auth-title{
+text-align:center;
+margin-bottom:12px;
+}
+
+.auth-title h2{
+color:#0759d8;
+font-size:30px;
+}
+
+.auth-title p{
+font-size:13px;
+font-weight:bold;
+color:#0759d8;
+line-height:1.6;
+margin-top:8px;
+}
+
+.auth-tabs{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+background:#eef2ff;
+padding:6px;
+border-radius:16px;
+margin:18px 0;
+}
+
+.auth-tab{
+border:none;
+padding:12px;
+border-radius:12px;
+background:transparent;
+color:#0759d8;
+font-weight:bold;
+cursor:pointer;
+}
+
+.auth-tab.active{
+background:#0759d8;
+color:white;
+}
+
+.method-tabs{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+margin-bottom:14px;
+}
+
+.method-btn{
+border:1.5px solid #0759d8;
+background:white;
+color:#0759d8;
+padding:11px;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.method-btn.active{
+background:#0759d8;
+color:white;
+}
+
+.auth-card input{
+width:100%;
+padding:13px;
+margin-bottom:10px;
+border:1px solid #cbd5e1;
+border-radius:12px;
+font-size:15px;
+}
+
+.phone-row{
+display:flex;
+gap:8px;
+}
+
+.country-code{
+width:64px;
+padding:13px;
+border:1px solid #cbd5e1;
+border-radius:12px;
+background:#f8fafc;
+font-weight:bold;
+text-align:center;
+margin-bottom:10px;
+}
+
+.primary-btn{
+width:100%;
+border:none;
+background:#0759d8;
+color:white;
+padding:13px;
+border-radius:12px;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+margin-bottom:10px;
+}
+
+.success-btn{
+width:100%;
+border:none;
+background:#16a34a;
+color:white;
+padding:13px;
+border-radius:12px;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+margin-bottom:10px;
+}
+
+#authMsg{
+text-align:center;
+font-size:14px;
+font-weight:bold;
+color:#0759d8;
+min-height:22px;
+margin-top:6px;
+}
+
+.small-note{
+font-size:12px;
+color:#666;
+text-align:center;
+line-height:1.5;
+}
+
+/* MAIN CONTENT */
+
+#mainContent{
+display:none;
+}
 
 header{
 background:linear-gradient(135deg,#06163d,#0759d8);
-color:white;padding:18px;text-align:center;
-position:sticky;top:0;z-index:1000
+color:white;
+padding:18px;
+text-align:center;
+position:sticky;
+top:0;
+z-index:1000;
 }
-header h1{font-size:38px}
-header p{font-size:16px;margin-top:5px}
 
-.container{max-width:1150px;margin:20px auto;padding:15px}
+header h1{
+font-size:38px;
+}
+
+header p{
+font-size:16px;
+margin-top:5px;
+}
+
+.container{
+max-width:1150px;
+margin:20px auto;
+padding:15px;
+}
+/* CARDS */
+
 .card{
-background:white;padding:22px;border-radius:18px;
+background:white;
+padding:22px;
+border-radius:18px;
 box-shadow:0 4px 12px rgba(0,0,0,.08);
-margin-bottom:18px
+margin-bottom:18px;
 }
-.card h2{font-size:30px;margin-bottom:8px}
-.card p{color:#555;margin-bottom:18px}
 
-.test-buttons,.set-grid,.lang-grid,.category-buttons{
-display:grid;grid-template-columns:1fr 1fr;gap:18px
+.card h2{
+font-size:30px;
+margin-bottom:8px;
 }
-.test-btn,.set-btn,.lang-btn,.category-btn{
-padding:28px;border-radius:18px;border:2px solid #0759d8;
-background:white;color:#0759d8;font-size:24px;font-weight:bold;cursor:pointer
+
+.card p{
+color:#555;
+margin-bottom:18px;
 }
-.test-btn:hover,.set-btn:hover,.lang-btn:hover,.category-btn:hover{background:#eef2ff}
+
+/* BUTTONS */
+
+.test-buttons,
+.set-grid,
+.lang-grid,
+.category-buttons{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+.test-btn,
+.set-btn,
+.lang-btn,
+.category-btn{
+padding:28px;
+border-radius:18px;
+border:2px solid #0759d8;
+background:white;
+color:#0759d8;
+font-size:24px;
+font-weight:bold;
+cursor:pointer;
+transition:.2s;
+}
+
+.test-btn:hover,
+.set-btn:hover,
+.lang-btn:hover,
+.category-btn:hover{
+background:#eef2ff;
+transform:translateY(-2px);
+}
+
+/* TOPICS */
 
 .topic-grid{
-padding:14px;display:grid;grid-template-columns:1fr;gap:12px
+padding:14px;
+display:grid;
+grid-template-columns:1fr;
+gap:12px;
 }
+
 .topic{
-border:2px solid #c7d2fe;padding:14px;border-radius:12px;
-display:flex;justify-content:space-between;align-items:center;
-font-weight:bold;background:white;cursor:pointer;font-size:16px
+border:2px solid #c7d2fe;
+padding:14px;
+border-radius:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-weight:bold;
+background:white;
+cursor:pointer;
+font-size:16px;
+transition:.2s;
 }
-.badges{display:flex;gap:6px;white-space:nowrap}
-.badge-blue{border:1px solid #4f7cff;padding:5px 8px;border-radius:8px;color:#0759d8;font-size:12px}
-.badge-green{border:1px solid #4ade80;padding:5px 8px;border-radius:8px;color:green;font-size:12px}
 
-.page-nav,.nav-buttons{
-display:flex;justify-content:space-between;margin-top:18px
+.topic:hover{
+transform:translateY(-2px);
+background:#eef4ff;
 }
 
-.quiz-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
-.timer{background:#fee2e2;color:#991b1b;padding:10px 14px;border-radius:12px;font-weight:bold}
-.progress{font-weight:bold;color:#0759d8;margin:12px 0}
-.question{font-size:22px;font-weight:bold;margin:18px 0}
+.badges{
+display:flex;
+gap:6px;
+white-space:nowrap;
+}
+
+.badge-blue{
+border:1px solid #4f7cff;
+padding:5px 8px;
+border-radius:8px;
+color:#0759d8;
+font-size:12px;
+}
+
+.badge-green{
+border:1px solid #4ade80;
+padding:5px 8px;
+border-radius:8px;
+color:green;
+font-size:12px;
+}
+
+/* NAVIGATION */
+
+.page-nav,
+.nav-buttons{
+display:flex;
+justify-content:space-between;
+margin-top:18px;
+gap:10px;
+}
+
+/* QUIZ */
+
+.quiz-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.timer{
+background:#fee2e2;
+color:#991b1b;
+padding:10px 14px;
+border-radius:12px;
+font-weight:bold;
+}
+
+.progress{
+font-weight:bold;
+color:#0759d8;
+margin:12px 0;
+}
+
+.question{
+font-size:22px;
+font-weight:bold;
+margin:18px 0;
+line-height:1.5;
+}
+
 .option{
-display:block;width:100%;text-align:left;background:#f9fafb;
-border:2px solid #e5e7eb;margin:10px 0;padding:14px;
-border-radius:12px;cursor:pointer;color:#111
+display:block;
+width:100%;
+text-align:left;
+background:#f9fafb;
+border:2px solid #e5e7eb;
+margin:10px 0;
+padding:14px;
+border-radius:12px;
+cursor:pointer;
+color:#111;
+font-size:16px;
+transition:.2s;
 }
-.option.selected{border-color:#0759d8;background:#dbeafe}
+
+.option:hover{
+background:#eef4ff;
+}
+
+.option.selected{
+border-color:#0759d8;
+background:#dbeafe;
+}
+
+/* GENERAL BUTTON */
 
 button{
-border:0;border-radius:12px;padding:12px 18px;
-font-weight:bold;cursor:pointer;background:#0759d8;color:white
+border:none;
+border-radius:12px;
+padding:12px 18px;
+font-weight:bold;
+cursor:pointer;
+background:#0759d8;
+color:white;
 }
-.submit-btn{background:#16a34a;margin-top:15px}
-.score{text-align:center;font-size:30px;color:#0759d8;font-weight:bold}
-.review-item{
-border-left:5px solid #0759d8;padding:14px;margin:14px 0;
-background:#f8fafc;border-radius:10px
+
+.submit-btn{
+background:#16a34a;
+margin-top:15px;
 }
-.leader-item{padding:12px;border-bottom:1px solid #ddd;font-weight:bold}
+
+/* RESULT */
+
+.score{
+text-align:center;
+font-size:34px;
+color:#0759d8;
+font-weight:bold;
+margin-top:8px;
+}
 
 .result-buttons{
-display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:15px
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+margin-top:18px;
 }
+
+/* REVIEW */
+
+.review-item{
+border-left:5px solid #0759d8;
+padding:14px;
+margin:14px 0;
+background:#f8fafc;
+border-radius:10px;
+line-height:1.7;
+}
+
+/* LEADERBOARD */
+
+.leader-item{
+padding:12px;
+border-bottom:1px solid #ddd;
+font-weight:bold;
+}
+
+/* FOOTER */
 
 footer{
 text-align:center;
-padding:20px;
+padding:22px;
 color:#555;
 line-height:1.8;
 font-weight:bold;
 }
 
+/* MOBILE */
+
 @media(max-width:768px){
-.test-buttons,.set-grid,.lang-grid,.category-buttons{grid-template-columns:1fr}
-header h1{font-size:30px}
-.test-btn,.set-btn,.lang-btn,.category-btn{font-size:22px}
-.topic{font-size:16px}
-.badges{flex-direction:column;gap:4px}
-.badge-blue,.badge-green{font-size:11px;padding:4px 5px}
+
+.test-buttons,
+.set-grid,
+.lang-grid,
+.category-buttons{
+grid-template-columns:1fr;
+}
+
+header h1{
+font-size:30px;
+}
+
+.test-btn,
+.set-btn,
+.lang-btn,
+.category-btn{
+font-size:22px;
+}
+
+.topic{
+font-size:16px;
+}
+
+.badges{
+flex-direction:column;
+gap:4px;
+}
+
+.badge-blue,
+.badge-green{
+font-size:11px;
+padding:4px 5px;
+}
+
+.auth-card{
+padding:18px;
+}
+
+.question{
+font-size:19px;
+}
+
 }
 </style>
 </head>
 
 <body>
 
+<!-- SPLASH -->
+
 <div id="splash-screen">
 <img src="logo.png" alt="Logo">
 </div>
 
-<div id="loginPage">
-<div class="login-box">
+<!-- AUTH -->
 
-<h2>Login / Signup</h2>
+<div id="authPage">
 
-<p class="login-head">
+<div class="auth-card">
+
+<div class="auth-title">
+<h2>Quick Revision</h2>
+
+<p>
 Railway | Bihar SI | Bihar Police | Bihar Teacher | SSC | Banking | BPSC | Other Competitive Exams
 </p>
+</div>
 
-<input type="text" id="name" placeholder="Name">
+<div class="auth-tabs">
 
-<input type="text" id="phone" placeholder="Mobile Number: +91XXXXXXXXXX">
+<button class="auth-tab active" id="loginTabBtn" onclick="showLogin()">
+LOGIN
+</button>
 
-<button class="otp-btn" onclick="sendOTP()">Send OTP</button>
+<button class="auth-tab" id="signupTabBtn" onclick="showSignup()">
+NEW USER
+</button>
 
-<input type="text" id="otp" placeholder="Enter OTP">
+</div>
 
-<button class="verify-btn" onclick="verifyOTP()">Verify & Continue</button>
+<!-- LOGIN SECTION -->
+
+<div id="loginSection" class="auth-section">
+
+<h3 class="auth-title">Login Your Account</h3>
+
+<div class="method-tabs">
+
+<button class="method-btn active" id="loginEmailBtn" onclick="showLoginEmail()">
+Email Login
+</button>
+
+<button class="method-btn" id="loginPhoneBtn" onclick="showLoginPhone()">
+Mobile OTP
+</button>
+
+</div>
+
+<!-- EMAIL LOGIN -->
+
+<div id="loginEmailBox">
+
+<input type="email" id="loginEmail" placeholder="Enter Email">
+
+<input type="password" id="loginPassword" placeholder="Enter Password">
+
+<button class="primary-btn" onclick="loginEmailPassword()">
+Login
+</button>
+
+</div>
+
+<!-- PHONE LOGIN -->
+
+<div id="loginPhoneBox" class="hidden">
+
+<div class="phone-row">
+
+<div class="country-code">
++91
+</div>
+
+<input type="text" id="loginPhone" placeholder="Enter Mobile Number">
+
+</div>
+
+<button class="primary-btn" onclick="sendLoginOTP()">
+Send OTP
+</button>
+
+<input type="text" id="loginOtp" placeholder="Enter OTP">
+
+<button class="success-btn" onclick="verifyLoginOTP()">
+Verify & Login
+</button>
+
+</div>
+
+</div>
+
+<!-- SIGNUP SECTION -->
+
+<div id="signupSection" class="auth-section hidden">
+
+<h3 class="auth-title">Create New Account</h3>
+
+<div class="method-tabs">
+
+<button class="method-btn active" id="signupEmailBtn" onclick="showSignupEmail()">
+Email Signup
+</button>
+
+<button class="method-btn" id="signupPhoneBtn" onclick="showSignupPhone()">
+Mobile OTP
+</button>
+
+</div>
+
+<!-- EMAIL SIGNUP -->
+
+<div id="signupEmailBox">
+
+<input type="text" id="signupName" placeholder="Full Name">
+
+<input type="email" id="signupEmail" placeholder="Enter Email">
+
+<input type="password" id="signupPassword" placeholder="Create Password">
+
+<button class="success-btn" onclick="signupEmailPassword()">
+Create Account
+</button>
+
+</div>
+
+<!-- PHONE SIGNUP -->
+
+<div id="signupPhoneBox" class="hidden">
+
+<input type="text" id="signupPhoneName" placeholder="Full Name">
+
+<div class="phone-row">
+
+<div class="country-code">
++91
+</div>
+
+<input type="text" id="signupPhone" placeholder="Enter Mobile Number">
+
+</div>
+
+<button class="primary-btn" onclick="sendSignupOTP()">
+Send OTP
+</button>
+
+<input type="text" id="signupOtp" placeholder="Enter OTP">
+
+<button class="success-btn" onclick="verifySignupOTP()">
+Verify & Continue
+</button>
+
+</div>
 
 <div id="recaptcha-container"></div>
 
-<p id="userInfo"></p>
+<div id="authMsg"></div>
+
+<p class="small-note">
+Secure Authentication System with Firebase
+</p>
 
 </div>
+
 </div>
+
+<!-- MAIN CONTENT -->
+
 <div id="mainContent">
 
 <header>
+
 <h1>Quick Revision</h1>
-<p>Maths Practice Set for Competitive Exams</p>
+
+<p>
+Maths Practice Set for Competitive Exams
+</p>
+
 </header>
 
 <div class="container">
 
+<!-- TEST SELECT -->
+
 <section id="testSelect" class="card">
+
 <h2>Test Select करें</h2>
-<p>अपना practice mode चुनें।</p>
+
+<p>
+अपना practice mode चुनें।
+</p>
 
 <div class="test-buttons">
-<button class="test-btn" onclick="startMixTest()">MIX TEST</button>
-<button class="test-btn" onclick="showChapterTest()">CHAPTER TEST</button>
+
+<button class="test-btn" onclick="startMixTest()">
+MIX TEST
+</button>
+
+<button class="test-btn" onclick="showChapterTest()">
+CHAPTER TEST
+</button>
+
 </div>
 
-<div style="text-align:center;margin-top:20px">
-<button onclick="showLeaderboard()">🏆 Leaderboard</button>
+<div style="text-align:center;margin-top:20px;">
+
+<button onclick="showLeaderboard()">
+🏆 Leaderboard
+</button>
+
 </div>
+
 </section>
 
+<!-- CHAPTER PAGE -->
+
 <section id="chapterPage" class="card hidden">
+
 <h2>Chapter Select करें</h2>
-<p>पहले category चुनें। 1 page में 7 topics दिखेंगे।</p>
+
+<p>
+पहले category चुनें। 1 page में 7 topics दिखेंगे।
+</p>
 
 <div class="category-buttons">
-<button class="category-btn" onclick="openCategory('arithmetic')">ARITHMETICS</button>
-<button class="category-btn" onclick="openCategory('advance')">ADVANCE MATH</button>
+
+<button class="category-btn" onclick="openCategory('arithmetic')">
+ARITHMETICS
+</button>
+
+<button class="category-btn" onclick="openCategory('advance')">
+ADVANCE MATH
+</button>
+
 </div>
 
 <div id="categoryTopics" class="topic-grid"></div>
 
 <div class="page-nav">
-<button onclick="prevTopicPage()">Previous</button>
-<button onclick="nextTopicPage()">Next</button>
+
+<button onclick="prevTopicPage()">
+Previous
+</button>
+
+<button onclick="nextTopicPage()">
+Next
+</button>
+
 </div>
 
 <div style="text-align:center;margin-top:20px">
-<button onclick="backToTestSelect()">Back</button>
+
+<button onclick="backToTestSelect()">
+Back
+</button>
+
 </div>
-</section>
+
+</section> 
+
+<!-- SET PAGE -->
 
 <section id="setPage" class="card hidden">
-<h2 id="setTitle">Select Set</h2>
-<p>हर set में 30 questions होंगे।</p>
+
+<h2 id="setTitle">
+Select Set
+</h2>
+
+<p>
+हर set में 30 questions होंगे।
+</p>
 
 <div class="set-grid">
-<button class="set-btn" onclick="chooseSet(1)">SET 1<br><small>30 Ques / Set</small></button>
-<button class="set-btn" onclick="chooseSet(2)">SET 2<br><small>30 Ques / Set</small></button>
-<button class="set-btn" onclick="chooseSet(3)">SET 3<br><small>30 Ques / Set</small></button>
-<button class="set-btn" onclick="chooseSet(4)">SET 4<br><small>30 Ques / Set</small></button>
-<button class="set-btn" onclick="chooseSet(5)">SET 5<br><small>30 Ques / Set</small></button>
+
+<button class="set-btn" onclick="chooseSet(1)">
+SET 1
+<br>
+<small>30 Ques / Set</small>
+</button>
+
+<button class="set-btn" onclick="chooseSet(2)">
+SET 2
+<br>
+<small>30 Ques / Set</small>
+</button>
+
+<button class="set-btn" onclick="chooseSet(3)">
+SET 3
+<br>
+<small>30 Ques / Set</small>
+</button>
+
+<button class="set-btn" onclick="chooseSet(4)">
+SET 4
+<br>
+<small>30 Ques / Set</small>
+</button>
+
+<button class="set-btn" onclick="chooseSet(5)">
+SET 5
+<br>
+<small>30 Ques / Set</small>
+</button>
+
 </div>
 
 <div style="text-align:center;margin-top:20px">
-<button onclick="showChapterTest()">Back</button>
+
+<button onclick="showChapterTest()">
+Back
+</button>
+
 </div>
+
 </section>
+
+<!-- LANGUAGE PAGE -->
 
 <section id="languagePage" class="card hidden">
-<h2>Language Choose करें</h2>
-<p id="langInfo">Hindi या English चुनें।</p>
+
+<h2>
+Language Choose करें
+</h2>
+
+<p id="langInfo">
+Hindi या English चुनें।
+</p>
 
 <div class="lang-grid">
-<button class="lang-btn" onclick="chooseLanguage('Hindi')">Hindi</button>
-<button class="lang-btn" onclick="chooseLanguage('English')">English</button>
+
+<button class="lang-btn" onclick="chooseLanguage('Hindi')">
+Hindi
+</button>
+
+<button class="lang-btn" onclick="chooseLanguage('English')">
+English
+</button>
+
 </div>
 
 <div style="text-align:center;margin-top:20px">
-<button class="submit-btn" onclick="startSelectedTest()">START TEST</button>
+
+<button class="submit-btn" onclick="startSelectedTest()">
+START TEST
+</button>
+
 </div>
+
 </section>
 
+<!-- QUIZ PAGE -->
+
 <section id="quiz" class="card hidden">
+
 <div class="quiz-top">
-<h2 id="quizTitle">Quiz</h2>
-<div class="timer">Time: <span id="time">00:30</span></div>
+
+<h2 id="quizTitle">
+Quiz
+</h2>
+
+<div class="timer">
+Time:
+<span id="time">
+00:30
+</span>
+</div>
+
 </div>
 
 <div class="progress">
-Question <span id="qNo">1</span> / <span id="totalQ">0</span>
+
+Question
+<span id="qNo">
+1
+</span>
+
+/
+
+<span id="totalQ">
+0
+</span>
+
 </div>
 
 <div id="question" class="question"></div>
+
 <div id="options"></div>
 
 <div class="nav-buttons">
-<button onclick="prevQuestion()">Previous</button>
-<button onclick="nextQuestion()">Next</button>
+
+<button onclick="prevQuestion()">
+Previous
+</button>
+
+<button onclick="nextQuestion()">
+Next
+</button>
+
 </div>
 
 <div style="text-align:center">
-<button class="submit-btn" onclick="submitQuiz()">Submit</button>
+
+<button class="submit-btn" onclick="submitQuiz()">
+Submit
+</button>
+
 </div>
+
 </section>
 
+<!-- RESULT PAGE -->
+
 <section id="result" class="card hidden">
-<h2 style="text-align:center">Result</h2>
+
+<h2 style="text-align:center">
+Result
+</h2>
+
 <p id="scoreText" class="score"></p>
+
 <p id="resultMsg" style="text-align:center;margin:10px 0"></p>
 
 <div class="result-buttons">
-<button onclick="backToTestSelect()">Home</button>
-<button onclick="showReview()">Analysis With Solution</button>
-<button onclick="showLeaderboard()">Leaderboard</button>
+
+<button onclick="backToTestSelect()">
+Home
+</button>
+
+<button onclick="showReview()">
+Analysis
+</button>
+
+<button onclick="showLeaderboard()">
+Leaderboard
+</button>
+
 </div>
+
 </section>
 
+<!-- REVIEW PAGE -->
+
 <section id="review" class="card hidden">
-<h2>Test Analysis With Solution</h2>
+
+<h2>
+Test Analysis With Solution
+</h2>
+
 <div id="reviewBox"></div>
 
 <div style="text-align:center">
-<button onclick="backToTestSelect()">Back Home</button>
+
+<button onclick="backToTestSelect()">
+Back Home
+</button>
+
 </div>
+
 </section>
 
+<!-- LEADERBOARD -->
+
 <section id="leaderboard" class="card hidden">
-<h2>🏆 Leaderboard</h2>
-<div id="leaderboardBox">Loading...</div>
+
+<h2>
+🏆 Leaderboard
+</h2>
+
+<div id="leaderboardBox">
+Loading...
+</div>
 
 <div style="text-align:center;margin-top:15px">
-<button onclick="backToTestSelect()">Back</button>
+
+<button onclick="backToTestSelect()">
+Back
+</button>
+
 </div>
+
 </section>
 
 </div>
 
 <footer>
-© Quick Revision | Maths Practice Site<br>
-Founder: Vicky Kumar<br>
+
+© Quick Revision | Maths Practice Site
+
+<br>
+
+Founder: Vicky Kumar
+
+<br>
+
 Mobile No: 6200848211
+
 </footer>
 
 </div>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
 const firebaseConfig={
@@ -313,65 +1053,195 @@ const auth=getAuth(app);
 const db=getFirestore(app);
 
 window.currentUserEmail="Guest";
+window.currentUserName="Guest";
 
 function openMain(){
 setTimeout(()=>{
-document.getElementById("loginPage").style.display="none";
+document.getElementById("authPage").style.display="none";
 document.getElementById("mainContent").style.display="block";
-},800);
+},600);
 }
 
-window.sendOTP=function(){
-const name=document.getElementById("name").value.trim();
-const phone=document.getElementById("phone").value.trim();
+function setAuthMsg(msg){
+document.getElementById("authMsg").innerText=msg;
+}
 
-if(name===""){
-document.getElementById("userInfo").innerText="Name डालें";
+window.showLogin=function(){
+document.getElementById("loginSection").classList.remove("hidden");
+document.getElementById("signupSection").classList.add("hidden");
+document.getElementById("loginTabBtn").classList.add("active");
+document.getElementById("signupTabBtn").classList.remove("active");
+setAuthMsg("");
+};
+
+window.showSignup=function(){
+document.getElementById("signupSection").classList.remove("hidden");
+document.getElementById("loginSection").classList.add("hidden");
+document.getElementById("signupTabBtn").classList.add("active");
+document.getElementById("loginTabBtn").classList.remove("active");
+setAuthMsg("");
+};
+
+window.showLoginEmail=function(){
+document.getElementById("loginEmailBox").classList.remove("hidden");
+document.getElementById("loginPhoneBox").classList.add("hidden");
+document.getElementById("loginEmailBtn").classList.add("active");
+document.getElementById("loginPhoneBtn").classList.remove("active");
+};
+
+window.showLoginPhone=function(){
+document.getElementById("loginPhoneBox").classList.remove("hidden");
+document.getElementById("loginEmailBox").classList.add("hidden");
+document.getElementById("loginPhoneBtn").classList.add("active");
+document.getElementById("loginEmailBtn").classList.remove("active");
+};
+
+window.showSignupEmail=function(){
+document.getElementById("signupEmailBox").classList.remove("hidden");
+document.getElementById("signupPhoneBox").classList.add("hidden");
+document.getElementById("signupEmailBtn").classList.add("active");
+document.getElementById("signupPhoneBtn").classList.remove("active");
+};
+
+window.showSignupPhone=function(){
+document.getElementById("signupPhoneBox").classList.remove("hidden");
+document.getElementById("signupEmailBox").classList.add("hidden");
+document.getElementById("signupPhoneBtn").classList.add("active");
+document.getElementById("signupEmailBtn").classList.remove("active");
+};
+
+window.loginEmailPassword=function(){
+const email=document.getElementById("loginEmail").value.trim();
+const password=document.getElementById("loginPassword").value.trim();
+
+if(email==="" || password===""){
+setAuthMsg("Email और Password डालें");
 return;
 }
 
-if(phone===""){
-document.getElementById("userInfo").innerText="Mobile number डालें";
+signInWithEmailAndPassword(auth,email,password)
+.then(()=>{
+window.currentUserEmail=email;
+window.currentUserName=email;
+setAuthMsg("Login Successful ✅");
+openMain();
+})
+.catch(e=>setAuthMsg(e.message));
+};
+
+window.signupEmailPassword=function(){
+const name=document.getElementById("signupName").value.trim();
+const email=document.getElementById("signupEmail").value.trim();
+const password=document.getElementById("signupPassword").value.trim();
+
+if(name==="" || email==="" || password===""){
+setAuthMsg("Name, Email और Password डालें");
 return;
 }
 
+createUserWithEmailAndPassword(auth,email,password)
+.then(()=>{
+window.currentUserEmail=email;
+window.currentUserName=name;
+setAuthMsg("Account Created ✅");
+openMain();
+})
+.catch(e=>setAuthMsg(e.message));
+};
+
+function getPhoneNumber(id){
+let phone=document.getElementById(id).value.trim();
+phone=phone.replace(/\D/g,"");
+if(phone.length!==10){
+setAuthMsg("10 digit mobile number डालें");
+return null;
+}
+return "+91"+phone;
+}
+
+function setupRecaptcha(){
 if(!window.recaptchaVerifier){
 window.recaptchaVerifier=new RecaptchaVerifier(auth,"recaptcha-container",{size:"invisible"});
 }
+}
+
+window.sendLoginOTP=function(){
+const phone=getPhoneNumber("loginPhone");
+if(!phone)return;
+
+setupRecaptcha();
 
 signInWithPhoneNumber(auth,phone,window.recaptchaVerifier)
-.then((confirmationResult)=>{
-window.confirmationResult=confirmationResult;
-window.currentUserEmail=name+" | "+phone;
-document.getElementById("userInfo").innerText="OTP Sent ✅";
+.then(result=>{
+window.loginConfirmation=result;
+setAuthMsg("OTP Sent ✅");
 })
-.catch((e)=>{
-document.getElementById("userInfo").innerText=e.message;
-});
+.catch(e=>setAuthMsg(e.message));
 };
 
-window.verifyOTP=function(){
-const code=document.getElementById("otp").value.trim();
+window.verifyLoginOTP=function(){
+const otp=document.getElementById("loginOtp").value.trim();
 
-if(!window.confirmationResult){
-document.getElementById("userInfo").innerText="पहले OTP भेजें";
+if(!window.loginConfirmation){
+setAuthMsg("पहले OTP भेजें");
 return;
 }
 
-window.confirmationResult.confirm(code)
-.then((result)=>{
-window.currentUserEmail=document.getElementById("name").value+" | "+result.user.phoneNumber;
-document.getElementById("userInfo").innerText="Login Successful ✅";
+window.loginConfirmation.confirm(otp)
+.then(result=>{
+window.currentUserEmail=result.user.phoneNumber;
+window.currentUserName=result.user.phoneNumber;
+setAuthMsg("Mobile Login Successful ✅");
 openMain();
 })
-.catch((e)=>{
-document.getElementById("userInfo").innerText=e.message;
-});
+.catch(e=>setAuthMsg(e.message));
+};
+
+window.sendSignupOTP=function(){
+const name=document.getElementById("signupPhoneName").value.trim();
+const phone=getPhoneNumber("signupPhone");
+
+if(name===""){
+setAuthMsg("Full Name डालें");
+return;
+}
+
+if(!phone)return;
+
+window.pendingSignupName=name;
+
+setupRecaptcha();
+
+signInWithPhoneNumber(auth,phone,window.recaptchaVerifier)
+.then(result=>{
+window.signupConfirmation=result;
+setAuthMsg("OTP Sent ✅");
+})
+.catch(e=>setAuthMsg(e.message));
+};
+
+window.verifySignupOTP=function(){
+const otp=document.getElementById("signupOtp").value.trim();
+
+if(!window.signupConfirmation){
+setAuthMsg("पहले OTP भेजें");
+return;
+}
+
+window.signupConfirmation.confirm(otp)
+.then(result=>{
+window.currentUserEmail=result.user.phoneNumber;
+window.currentUserName=window.pendingSignupName || result.user.phoneNumber;
+setAuthMsg("Signup Successful ✅");
+openMain();
+})
+.catch(e=>setAuthMsg(e.message));
 };
 
 window.saveScore=async function(score,total,topic,setNo,lang){
 await addDoc(collection(db,"scores"),{
 email:window.currentUserEmail,
+name:window.currentUserName,
 score:score,
 total:total,
 topic:topic,
@@ -395,7 +1265,7 @@ snap.forEach(doc=>{
 const d=doc.data();
 box.innerHTML+=`
 <div class="leader-item">
-${rank}. ${d.email} — ${d.score}/${d.total} (${d.topic} Set ${d.setNo})
+${rank}. ${d.name || d.email} — ${d.score}/${d.total} (${d.topic} Set ${d.setNo})
 </div>`;
 rank++;
 });
@@ -404,9 +1274,8 @@ if(rank===1){
 box.innerHTML="अभी कोई score नहीं है।";
 }
 };
-</script>
-
-<script>
+</script>  
+  <script>
 const arithmeticTopics=[
 "TEST YOUR CALCULATION",
 "PERCENTAGE",
