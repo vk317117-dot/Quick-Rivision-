@@ -427,6 +427,216 @@ Mobile No: 6200848211
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
 <script>
+ <script>
+
+function chooseSet(n){
+selectedSet=n;
+
+hideAll();
+
+document.getElementById("languagePage").classList.remove("hidden");
+
+document.getElementById("langInfo").innerText=
+currentTopic+" | Set "+n+" | Hindi या English चुनें";
+}
+
+function chooseLanguage(lang){
+selectedLang=lang;
+
+document.getElementById("langInfo").innerText=
+currentTopic+" | Set "+selectedSet+" | "+lang;
+}
+
+function startSelectedTest(){
+
+currentSet=
+selectedLang==="English"
+?englishQuestions
+:hindiQuestions;
+
+currentIndex=0;
+
+answers=new Array(currentSet.length).fill(null);
+
+hideAll();
+
+document.getElementById("quiz").classList.remove("hidden");
+
+document.getElementById("quizTitle").innerText=
+currentTopic+" | Set "+selectedSet+" | "+selectedLang;
+
+document.getElementById("totalQ").innerText=currentSet.length;
+
+timeLeft=30;
+
+startTimer();
+
+loadQuestion();
+}
+
+function loadQuestion(){
+
+const q=currentSet[currentIndex];
+
+document.getElementById("qNo").innerText=currentIndex+1;
+
+document.getElementById("question").innerText=q.q;
+
+const box=document.getElementById("options");
+
+box.innerHTML="";
+
+q.a.forEach((opt,i)=>{
+
+const btn=document.createElement("button");
+
+btn.className="option";
+
+btn.innerText=opt;
+
+if(answers[currentIndex]===i){
+btn.style.background="#dbeafe";
+btn.style.borderColor="#0b57d0";
+}
+
+btn.onclick=function(){
+
+answers[currentIndex]=i;
+
+loadQuestion();
+
+};
+
+box.appendChild(btn);
+
+});
+
+timeLeft=30;
+}
+
+function nextQuestion(){
+
+if(currentIndex<currentSet.length-1){
+
+currentIndex++;
+
+loadQuestion();
+
+}else{
+
+submitQuiz();
+
+}
+
+}
+
+function prevQuestion(){
+
+if(currentIndex>0){
+
+currentIndex--;
+
+loadQuestion();
+
+}
+
+}
+
+function startTimer(){
+
+clearInterval(timer);
+
+timer=setInterval(()=>{
+
+timeLeft--;
+
+document.getElementById("time").innerText=
+"00:"+String(timeLeft).padStart(2,"0");
+
+if(timeLeft<=0){
+
+nextQuestion();
+
+}
+
+},1000);
+
+}
+
+function submitQuiz(){
+
+clearInterval(timer);
+
+let score=0;
+
+currentSet.forEach((q,i)=>{
+
+if(answers[i]===q.c){
+score++;
+}
+
+});
+
+hideAll();
+
+document.getElementById("result").classList.remove("hidden");
+
+document.getElementById("scoreText").innerText=
+score+" / "+currentSet.length;
+
+}
+
+function showReview(){
+
+hideAll();
+
+document.getElementById("review").classList.remove("hidden");
+
+const box=document.getElementById("reviewBox");
+
+box.innerHTML="";
+
+currentSet.forEach((q,i)=>{
+
+box.innerHTML+=`
+
+<div class="topic">
+
+<div>
+
+<b>Q${i+1}. ${q.q}</b>
+
+<br><br>
+
+Your Answer:
+${answers[i]!=null?q.a[answers[i]]:"Not Answered"}
+
+<br>
+
+Correct Answer:
+${q.a[q.c]}
+
+<br>
+
+Solution:
+${q.solution}
+
+<br>
+
+Trick:
+${q.trick}
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+</script> 
 const firebaseConfig={
 apiKey:"AIzaSyDX45cM3C-iZSIDua_GGqb8nL1pVibzlWE",
 authDomain:"quick-revision-854ab.firebaseapp.com",
