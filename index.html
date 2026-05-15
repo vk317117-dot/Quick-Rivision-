@@ -71,12 +71,6 @@ color:#0b57d0;
 font-size:26px;
 font-weight:bold;
 cursor:pointer;
-transition:.3s;
-}
-
-.big-btn:hover{
-background:#0b57d0;
-color:white;
 }
 
 .topic{
@@ -88,13 +82,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 font-weight:bold;
-font-size:16px;
 cursor:pointer;
-transition:.3s;
-}
-
-.topic:hover{
-background:#eef4ff;
 }
 
 .badge{
@@ -109,7 +97,6 @@ font-size:12px;
 font-size:24px;
 font-weight:bold;
 margin:18px 0;
-line-height:1.5;
 }
 
 .option{
@@ -121,12 +108,6 @@ border-radius:12px;
 background:white;
 text-align:left;
 cursor:pointer;
-font-size:16px;
-transition:.2s;
-}
-
-.option:hover{
-background:#f0f7ff;
 }
 
 .option.selected{
@@ -159,7 +140,6 @@ background:#16a34a;
 display:flex;
 justify-content:center;
 gap:15px;
-flex-wrap:wrap;
 margin-top:18px;
 }
 
@@ -168,7 +148,6 @@ text-align:center;
 font-size:32px;
 color:#0b57d0;
 font-weight:bold;
-margin-top:20px;
 }
 
 .review-item{
@@ -188,26 +167,6 @@ line-height:1.8;
 font-weight:bold;
 }
 
-@media(max-width:768px){
-
-.grid2{
-grid-template-columns:1fr;
-}
-
-header h1{
-font-size:30px;
-}
-
-.big-btn{
-font-size:22px;
-}
-
-.topic{
-font-size:15px;
-}
-
-}
-
 </style>
 </head>
 
@@ -218,7 +177,7 @@ font-size:15px;
 <h1>Quick Revision</h1>
 
 <p>
-Railway | Bihar SI | Bihar Police | Bihar Teacher | SSC | Banking | BPSC | Other Competitive Exams
+Railway | Bihar SI | Bihar Police | Bihar Teacher | SSC | Banking | BPSC
 </p>
 
 </header>
@@ -273,12 +232,6 @@ ADVANCE MATH
 
 </div>
 
-<div style="text-align:center;margin-top:20px;">
-
-<button onclick="backHome()">Back</button>
-
-</div>
-
 </section>
 
 <section id="setPage" class="card hidden">
@@ -289,25 +242,11 @@ ADVANCE MATH
 
 <div class="grid2">
 
-<button class="big-btn" onclick="chooseSet(1)">
-SET 1
-</button>
-
-<button class="big-btn" onclick="chooseSet(2)">
-SET 2
-</button>
-
-<button class="big-btn" onclick="chooseSet(3)">
-SET 3
-</button>
-
-<button class="big-btn" onclick="chooseSet(4)">
-SET 4
-</button>
-
-<button class="big-btn" onclick="chooseSet(5)">
-SET 5
-</button>
+<button class="big-btn" onclick="chooseSet(1)">SET 1</button>
+<button class="big-btn" onclick="chooseSet(2)">SET 2</button>
+<button class="big-btn" onclick="chooseSet(3)">SET 3</button>
+<button class="big-btn" onclick="chooseSet(4)">SET 4</button>
+<button class="big-btn" onclick="chooseSet(5)">SET 5</button>
 
 </div>
 
@@ -316,8 +255,6 @@ SET 5
 <section id="languagePage" class="card hidden">
 
 <h2>Language Choose करें</h2>
-
-<p id="langInfo"></p>
 
 <br>
 
@@ -365,13 +302,9 @@ Question
 
 <div class="nav">
 
-<button onclick="prevQuestion()">
-Previous
-</button>
+<button onclick="prevQuestion()">Previous</button>
 
-<button onclick="nextQuestion()">
-Next
-</button>
+<button onclick="nextQuestion()">Next</button>
 
 </div>
 
@@ -387,21 +320,15 @@ Submit
 
 <section id="result" class="card hidden">
 
-<h2 style="text-align:center;">
-Result
-</h2>
+<h2 style="text-align:center;">Result</h2>
 
 <p id="scoreText" class="score"></p>
 
 <div class="result-buttons">
 
-<button onclick="backHome()">
-Home
-</button>
+<button onclick="backHome()">Home</button>
 
-<button onclick="showReview()">
-Analysis
-</button>
+<button onclick="showReview()">Analysis</button>
 
 </div>
 
@@ -412,14 +339,6 @@ Analysis
 <h2>Analysis With Solution</h2>
 
 <div id="reviewBox"></div>
-
-<div style="text-align:center;">
-
-<button onclick="backHome()">
-Back Home
-</button>
-
-</div>
 
 </section>
 
@@ -433,56 +352,40 @@ Back Home
 
 Founder: Vicky Kumar
 
-<br>
-
-Mobile No: 6200848211
-
 </footer>
+
+<script src="questions.js"></script>
 
 <script>
 
 const arithmeticTopics=[
-
 "TEST YOUR CALCULATION",
 "PERCENTAGE",
 "PROFIT AND LOSS",
 "DISCOUNT",
 "PARTNERSHIP",
-"RATIO AND PROPORTION",
-"MIXTURE",
-"ALLIGATION",
-"SIMPLE INTEREST",
-"COMPOUND INTEREST",
-"AVERAGE",
-"TIME AND WORK",
-"PIPE AND CISTERN",
-"TIME AND DISTANCE",
-"TRAIN",
-"BOAT AND STREAM",
-"LINEAR AND CIRCULAR RACE",
-"PERMUTATION AND COMBINATION",
-"PROBABILITY",
-"STATISTICS",
-"LOGARITHM"
-
+"RATIO AND PROPORTION"
 ];
 
 const advanceTopics=[
-
 "NUMBER SYSTEM",
 "LCM AND HCF",
-"SEQUENCE AND SERIES",
-"SIMPLIFICATION",
-"SQUARE AND INDICES",
-"GEOMETRY",
-"MENSURATION 2D",
-"MENSURATION 3D",
 "ALGEBRA",
-"TRIGONOMETRY",
-"HEIGHT AND DISTANCE",
-"CO-ORDINATE GEOMETRY"
-
+"TRIGONOMETRY"
 ];
+
+let activeCategory="";
+let topicPage=0;
+const topicsPerPage=7;
+
+let currentTopic="";
+let selectedSet=1;
+let selectedLang="Hindi";
+let currentSet=[];
+let currentIndex=0;
+let answers=[];
+let timer;
+let timeLeft=30;
 
 function shuffleArray(arr){
 
@@ -497,264 +400,296 @@ let j=Math.floor(Math.random()*(i+1));
 }
 
 return newArr;
-
 }
-
-const hindiPercentageQuestions=[
-{
-q:"चावल की कीमत 60% बढ़ गई। मूल कीमत पर आने के लिए नई कीमत कितने प्रतिशत घटानी होगी?",
-a:["33.33%","37.5%","40%","45%"],
-c:1,
-solution:"माना पुरानी कीमत 100 थी। नई कीमत 160 हुई। घटाना = 60/160 ×100 = 37.5%",
-trick:"बढ़ी हुई कीमत से कमी निकालते समय denominator नई कीमत होती है।"
-},
-{
-q:"30% विद्यार्थी हिंदी में, 45% अंग्रेजी में और 20% दोनों में फेल हुए। दोनों विषय में पास प्रतिशत कितना है?",
-a:["35%","40%","45%","50%"],
-c:1,
-solution:"कम से कम एक विषय में फेल = 30+45−20 = 55%, इसलिए दोनों में पास = 45%",
-trick:"Venn Diagram formula: A∪B = A+B−Both"
-},
-{
-q:"कीमत 10% घटी और बिक्री 30% बढ़ी। कुल आय पर क्या प्रभाव पड़ेगा?",
-a:["5%","10%","12%","17%"],
-c:3,
-solution:"नई आय = 90% × 130% = 117%, यानी 17% वृद्धि।",
-trick:"Successive percentage में multiplier method लगाओ।"
-}
-];
-
-const englishPercentageQuestions=[
-{
-q:"The price of rice increased by 60%. To restore the original price, new price must be reduced by?",
-a:["33.33%","37.5%","40%","45%"],
-c:1,
-solution:"Old price =100, new price=160. Reduction =60/160×100 =37.5%",
-trick:"Use new price as denominator."
-},
-{
-q:"30% failed in Hindi, 45% in English and 20% in both. What percentage passed in both subjects?",
-a:["35%","40%","45%","50%"],
-c:1,
-solution:"Failed in at least one =30+45−20=55%, so passed in both =45%",
-trick:"Use A∪B = A+B−Both."
-},
-{
-q:"Price decreased by 10% and sales increased by 30%. What is the effect on revenue?",
-a:["5%","10%","12%","17%"],
-c:3,
-solution:"New revenue =90%×130%=117%, so increase is 17%",
-trick:"Use multiplier method."
-}
-];
- let activeCategory="";
-let topicPage=0;
-const topicsPerPage=7;
-
-let currentTopic="";
-let selectedSet=1;
-let selectedLang="Hindi";
-let currentSet=[];
-let currentIndex=0;
-let answers=[];
-let timer;
-let timeLeft=30;
 
 function hideAll(){
+
 ["testSelect","chapterPage","setPage","languagePage","quiz","result","review"].forEach(id=>{
+
 document.getElementById(id).classList.add("hidden");
+
 });
+
 }
 
 function showChapterTest(){
+
 hideAll();
+
 document.getElementById("chapterPage").classList.remove("hidden");
-document.getElementById("categoryTopics").innerHTML="";
-}
 
-function backHome(){
-clearInterval(timer);
-hideAll();
-document.getElementById("testSelect").classList.remove("hidden");
-}
-
-function startMixTest(){
-currentTopic="MIX TEST";
-selectedSet=1;
-hideAll();
-document.getElementById("languagePage").classList.remove("hidden");
-document.getElementById("langInfo").innerText="MIX TEST | Hindi या English चुनें";
-}
-
-function openCategory(type){
-activeCategory=type;
-topicPage=0;
 renderTopics();
+
 }
 
 function renderTopics(){
+
 const box=document.getElementById("categoryTopics");
+
 box.innerHTML="";
 
-let list=activeCategory==="arithmetic"?arithmeticTopics:advanceTopics;
-let start=topicPage*topicsPerPage;
-let items=list.slice(start,start+topicsPerPage);
+let list=activeCategory==="advance"
+?advanceTopics
+:arithmeticTopics;
 
-items.forEach((topic,index)=>{
+list.forEach((topic,index)=>{
+
 let div=document.createElement("div");
+
 div.className="topic";
-div.onclick=function(){openSetPage(topic)};
-div.innerHTML=`<span>${start+index+1}. ${topic}</span><span class="badge">5 Sets | 30 Ques / Set</span>`;
+
+div.onclick=function(){
+
+openSetPage(topic);
+
+};
+
+div.innerHTML=`<span>${index+1}. ${topic}</span>
+<span class="badge">5 Sets</span>`;
+
 box.appendChild(div);
+
 });
+
 }
 
-function nextTopicPage(){
-let list=activeCategory==="arithmetic"?arithmeticTopics:advanceTopics;
-if((topicPage+1)*topicsPerPage<list.length){
-topicPage++;
-renderTopics();
-}
-}
+function openCategory(type){
 
-function prevTopicPage(){
-if(topicPage>0){
-topicPage--;
+activeCategory=type;
+
 renderTopics();
-}
+
 }
 
 function openSetPage(topic){
+
 currentTopic=topic;
+
 hideAll();
+
 document.getElementById("setPage").classList.remove("hidden");
-document.getElementById("setTitle").innerText=topic+" - Select Set";
+
+document.getElementById("setTitle").innerText=topic;
+
 }
 
 function chooseSet(n){
+
 selectedSet=n;
+
 hideAll();
+
 document.getElementById("languagePage").classList.remove("hidden");
-document.getElementById("langInfo").innerText=currentTopic+" | Set "+n+" | Hindi या English चुनें";
+
 }
 
 function chooseLanguage(lang){
+
 selectedLang=lang;
-document.getElementById("langInfo").innerText=currentTopic+" | Set "+selectedSet+" | "+lang;
+
+}
+
+function startMixTest(){
+
+currentTopic="MIX TEST";
+
+selectedSet=1;
+
+hideAll();
+
+document.getElementById("languagePage").classList.remove("hidden");
+
 }
 
 function startSelectedTest(){
+
 currentSet = selectedLang==="English"
 ? shuffleArray(englishPercentageQuestions).slice(0,30)
 : shuffleArray(hindiPercentageQuestions).slice(0,30);
+
 currentIndex=0;
+
 answers=new Array(currentSet.length).fill(null);
 
 hideAll();
+
 document.getElementById("quiz").classList.remove("hidden");
-document.getElementById("quizTitle").innerText=currentTopic+" | Set "+selectedSet+" | "+selectedLang;
+
 document.getElementById("totalQ").innerText=currentSet.length;
 
-timeLeft=30;
 startTimer();
+
 loadQuestion();
+
 }
 
 function loadQuestion(){
+
 const q=currentSet[currentIndex];
 
 document.getElementById("qNo").innerText=currentIndex+1;
+
 document.getElementById("question").innerText=q.q;
 
 const box=document.getElementById("options");
+
 box.innerHTML="";
 
 q.a.forEach((opt,i)=>{
+
 const btn=document.createElement("button");
+
 btn.className="option";
+
 btn.innerText=opt;
 
 if(answers[currentIndex]===i){
+
 btn.classList.add("selected");
+
 }
 
 btn.onclick=function(){
+
 answers[currentIndex]=i;
+
 loadQuestion();
+
 };
 
 box.appendChild(btn);
+
 });
 
 timeLeft=30;
+
 document.getElementById("time").innerText="00:30";
+
 }
 
 function nextQuestion(){
+
 if(currentIndex<currentSet.length-1){
+
 currentIndex++;
+
 loadQuestion();
+
 }else{
+
 submitQuiz();
+
 }
+
 }
 
 function prevQuestion(){
+
 if(currentIndex>0){
+
 currentIndex--;
+
 loadQuestion();
+
 }
+
 }
 
 function startTimer(){
+
 clearInterval(timer);
 
 timer=setInterval(()=>{
+
 timeLeft--;
+
 document.getElementById("time").innerText="00:"+String(timeLeft).padStart(2,"0");
 
 if(timeLeft<=0){
+
 nextQuestion();
+
 }
+
 },1000);
+
 }
 
 function submitQuiz(){
+
 clearInterval(timer);
 
 let score=0;
 
 currentSet.forEach((q,i)=>{
+
 if(answers[i]===q.c){
+
 score++;
+
 }
+
 });
 
 hideAll();
+
 document.getElementById("result").classList.remove("hidden");
+
 document.getElementById("scoreText").innerText=score+" / "+currentSet.length;
+
 }
 
 function showReview(){
+
 hideAll();
+
 document.getElementById("review").classList.remove("hidden");
 
 const box=document.getElementById("reviewBox");
+
 box.innerHTML="";
 
 currentSet.forEach((q,i)=>{
+
 box.innerHTML+=`
+
 <div class="review-item">
+
 <b>Q${i+1}. ${q.q}</b><br>
-Your Answer: ${answers[i]!=null?q.a[answers[i]]:"Not Answered"}<br>
-Correct Answer: ${q.a[q.c]}<br>
-Solution: ${q.solution}<br>
-Trick: ${q.trick}
-</div>`;
+
+Your Answer:
+${answers[i]!=null?q.a[answers[i]]:"Not Answered"}
+
+<br>
+
+Correct Answer:
+${q.a[q.c]}
+
+<br>
+
+Solution:
+${q.solution}
+
+<br>
+
+Trick:
+${q.trick}
+
+</div>
+
+`;
+
 });
+
+}
+
+function backHome(){
+
+location.reload();
+
 }
 
 </script>
-<script src="questions.js"></script>
+
 </body>
-</html> 
+</html>
