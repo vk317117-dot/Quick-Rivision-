@@ -4,184 +4,557 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quick Revision</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f4f7fb;color:#111}
-.hidden{display:none!important}
 
-header{background:#0b57d0;color:white;padding:18px;text-align:center;position:sticky;top:0;z-index:1000}
-header h1{font-size:38px}
-header p{font-size:16px;margin-top:5px}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-.container{max-width:1150px;margin:20px auto;padding:15px}
-.card{background:white;padding:22px;border-radius:18px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:18px}
+body{
+background:#f4f7fb;
+color:#111;
+}
 
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.big-btn{padding:30px;border-radius:18px;border:2px solid #0b57d0;background:white;color:#0b57d0;font-size:26px;font-weight:bold;cursor:pointer}
+.hidden{
+display:none!important;
+}
 
-.topic{border:2px solid #c7d2fe;padding:14px;border-radius:12px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;font-weight:bold;font-size:16px;cursor:pointer}
-.badge{border:1px solid #4ade80;color:green;padding:5px 8px;border-radius:8px;font-size:12px}
+header{
+background:#0b57d0;
+color:white;
+padding:18px;
+text-align:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
 
-.question{font-size:24px;font-weight:bold;margin:18px 0}
-.option{width:100%;padding:14px;margin:8px 0;border:2px solid #ddd;border-radius:12px;background:white;text-align:left;cursor:pointer}
-.option.selected{background:#dbeafe;border-color:#0b57d0}
+header h1{
+font-size:38px;
+}
 
-.nav{display:flex;justify-content:space-between;gap:10px;margin-top:15px}
-button{border:0;border-radius:12px;padding:12px 18px;background:#0b57d0;color:white;font-weight:bold;cursor:pointer}
-.green{background:#16a34a}
+header p{
+font-size:15px;
+margin-top:5px;
+}
 
-.result-buttons{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:18px}
-.score{text-align:center;font-size:32px;color:#0b57d0;font-weight:bold}
+.container{
+max-width:1150px;
+margin:20px auto;
+padding:15px;
+}
 
-.review-item{border-left:5px solid #0b57d0;background:#f8fafc;padding:14px;margin:14px 0;border-radius:10px;line-height:1.7}
+.card{
+background:white;
+padding:22px;
+border-radius:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+margin-bottom:18px;
+}
 
-footer{text-align:center;padding:22px;color:#555;line-height:1.8;font-weight:bold}
+.grid2{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+.big-btn{
+padding:30px;
+border-radius:18px;
+border:2px solid #0b57d0;
+background:white;
+color:#0b57d0;
+font-size:26px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.big-btn:hover{
+background:#0b57d0;
+color:white;
+}
+
+.topic{
+border:2px solid #c7d2fe;
+padding:14px;
+border-radius:12px;
+margin-bottom:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+}
+
+.topic:hover{
+background:#eef4ff;
+}
+
+.badge{
+border:1px solid #4ade80;
+color:green;
+padding:5px 8px;
+border-radius:8px;
+font-size:12px;
+}
+
+.question{
+font-size:24px;
+font-weight:bold;
+margin:18px 0;
+line-height:1.5;
+}
+
+.option{
+width:100%;
+padding:14px;
+margin:8px 0;
+border:2px solid #ddd;
+border-radius:12px;
+background:white;
+text-align:left;
+cursor:pointer;
+font-size:16px;
+transition:.2s;
+}
+
+.option:hover{
+background:#f0f7ff;
+}
+
+.option.selected{
+background:#dbeafe;
+border-color:#0b57d0;
+}
+
+.nav{
+display:flex;
+justify-content:space-between;
+gap:10px;
+margin-top:15px;
+}
+
+button{
+border:0;
+border-radius:12px;
+padding:12px 18px;
+background:#0b57d0;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.green{
+background:#16a34a;
+}
+
+.result-buttons{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+margin-top:18px;
+}
+
+.score{
+text-align:center;
+font-size:32px;
+color:#0b57d0;
+font-weight:bold;
+margin-top:20px;
+}
+
+.review-item{
+border-left:5px solid #0b57d0;
+background:#f8fafc;
+padding:14px;
+margin:14px 0;
+border-radius:10px;
+line-height:1.7;
+}
+
+footer{
+text-align:center;
+padding:22px;
+color:#555;
+line-height:1.8;
+font-weight:bold;
+}
 
 @media(max-width:768px){
-.grid2{grid-template-columns:1fr}
-header h1{font-size:30px}
-.big-btn{font-size:22px}
-.topic{font-size:15px}
+
+.grid2{
+grid-template-columns:1fr;
 }
+
+header h1{
+font-size:30px;
+}
+
+.big-btn{
+font-size:22px;
+}
+
+.topic{
+font-size:15px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
+
 <h1>Quick Revision</h1>
-<p>Railway | Bihar SI | Bihar Police | Bihar Teacher | SSC | Banking | BPSC | Other Competitive Exams</p>
+
+<p>
+Railway | Bihar SI | Bihar Police | Bihar Teacher | SSC | Banking | BPSC | Other Competitive Exams
+</p>
+
 </header>
 
 <div class="container">
 
 <section id="testSelect" class="card">
+
 <h2>Test Select करें</h2>
+
 <br>
+
 <div class="grid2">
-<button class="big-btn" onclick="startMixTest()">MIX TEST</button>
-<button class="big-btn" onclick="showChapterTest()">CHAPTER TEST</button>
+
+<button class="big-btn" onclick="startMixTest()">
+MIX TEST
+</button>
+
+<button class="big-btn" onclick="showChapterTest()">
+CHAPTER TEST
+</button>
+
 </div>
+
 </section>
 
 <section id="chapterPage" class="card hidden">
+
 <h2>Chapter Select करें</h2>
-<p>पहले category चुनें। 1 page में 7 topics दिखेंगे।</p>
+
 <br>
 
 <div class="grid2">
-<button class="big-btn" onclick="openCategory('arithmetic')">ARITHMETICS</button>
-<button class="big-btn" onclick="openCategory('advance')">ADVANCE MATH</button>
+
+<button class="big-btn" onclick="openCategory('arithmetic')">
+ARITHMETICS
+</button>
+
+<button class="big-btn" onclick="openCategory('advance')">
+ADVANCE MATH
+</button>
+
 </div>
 
 <div id="categoryTopics" style="margin-top:20px;"></div>
 
 <div class="nav">
+
 <button onclick="prevTopicPage()">Previous</button>
+
 <button onclick="nextTopicPage()">Next</button>
+
 </div>
 
 <div style="text-align:center;margin-top:20px;">
+
 <button onclick="backHome()">Back</button>
+
 </div>
+
 </section>
 
 <section id="setPage" class="card hidden">
+
 <h2 id="setTitle">Select Set</h2>
+
 <br>
+
 <div class="grid2">
-<button class="big-btn" onclick="chooseSet(1)">SET 1<br><small>30 Ques / Set</small></button>
-<button class="big-btn" onclick="chooseSet(2)">SET 2<br><small>30 Ques / Set</small></button>
-<button class="big-btn" onclick="chooseSet(3)">SET 3<br><small>30 Ques / Set</small></button>
-<button class="big-btn" onclick="chooseSet(4)">SET 4<br><small>30 Ques / Set</small></button>
-<button class="big-btn" onclick="chooseSet(5)">SET 5<br><small>30 Ques / Set</small></button>
+
+<button class="big-btn" onclick="chooseSet(1)">
+SET 1
+</button>
+
+<button class="big-btn" onclick="chooseSet(2)">
+SET 2
+</button>
+
+<button class="big-btn" onclick="chooseSet(3)">
+SET 3
+</button>
+
+<button class="big-btn" onclick="chooseSet(4)">
+SET 4
+</button>
+
+<button class="big-btn" onclick="chooseSet(5)">
+SET 5
+</button>
+
 </div>
+
 </section>
 
 <section id="languagePage" class="card hidden">
+
 <h2>Language Choose करें</h2>
+
 <p id="langInfo"></p>
+
 <br>
+
 <div class="grid2">
-<button class="big-btn" onclick="chooseLanguage('Hindi')">Hindi</button>
-<button class="big-btn" onclick="chooseLanguage('English')">English</button>
+
+<button class="big-btn" onclick="chooseLanguage('Hindi')">
+Hindi
+</button>
+
+<button class="big-btn" onclick="chooseLanguage('English')">
+English
+</button>
+
 </div>
+
 <div style="text-align:center;margin-top:20px;">
-<button class="green" onclick="startSelectedTest()">START TEST</button>
+
+<button class="green" onclick="startSelectedTest()">
+START TEST
+</button>
+
 </div>
+
 </section>
 
 <section id="quiz" class="card hidden">
+
 <h2 id="quizTitle">Quiz</h2>
-<p>Time: <b id="time">00:30</b></p>
-<p>Question <span id="qNo">1</span> / <span id="totalQ">0</span></p>
+
+<p>
+Time:
+<b id="time">00:30</b>
+</p>
+
+<p>
+Question
+<span id="qNo">1</span>
+/
+<span id="totalQ">0</span>
+</p>
+
 <div id="question" class="question"></div>
+
 <div id="options"></div>
 
 <div class="nav">
-<button onclick="prevQuestion()">Previous</button>
-<button onclick="nextQuestion()">Next</button>
+
+<button onclick="prevQuestion()">
+Previous
+</button>
+
+<button onclick="nextQuestion()">
+Next
+</button>
+
 </div>
 
 <div style="text-align:center;margin-top:15px;">
-<button class="green" onclick="submitQuiz()">Submit</button>
+
+<button class="green" onclick="submitQuiz()">
+Submit
+</button>
+
 </div>
+
 </section>
 
 <section id="result" class="card hidden">
-<h2 style="text-align:center;">Result</h2>
+
+<h2 style="text-align:center;">
+Result
+</h2>
+
 <p id="scoreText" class="score"></p>
 
 <div class="result-buttons">
-<button onclick="backHome()">Home</button>
-<button onclick="showReview()">Analysis</button>
+
+<button onclick="backHome()">
+Home
+</button>
+
+<button onclick="showReview()">
+Analysis
+</button>
+
 </div>
+
 </section>
 
 <section id="review" class="card hidden">
+
 <h2>Analysis With Solution</h2>
+
 <div id="reviewBox"></div>
+
 <div style="text-align:center;">
-<button onclick="backHome()">Back Home</button>
+
+<button onclick="backHome()">
+Back Home
+</button>
+
 </div>
+
 </section>
 
 </div>
 
 <footer>
-© Quick Revision | Maths Practice Site<br>
-Founder: Vicky Kumar<br>
+
+© Quick Revision | Maths Practice Site
+
+<br>
+
+Founder: Vicky Kumar
+
+<br>
+
 Mobile No: 6200848211
+
 </footer>
 
 <script>
+
 const arithmeticTopics=[
-"TEST YOUR CALCULATION","PERCENTAGE","PROFIT AND LOSS","DISCOUNT","PARTNERSHIP","RATIO AND PROPORTION","MIXTURE","ALLIGATION","SIMPLE INTEREST","COMPOUND INTEREST","AVERAGE","TIME AND WORK","PIPE AND CISTERN","TIME AND DISTANCE","TRAIN","BOAT AND STREAM","LINEAR AND CIRCULAR RACE","PERMUTATION AND COMBINATION","PROBABILITY","STATISTICS","LOGARITHM"
+
+"TEST YOUR CALCULATION",
+"PERCENTAGE",
+"PROFIT AND LOSS",
+"DISCOUNT",
+"PARTNERSHIP",
+"RATIO AND PROPORTION",
+"MIXTURE",
+"ALLIGATION",
+"SIMPLE INTEREST",
+"COMPOUND INTEREST",
+"AVERAGE",
+"TIME AND WORK",
+"PIPE AND CISTERN",
+"TIME AND DISTANCE",
+"TRAIN",
+"BOAT AND STREAM",
+"LINEAR AND CIRCULAR RACE",
+"PERMUTATION AND COMBINATION",
+"PROBABILITY",
+"STATISTICS",
+"LOGARITHM"
+
 ];
 
 const advanceTopics=[
-"NUMBER SYSTEM","LCM AND HCF","SEQUENCE AND SERIES","SIMPLIFICATION","SQUARE AND INDICES","GEOMETRY","MENSURATION 2D","MENSURATION 3D","ALGEBRA","TRIGONOMETRY","HEIGHT AND DISTANCE","CO-ORDINATE GEOMETRY"
+
+"NUMBER SYSTEM",
+"LCM AND HCF",
+"SEQUENCE AND SERIES",
+"SIMPLIFICATION",
+"SQUARE AND INDICES",
+"GEOMETRY",
+"MENSURATION 2D",
+"MENSURATION 3D",
+"ALGEBRA",
+"TRIGONOMETRY",
+"HEIGHT AND DISTANCE",
+"CO-ORDINATE GEOMETRY"
+
 ];
 
-const hindiQuestions=[
-{q:"999 × 999 कितना होगा?",a:["998001","999001","997001","996001"],c:0,solution:"(1000-1)² = 998001",trick:"(a-b)² formula"},
-{q:"48 × 52 कितना होगा?",a:["2396","2496","2596","2696"],c:1,solution:"(50-2)(50+2)=2496",trick:"a²-b²"},
-{q:"625 ÷ 25 कितना होगा?",a:["15","20","25","30"],c:2,solution:"25×25=625",trick:"Reverse multiplication"},
-{q:"45² कितना होगा?",a:["1925","2025","2125","2225"],c:1,solution:"45×45=2025",trick:"5 ending square trick"},
-{q:"84 ÷ 0.7 कितना होगा?",a:["110","120","130","140"],c:1,solution:"840÷7=120",trick:"Decimal हटाओ"}
-];
+function shuffleArray(arr){
 
-const englishQuestions=[
-{q:"What is 999 × 999?",a:["998001","999001","997001","996001"],c:0,solution:"(1000-1)² = 998001",trick:"Use (a-b)²"},
-{q:"What is 48 × 52?",a:["2396","2496","2596","2696"],c:1,solution:"(50-2)(50+2)=2496",trick:"Use a²-b²"},
-{q:"What is 625 ÷ 25?",a:["15","20","25","30"],c:2,solution:"25×25=625",trick:"Reverse multiplication"},
-{q:"What is 45²?",a:["1925","2025","2125","2225"],c:1,solution:"45×45=2025",trick:"5 ending square trick"},
-{q:"What is 84 ÷ 0.7?",a:["110","120","130","140"],c:1,solution:"840÷7=120",trick:"Remove decimal"}
-];
+let newArr=[...arr];
 
-let activeCategory="";
+for(let i=newArr.length-1;i>0;i--){
+
+let j=Math.floor(Math.random()*(i+1));
+
+[newArr[i],newArr[j]]=[newArr[j],newArr[i]];
+
+}
+
+return newArr;
+
+}
+
+const percentageQuestions=[
+
+{
+q:"The price of rice has increased by 60%. In order to restore original price new price must be reduced by?",
+a:["33.33%","37.5%","40%","45%"],
+c:1,
+solution:"60/160 ×100",
+trick:"Reverse percentage"
+},
+
+{
+q:"30% failed in Hindi, 45% in English and 20% in both. Passed in both?",
+a:["35%","40%","45%","50%"],
+c:1,
+solution:"30+45−20=55 fail",
+trick:"Venn Diagram"
+},
+
+{
+q:"Price decreased by 10%, sales increased by 30%. Effect on revenue?",
+a:["5%","10%","12%","17%"],
+c:3,
+solution:"130×90=11700",
+trick:"Successive percentage"
+},
+
+{
+q:"Average marks =80. 10% scored 95 and 20% scored 90. Remaining average?",
+a:["55","65","75","85"],
+c:2,
+solution:"Weighted average",
+trick:"Assumption"
+},
+
+{
+q:"5% population died and 20% fled. Present population=4655. Original population?",
+a:["6000","6125","5995","5855"],
+c:1,
+solution:"Backward percentage",
+trick:"Reverse method"
+},
+
+{
+q:"A candidate passed by answering 10 correct out of 15 attempted. Pass mark=40%. Total questions?",
+a:["25","30","40","45"],
+c:0,
+solution:"10 is 40%",
+trick:"Unitary"
+}
+
+];
+ let activeCategory="";
 let topicPage=0;
 const topicsPerPage=7;
+
 let currentTopic="";
 let selectedSet=1;
 let selectedLang="Hindi";
@@ -226,6 +599,7 @@ renderTopics();
 function renderTopics(){
 const box=document.getElementById("categoryTopics");
 box.innerHTML="";
+
 let list=activeCategory==="arithmetic"?arithmeticTopics:advanceTopics;
 let start=topicPage*topicsPerPage;
 let items=list.slice(start,start+topicsPerPage);
@@ -274,13 +648,15 @@ document.getElementById("langInfo").innerText=currentTopic+" | Set "+selectedSet
 }
 
 function startSelectedTest(){
-currentSet=selectedLang==="English"?englishQuestions:hindiQuestions;
+currentSet=shuffleArray(percentageQuestions).slice(0,30);
 currentIndex=0;
 answers=new Array(currentSet.length).fill(null);
+
 hideAll();
 document.getElementById("quiz").classList.remove("hidden");
 document.getElementById("quizTitle").innerText=currentTopic+" | Set "+selectedSet+" | "+selectedLang;
 document.getElementById("totalQ").innerText=currentSet.length;
+
 timeLeft=30;
 startTimer();
 loadQuestion();
@@ -288,8 +664,10 @@ loadQuestion();
 
 function loadQuestion(){
 const q=currentSet[currentIndex];
+
 document.getElementById("qNo").innerText=currentIndex+1;
 document.getElementById("question").innerText=q.q;
+
 const box=document.getElementById("options");
 box.innerHTML="";
 
@@ -297,8 +675,16 @@ q.a.forEach((opt,i)=>{
 const btn=document.createElement("button");
 btn.className="option";
 btn.innerText=opt;
-if(answers[currentIndex]===i)btn.classList.add("selected");
-btn.onclick=function(){answers[currentIndex]=i;loadQuestion()};
+
+if(answers[currentIndex]===i){
+btn.classList.add("selected");
+}
+
+btn.onclick=function(){
+answers[currentIndex]=i;
+loadQuestion();
+};
+
 box.appendChild(btn);
 });
 
@@ -324,17 +710,28 @@ loadQuestion();
 
 function startTimer(){
 clearInterval(timer);
+
 timer=setInterval(()=>{
 timeLeft--;
 document.getElementById("time").innerText="00:"+String(timeLeft).padStart(2,"0");
-if(timeLeft<=0)nextQuestion();
+
+if(timeLeft<=0){
+nextQuestion();
+}
 },1000);
 }
 
 function submitQuiz(){
 clearInterval(timer);
+
 let score=0;
-currentSet.forEach((q,i)=>{if(answers[i]===q.c)score++});
+
+currentSet.forEach((q,i)=>{
+if(answers[i]===q.c){
+score++;
+}
+});
+
 hideAll();
 document.getElementById("result").classList.remove("hidden");
 document.getElementById("scoreText").innerText=score+" / "+currentSet.length;
@@ -343,8 +740,10 @@ document.getElementById("scoreText").innerText=score+" / "+currentSet.length;
 function showReview(){
 hideAll();
 document.getElementById("review").classList.remove("hidden");
+
 const box=document.getElementById("reviewBox");
 box.innerHTML="";
+
 currentSet.forEach((q,i)=>{
 box.innerHTML+=`
 <div class="review-item">
@@ -356,7 +755,8 @@ Trick: ${q.trick}
 </div>`;
 });
 }
+
 </script>
 
 </body>
-</html>
+</html> 
